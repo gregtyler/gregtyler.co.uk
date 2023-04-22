@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#c82e14">
+    <link rel="preconnect" href="https://analytics.gregtyler.co.uk">
+    <link rel="manifest" href="/assets/manifest.webmanifest">
+    <link rel="shortcut icon" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
+    <link rel="alternate" type="application/rss+xml" title="Greg Tyler RSS Feed" href="/feed.rss" />
+    <meta name="description" content="Websites, quizzes, problem solving. I try to make stuff better.">
+
+<title>Making a Eurovision Party voting app in 5 hours - Greg Tyler</title>
+<link rel="canonical" href="https://gregtyler.co.uk/blog/eurovision-2017" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@gregtyler" />
+<meta name="twitter:creator" content="@gregtyler" />
+<meta name="og:url" content="https://gregtyler.co.uk/blog/eurovision-2017" />
+<meta name="og:title" content="Making a Eurovision Party voting app in 5 hours" />
+<meta name="og:description" content="<p>For the 2017 Eurovision Song Contest, I wrote a party voting app in an afternoon to find the room&#8217;s favourite songs.</p>
+" />
+
+  <meta name="og:image" content="https://wp-data.gregtyler.co.uk/files/2018/12/eurovision-app.png" />
+
+
+    <style type="text/css">:root{--spacing:1rem;--color-brand:#c82e14;--color-brand-dark:#a82e14;--color-brand-contrast:#fff;--color-subbrand:#fbbf13;--color-link:#3973b1;--color-text:#555;--color-accent:#f5f5f5;--font-default:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif}@media (min-width:1000px){:root{--spacing:1.5rem}}@media (min-width:1500px){:root{--spacing:1.75rem}}*,:after,:before{box-sizing:border-box}a{color:#3973b1;color:var(--color-link)}body{display:flex;flex-direction:column;min-height:100vh;margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;font-family:var(--font-default);font-size:18px;background-color:#c82e14;background-color:var(--color-brand);background-image:radial-gradient(at 7rem,at 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem,at 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-image:radial-gradient(at 7rem 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-repeat:no-repeat;color:#555;color:var(--color-text);letter-spacing:-.03em}::-moz-selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}::selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}h1{margin:0}hr{border-top:1px solid #ccc;border-bottom:0}pre{overflow-x:auto}.o-carousel{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));justify-content:stretch;grid-gap:1rem;grid-gap:var(--spacing);grid-auto-rows:1fr}.o-linklist{display:flex;margin:0;padding:0;list-style-type:none}.o-linklist--vertical{flex-direction:column}.o-linklist--horizontal{flex-direction:row}.o-linklist--centered{justify-content:center}.o-linklist__link{display:block;padding:.5rem;padding:calc(var(--spacing)*0.5);color:inherit;text-decoration:none}.o-linklist__link:hover{text-decoration:underline}.c-card{display:inline-flex;padding:1rem;padding:var(--spacing);background-color:#fff;flex-direction:column;box-shadow:0 0 3px rgba(0 0 0/20%)}.c-card--link{color:#555;color:var(--color-text);text-decoration:none;transition:all .4s linear}.c-card--link:hover{background-color:#eee}.c-card__title{margin:0;font-size:1.2rem}.c-card__meta{color:#777;font-size:.9rem}.c-card__actions{text-align:right}.c-card__action{margin-left:1rem;margin-left:var(--spacing);font-size:.85rem;text-transform:uppercase}.c-card__action:hover{text-decoration:underline}.c-card__action--primary{color:#c82e14;color:var(--color-brand)}.c-card:hover .c-card__action--primary{text-decoration:underline}.c-footer{padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);font-family:1.5rem;text-align:center}.c-footer__link{color:inherit;font-size:.85rem}.c-navbar{display:flex;flex-direction:column;width:100%;padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);align-items:center;justify-content:space-between}.c-navbar__title-link{color:inherit;text-decoration:none}@media (min-width:500px){.c-navbar{flex-direction:row}}.c-page{padding:1rem;padding:var(--spacing);background-color:#fff;color:#555;color:var(--color-text)}.c-page__title{margin-bottom:1rem;margin-bottom:var(--spacing);text-align:center;font-size:2rem;line-height:1em}.c-page__meta{margin-left:-1rem;margin-left:calc(var(--spacing)*-1);margin-right:-1rem;margin-right:calc(var(--spacing)*-1);padding-top:1rem;padding-top:var(--spacing);padding-bottom:1rem;padding-bottom:var(--spacing);text-align:center;background-color:#f5f5f5;background-color:var(--color-accent)}.c-page__content{max-width:40rem;margin:0 auto;font-size:1.1rem;line-height:1.4em}@media (min-width:1000px){.c-page{padding:2rem;padding:calc(var(--spacing)*2)}.c-page__title{margin-bottom:2rem;margin-bottom:calc(var(--spacing)*2);font-size:3rem}.c-page__meta{margin-left:-2rem;margin-left:calc(var(--spacing)*-2);margin-right:-2rem;margin-right:calc(var(--spacing)*-2)}.c-page__content{font-size:1.2rem;line-height:1.5em}}.c-splash{display:flex;flex:1;align-items:center;justify-content:center;min-height:50vmin;color:#fff;color:var(--color-brand-contrast);font-size:8vmin;font-weight:300;text-transform:uppercase;letter-spacing:-.05em}.c-sunken{background-color:#ccc;box-shadow:inset 0 5px 10px -5px rgba(0 0 0/60%),inset 0 -5px 10px -5px rgba(0 0 0/60%);padding:1rem;padding:var(--spacing)}.c-sunken__title{margin-top:0;margin-bottom:1rem;margin-bottom:var(--spacing)}.c-tag{margin:.2rem;margin:calc(var(--spacing)*0.2);padding:.1rem .3rem;padding:calc(var(--spacing)*0.1) calc(var(--spacing)*0.3);background-color:#a82e14;background-color:var(--color-brand-dark);color:#fff;color:var(--color-brand-contrast);font-size:.85rem;text-decoration:none}.t-flex--fill{flex-grow:1}.hljs-comment,.hljs-quote{color:#969896}.hljs-deletion,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#c66}.hljs-built_in,.hljs-builtin-name,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#de935f}.hljs-attribute{color:#f0c674}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#b5bd68}.hljs-section,.hljs-title{color:#81a2be}.hljs-keyword,.hljs-selector-tag{color:#b294bb}.hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.wp-caption{max-width:100%;background-color:#eee}@media (min-width:1000px){.alignleft,.alignright{max-width:60%}.alignleft{float:left;margin-left:-20%;margin-right:1rem;margin-right:var(--spacing)}.alignright{float:right;margin-right:-20%;margin-left:1rem;margin-left:var(--spacing)}}[class*=wp-image-]{max-width:100%;height:auto!important}.size-full{display:block;margin-left:auto;margin-right:auto}.wp-caption-text{margin-bottom:0;padding-left:1rem;padding-left:var(--spacing);padding-right:1rem;padding-right:var(--spacing);padding-bottom:1rem;font-size:1rem;line-height:1.2em;font-style:italic}</style>
+  </head>
+  <body>
+    <header class="c-navbar">
+      <h1 class="c-navbar__title">
+        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
+      </h1>
+      <ul class="o-linklist o-linklist--horizontal">
+        <li>
+          <a href="/blog" class="o-linklist__link">Blog</a>
+        </li>
+        <li>
+          <a href="/blog/category/weeknotes" class="o-linklist__link">Weeknotes</a>
+        </li>
+        <li>
+          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/gregtyler" rel="me noreferrer" class="o-linklist__link">Twitter</a>
+        </li>
+      </ul>
+    </header>
+
+<main class="c-page t-flex--fill">
+  <h1 class="c-page__title">Making a Eurovision Party voting app in 5 hours</h1>
+
+  <div class="c-page__meta">
+    <div>Published on 20th May 2017</div>
+
+      <ul class="o-linklist o-linklist--centered">
+
+          <li><a class="c-tag" href="/blog/category/webdev">Web development</a></li>
+
+      </ul>
+
+  </div>
+  <div class="c-page__content"><p>Last weekend was the final of the <a href="https://eurovision.tv/">Eurovision Song Contest</a>. Eurovision is a cross-Europe (and beyond) singing competition in which each country nominates a singing act and they compete to find the continent&#39;s favourite. It&#39;s known for its fun factor, with countries often choosing visually impressive or otherwise unusual acts rather than their best singers.</p>
+<p>The final event of Eurovision features the 26 winners of the semi-finals performing sequentially, followed by a public vote. The night finishes with each country revealing its citizens&#39; scores along with a panel of professional judges from the nation. With <a href="http://www.bbc.co.uk/blogs/eurovision/entries/18aa5cc2-0f94-3882-9c57-07fdec46dc5b">political voting</a> and bad international link-ups, this is a great part of the night.</p>
+<p>For the past few years I&#39;ve been to or hosted some sort of Eurovision party on the night, where everyone watches along, argues about their favourite acts, munches food and, lately, participates in some sort of Eurovision bingo.</p>
+<p>Last year, a friend suggested building an app so everyone at the party could vote along on the night, with a screen in the room keeping track of the total score. It was too late notice at the time but this year, less than six hours before the broadcast started, I decided I could produce something quick enough.</p>
+<p>I was also spurred on by recently playing a lot of <a href="http://jackboxgames.com/">Jackbox Games</a> products, which involve players in the room using their smartphone to play along with instructions on screen. I&#39;ve been meaning to try creating a similar game myself, and this seemed like a good stepping stone.</p>
+<h2 id="feature-set">Feature set</h2>
+<p><img class="size-full wp-image-1157" src="/images/eurovision-app.png" alt="A screenshot of my Eurovision party voting app" width="452" height="699" srcset="/images/eurovision-app.png 452w, /images/eurovision-app-194x300.png 194w" sizes="(max-width: 452px) 100vw, 452px" /></p>
+<p>The feature set of the app is pretty straightforward. When users open the website for the first time, they are asked for their name. They&#39;re then given a list of the evening&#39;s competitors and can select a score between 1 and 10 for each.</p>
+<p>Once all the songs have been performed, players can switch across to the &quot;Points&quot; page and allocate points to their favourite songs, as if they&#39;re an entire European country to themselves. Like the real voting countries, players can select to give 12 points to their favourite song, 10 points to their second favourite, and then 8 through 1 points to the remaining 8 songs they enjoyed.</p>
+<p>When players have finished allocating their points, they hit a big &quot;Save judgement&quot; button at the bottom of the screen to send their selections to my server. At the end of the voting period, I then run a script on the server to pull out our final votes.</p>
+<h2 id="building-an-app-in-five-hours">Building an app in five hours</h2>
+<p>When I introduced the app, people were impressed that I made it in only about five hours. <em>I</em> was surprised at the result, and repeatedly thought I wouldn&#39;t make the deadline. I did also have to miss the Spanish entry to fix a couple of bugs, but they came dead last so it seems I didn&#39;t miss much.</p>
+<p>I credit the turnaround time mostly to simplicity. There&#39;s a lot of talk in the front-end development community about how involved starting a new project is: selecting a JavaScript framework, selecting what language to actually write in and transpile from, finding all the tools to hook the two up, and then installing everything through your package manager of choice.</p>
+<p>Instead of going through that whole process, I just decided to use plain HTML, CSS and JavaScript. No frameworks, no dependencies. Everything was going to be client-side rendered, whilst using JSON files and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a> instead of databases.</p>
+<p>Admittedly I had some unusual benefits here:</p>
+<ul>
+<li>I didn&#39;t have to worry about scalability beyond 20 people</li>
+<li>All the players had a fairly recent smartphone with a fairly modern web browser</li>
+</ul>
+<p>Frankly though, the second point is extremely often true of the target audience of new apps, and the scalability could easily have been handled with some minification-at-deployment and use of <a href="https://kosamari.com/notes/Service-Worker-what-are-you">Service Worker</a>.</p>
+<p>I made a few other simplifying architectural decisions. I used John Resig&#39;s <a href="https://johnresig.com/blog/javascript-micro-templating/">extremely simple micro-templating function</a> for all templating. This function is quite limited in functionality (and safety) but was perfectly suitable for my use-case. I also decided to use the <a href="https://jakearchibald.com/2015/thats-so-fetch/">Fetch API</a>, which is possibly my favourite web platform feature of the past couple of years. I included the <a href="https://github.com/github/fetch">GitHub fetch polyfill</a> in case anyone present didn&#39;t have quite the most modern of browsers and because it was easy.</p>
+<p>Using these modern web platform features made development <em>extremely</em> easy. In moments I had client-side rendering templates based on a pre-prepared JSON file, with interactive elements that stored data in the client so would persist on refresh.</p>
+<p>And, because I was storing the data on the client, the impact on my server was completely minimal. A few hits on initial page load, but no navigation and no need to refresh.</p>
+<p>Later in the afternoon I added the server-saving element, which was a single Node script hosted by nginx which would partially validate the submitted data and store it as a JSON file using the submitter&#39;s username. I used <a href="http://expressjs.com/">Express</a> to simplify routing and <a href="https://www.html5rocks.com/en/tutorials/cors/">cors</a>, but the rest was pure Node.js JavaScript.</p>
+<h2 id="what-was-missing">What was missing</h2>
+<p>There was one key feature I overlooked that pretty much everyone who played along pointed out to me: in contravention of Eurovision rules, everyone could vote for their own country. The UK, who were grossly over-represented at our party, didn&#39;t seem to benefit from that at all though.</p>
+<p>There were some technical bits I would have liked to tidy up. Firstly, introducing Service Worker would have made this much more compelling. For those who closed their browsers or tab, they would be able to re-open the app instantly with no data usage. It could even have saved to home screen, which I think would&#39;ve made people feel more comfortable thinking of it as an &quot;app&quot; (though in the end no-one brought this up).</p>
+<p>I also should have added more validation to the server-side. If anyone had wanted to, they could have submitted any number of points to any number of competitors. Again though, this wasn&#39;t really an issue because the only users were a room of 20 or so friends who had no interest in breaking it.</p>
+<h2 id="what-s-next-">What&#39;s next?</h2>
+<p>I&#39;d like to do some work on the app and bring it back next year. The improvements above would certainly be added. I&#39;d like to make it possible for multiple parties to compete, so they can each set up their own &quot;room&quot; that guests can join. Then we can, for example, see which party is closest to the final results. I also like the idea of everyone who joins being assigned a competing country, to closer simulate the actual voting process and introduce a bit of additional competition.</p>
+<p>The most significant piece of work would be to build up more on the admin side. This year, JSON files were uploaded to my server and I wrote a script to crunch them and calculate final scores and averages. That process should be automated, update in real-time and show the room how their votes are going.</p>
+<h2 id="lessons-learnt">Lessons learnt</h2>
+<p>Mostly, the experience of building, releasing and using this app so quickly was hugely inspiring. Whilst side-projects have previously involved lots of build-up, long schedules and consideration of scalability, I&#39;m now inspired to work much more quickly to create prototypes that _just work_, without complex libraries and brazen attempts to look professional.</p>
+<p>I don&#39;t think my upcoming projects are likely to be quite so simple as to just use micro-templating, but I&#39;d love to find a templating engine which allows similarly negligible turnaround time and file size whilst being slightly more robust. I&#39;d also love to not use package managers again.</p>
+<p>The feedback I got from the app was really positive, which was similarly inspiring. Next time I&#39;ve got an idea, and a few hours spare, I&#39;ll definitely try to build it.</p>
+<p><div id="attachment_1158" style="width: 690px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1158" class="size-full wp-image-1158" src="https://wp-data.gregtyler.co.uk/files/2018/12/eurovision-scores.png" alt="The scores generated from our Eurovision app" width="680" height="652" srcset="https://wp-data.gregtyler.co.uk/files/2018/12/eurovision-scores.png 680w, https://wp-data.gregtyler.co.uk/files/2018/12/eurovision-scores-300x288.png 300w, https://wp-data.gregtyler.co.uk/files/2018/12/eurovision-scores-625x599.png 625w" sizes="(max-width: 680px) 100vw, 680px" /><p id="caption-attachment-1158" class="wp-caption-text">The total scores, votes, and averages generated on the night</p></div></p>
+<hr>
+<p>You can still <a href="https://play.gregtyler.co.uk/eurovision/">see the app in action</a> (though saving judgements has been turned off) and find the source code on <a href="https://github.com/gregtyler/eurovision-party">GitHub</a>.</p>
+<p><small>&#x1f3b6;&#x1f3a7; Writing music for this post: <a href="https://play.google.com/music/m/Biqsvnxp2brwksrgstu2a2x674i?t=Tree_Bursts_in_Snow_-_Admiral_Fallow">Admiral Fallow &#8211; Tree Bursts in Snow</a></small></p>
+</div>
+</main>
+
+    <footer class="c-footer">
+      🏛🌯🌳🎧
+      <div>
+        <a href="/privacy" class="c-footer__link">
+          Privacy
+        </a>
+        <span role="separator">-</span>
+        <a href="https://gitlab.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitLab</a>
+        <span role="separator">-</span>
+        <a href="https://github.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitHub</a>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+      // Analytics
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = "https://analytics.gregtyler.co.uk/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+  </body>
+</html>

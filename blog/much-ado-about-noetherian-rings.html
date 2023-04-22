@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#c82e14">
+    <link rel="preconnect" href="https://analytics.gregtyler.co.uk">
+    <link rel="manifest" href="/assets/manifest.webmanifest">
+    <link rel="shortcut icon" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
+    <link rel="alternate" type="application/rss+xml" title="Greg Tyler RSS Feed" href="/feed.rss" />
+    <meta name="description" content="Websites, quizzes, problem solving. I try to make stuff better.">
+    
+<title>Much Ado about Noetherian Rings - Greg Tyler</title>
+<link rel="canonical" href="https://gregtyler.co.uk/blog/much-ado-about-noetherian-rings" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@gregtyler" />
+<meta name="twitter:creator" content="@gregtyler" />
+<meta name="og:url" content="https://gregtyler.co.uk/blog/much-ado-about-noetherian-rings" />
+<meta name="og:title" content="Much Ado about Noetherian Rings" />
+<meta name="og:description" content="<p>During a lecture series last year, I wanted to spice up the hour-long sessions we had. I spent a lot of time drawing, and tried writing notes in different languages. But during one such lecture I wrote my notes like a play, in rhyming couplets. After some vague interest from others, and for the sake of posterity, I thought I&#8217;d put them up here.</p>
+" />
+
+  <meta name="og:image" content="https://wp-data.gregtyler.co.uk/files/2018/12/sumton.gif" />
+
+
+    <style type="text/css">:root{--spacing:1rem;--color-brand:#c82e14;--color-brand-dark:#a82e14;--color-brand-contrast:#fff;--color-subbrand:#fbbf13;--color-link:#3973b1;--color-text:#555;--color-accent:#f5f5f5;--font-default:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif}@media (min-width:1000px){:root{--spacing:1.5rem}}@media (min-width:1500px){:root{--spacing:1.75rem}}*,:after,:before{box-sizing:border-box}a{color:#3973b1;color:var(--color-link)}body{display:flex;flex-direction:column;min-height:100vh;margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;font-family:var(--font-default);font-size:18px;background-color:#c82e14;background-color:var(--color-brand);background-image:radial-gradient(at 7rem,at 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem,at 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-image:radial-gradient(at 7rem 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-repeat:no-repeat;color:#555;color:var(--color-text);letter-spacing:-.03em}::-moz-selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}::selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}h1{margin:0}hr{border-top:1px solid #ccc;border-bottom:0}pre{overflow-x:auto}.o-carousel{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));justify-content:stretch;grid-gap:1rem;grid-gap:var(--spacing);grid-auto-rows:1fr}.o-linklist{display:flex;margin:0;padding:0;list-style-type:none}.o-linklist--vertical{flex-direction:column}.o-linklist--horizontal{flex-direction:row}.o-linklist--centered{justify-content:center}.o-linklist__link{display:block;padding:.5rem;padding:calc(var(--spacing)*0.5);color:inherit;text-decoration:none}.o-linklist__link:hover{text-decoration:underline}.c-card{display:inline-flex;padding:1rem;padding:var(--spacing);background-color:#fff;flex-direction:column;box-shadow:0 0 3px rgba(0 0 0/20%)}.c-card--link{color:#555;color:var(--color-text);text-decoration:none;transition:all .4s linear}.c-card--link:hover{background-color:#eee}.c-card__title{margin:0;font-size:1.2rem}.c-card__meta{color:#777;font-size:.9rem}.c-card__actions{text-align:right}.c-card__action{margin-left:1rem;margin-left:var(--spacing);font-size:.85rem;text-transform:uppercase}.c-card__action:hover{text-decoration:underline}.c-card__action--primary{color:#c82e14;color:var(--color-brand)}.c-card:hover .c-card__action--primary{text-decoration:underline}.c-footer{padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);font-family:1.5rem;text-align:center}.c-footer__link{color:inherit;font-size:.85rem}.c-navbar{display:flex;flex-direction:column;width:100%;padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);align-items:center;justify-content:space-between}.c-navbar__title-link{color:inherit;text-decoration:none}@media (min-width:500px){.c-navbar{flex-direction:row}}.c-page{padding:1rem;padding:var(--spacing);background-color:#fff;color:#555;color:var(--color-text)}.c-page__title{margin-bottom:1rem;margin-bottom:var(--spacing);text-align:center;font-size:2rem;line-height:1em}.c-page__meta{margin-left:-1rem;margin-left:calc(var(--spacing)*-1);margin-right:-1rem;margin-right:calc(var(--spacing)*-1);padding-top:1rem;padding-top:var(--spacing);padding-bottom:1rem;padding-bottom:var(--spacing);text-align:center;background-color:#f5f5f5;background-color:var(--color-accent)}.c-page__content{max-width:40rem;margin:0 auto;font-size:1.1rem;line-height:1.4em}@media (min-width:1000px){.c-page{padding:2rem;padding:calc(var(--spacing)*2)}.c-page__title{margin-bottom:2rem;margin-bottom:calc(var(--spacing)*2);font-size:3rem}.c-page__meta{margin-left:-2rem;margin-left:calc(var(--spacing)*-2);margin-right:-2rem;margin-right:calc(var(--spacing)*-2)}.c-page__content{font-size:1.2rem;line-height:1.5em}}.c-splash{display:flex;flex:1;align-items:center;justify-content:center;min-height:50vmin;color:#fff;color:var(--color-brand-contrast);font-size:8vmin;font-weight:300;text-transform:uppercase;letter-spacing:-.05em}.c-sunken{background-color:#ccc;box-shadow:inset 0 5px 10px -5px rgba(0 0 0/60%),inset 0 -5px 10px -5px rgba(0 0 0/60%);padding:1rem;padding:var(--spacing)}.c-sunken__title{margin-top:0;margin-bottom:1rem;margin-bottom:var(--spacing)}.c-tag{margin:.2rem;margin:calc(var(--spacing)*0.2);padding:.1rem .3rem;padding:calc(var(--spacing)*0.1) calc(var(--spacing)*0.3);background-color:#a82e14;background-color:var(--color-brand-dark);color:#fff;color:var(--color-brand-contrast);font-size:.85rem;text-decoration:none}.t-flex--fill{flex-grow:1}.hljs-comment,.hljs-quote{color:#969896}.hljs-deletion,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#c66}.hljs-built_in,.hljs-builtin-name,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#de935f}.hljs-attribute{color:#f0c674}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#b5bd68}.hljs-section,.hljs-title{color:#81a2be}.hljs-keyword,.hljs-selector-tag{color:#b294bb}.hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.wp-caption{max-width:100%;background-color:#eee}@media (min-width:1000px){.alignleft,.alignright{max-width:60%}.alignleft{float:left;margin-left:-20%;margin-right:1rem;margin-right:var(--spacing)}.alignright{float:right;margin-right:-20%;margin-left:1rem;margin-left:var(--spacing)}}[class*=wp-image-]{max-width:100%;height:auto!important}.size-full{display:block;margin-left:auto;margin-right:auto}.wp-caption-text{margin-bottom:0;padding-left:1rem;padding-left:var(--spacing);padding-right:1rem;padding-right:var(--spacing);padding-bottom:1rem;font-size:1rem;line-height:1.2em;font-style:italic}</style>
+  </head>
+  <body>
+    <header class="c-navbar">
+      <h1 class="c-navbar__title">
+        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
+      </h1>
+      <ul class="o-linklist o-linklist--horizontal">
+        <li>
+          <a href="/blog" class="o-linklist__link">Blog</a>
+        </li>
+        <li>
+          <a href="/blog/category/weeknotes" class="o-linklist__link">Weeknotes</a>
+        </li>
+        <li>
+          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/gregtyler" rel="me noreferrer" class="o-linklist__link">Twitter</a>
+        </li>
+      </ul>
+    </header>
+    
+<main class="c-page t-flex--fill">
+  <h1 class="c-page__title">Much Ado about Noetherian Rings</h1>
+
+  <div class="c-page__meta">
+    <div>Published on 14th April 2013</div>
+    
+      <ul class="o-linklist o-linklist--centered">
+        
+          <li><a class="c-tag" href="/blog/category/personal">Personal</a></li>
+        
+      </ul>
+    
+  </div>
+  <div class="c-page__content"><p>During a lecture series last year, I wanted to spice up the hour-long sessions we had. I spent a lot of time drawing, and tried writing notes in different languages. But during one such lecture I wrote my notes like a play, in rhyming couplets. After some vague interest from others, and for the sake of posterity, I thought I&#39;d put them up here.   </p>
+<p>It&#39;s not a masterpiece. The meter is all over the place, there are a lot of half-rhymes and I&#39;m not certain the maths holds up. But considering that I wrote it in fifty minutes with no preparation, I&#39;m really proud of it. I was tempted to clean up some of the off-bits, but I&#39;ve chosen to leave it totally unedited. This is very much the &quot;without makeup&quot; version.   </p>
+<p>So please enjoy what I&#39;ve since named <strong>Much Ado about Noetherian Rings</strong>. A play in one Act.   </p>
+<p>(Alternative titles: Measure for Zero Measure, The Comedy of Mathematical Misconceptions, The Taming of the Discontinuous Functions)   </p>
+<h2 id="dramatis-person-">Dramatis personæ</h2>
+<p>ANTONIO, a merchant<br />GAIUS, his brother<br />HERMIUS, a nobleman<br />SERAFINA, a gentlewoman   </p>
+<h2 id="prologue">Prologue</h2>
+<p>From the next hour we hope you yield,<br />Indiscriminate knowledge of the finite field.<br />And cyclic codes we hope you know,<br />For their properties we&#39;re soon to show.   </p>
+<h2 id="scene-1-a-port-of-florence">Scene 1: A port of Florence</h2>
+<p><em>(Enter ANTONIO and GAIUS)</em>   </p>
+<p>Antonio: Recall, brother, the characteristic of a field.   </p>
+<p>Gaius: The smallest positive integer such that as many ones that are summed make nought?   </p>
+<p>Antonio: The exact same. Remember thee that it is prime or infinite?   </p>
+<p>Gaius: Alas, I missed such a fact.   </p>
+<p>Antonio: Now form a field of sums of one, up until they add to none.<br />The suppose that n is p times q, both primes I should be telling you.   </p>
+<p>Gaius: Then a sum of n is a sum of primes, but these be nought in any time!<br />Hence we find a contradiction, and conclude with some conviction.<br />That n cannot be p times q, and only if it&#39;s prime will do!   </p>
+<p>Antonio: Now theorise that in a field, then in it thy fate is sealed.<br />There exists a number pn, with p a prime, the other in ℕ.<br />I shan&#39;t prove this in great detail, but an outline surely cannot fail.<br />Note ℤp is a linear subspace, and that it works with an F-basis.<br />So any a in F can be written unique, amongst the basis ℤp of which we speak.   </p>
+<p>Gaius: I&#39;m afraid brother that I don&#39;t get it!   </p>
+<p>Antonio: Perhaps t&#39;would help to see it writ.<br />Here I show you an example, with f(x) an irreducible polynomial,<br />which has as n its degree, and coefficients in ℤp.<br />Now let me fall and show to you, the following is certainly true.<br />The answer, it is sealed, this ℤp[x] / f(x)ℤp[x] is a field.   </p>
+<p>See, brother, that the powers of x can form a basis of cosets.<br /><a href="https://gregtyler.co.uk/blog/files/2013/04/sumton.gif">1</a>, [x], [x2], [xn-1] certainly form a linear space on,<br />ℤp, our set of coefficients, and to show they span you must be proficient.<br />Each element it is in the sum (<img class="size-full wp-image-1204" src="https://wp-data.gregtyler.co.uk/files/2018/12/sumton.gif" alt="sum^n_{i=0}" width="48" height="22" /> αi[xi], αi ∈ ℤ), so the cosets span everyone.<br />Since each αi has options p, there are pn choices we can see.<br />Now find a field with elements 9, and waste not any of our time.   </p>
+<p><em>(Enter HERMIUS, a nobleman)</em>   </p>
+<p>Hermius: What trivial games you merchants play, sitting by the docks all day.<br />With 9 elements, take p as 3, and n as 2 so we can see<br />that ℤ3[x] / f(x)ℤ3[x] is irreducible, in all f(x) of degree 2.   </p>
+<p>Gaius: And we know a polynomial with degree ≤ 3 only displays irreducibility,<br />if it has no factor in F, and hence no root but alone, bereft.   </p>
+<p>Hermius: Indeed, so after all this fun, take f(x) to be x2 1.   </p>
+<p>Antonio: But can you form me one with eight?   </p>
+<p>Gaius: Nay in time, unless we have &#39;til late.   </p>
+<p>Hermius: Foolish boy, this is easy, take p as 2 and n as 3.<br />Now form the field shown here (ℤ3[x] / f(x)ℤ3[x]) and let f(x) appear.<br />This f(x) is of degree 3 and in ℤ2[x] shows irreducibility.<br />Try f(x)=x3 x 1, and see that f(x)=0 gives none.<br />In integers of course!   </p>
+<p><em>(Exit HERMIUS and enter SERAFINA)</em>   </p>
+<p>Serafina: Merchant men, if you&#39;ll hear me, let me provide to you a little theory.<br />That if n is a number we call natural, then an isomorphism will certainly fall.<br />Upon ℤ/nℤ and ℤn where ℤn has modulus addition.<br />And that if F in K are both fields, with f(x) irreducible in F[X]&#39;s shield,<br />take α in K so that it evaluated gives none, then note again an isomorphism.<br />Here of F[x]/f(x)F[x] and the F[α] polynomial set.   </p>
+<p>Antonio: May we call F[α] a simple extension?   </p>
+<p>Serafina: Yes, of F. I forgot to mention.<br />I bid you proof, that much I owe, and with the 1st isomorphism theorem I shall show.<br />Form g from F[x] to F[α], and by ker(g) we can solve her.<br />Say F were ℝ and K be ℂ, take α=√1 instantly,<br />Then ℝ[x] / (x2 1)ℝ[x] to ℂ they will be isomorphics.   </p>
+<p>Gaius: Such odd remarks you make today, of field extensions you continue to say.<br />But let us return to the matter of codes, and see that cyclic ones can be showed.<br />Take a word in a code and if it may be, that that at the end at the start we may see,<br />If this be true for any code word, then to a cyclic code we have referred.<br />Note too that there are more criteria, a cyclic code it must be linear!   </p>
+<p>Antonio: Tell me more of cyclic shift, a concept I&#39;ve heard is of some thrift.   </p>
+<p>Gaius: It&#39;s much what it sounds like brother, a smooth connection as that between lovers.<br />Take the last digit of a word and add it to the start, a cyclic shift has occurred in such a lover&#39;s heart.   </p>
+<p>Serafina: Could a polynomial be moved by such a lover?   </p>
+<p>Gaius: Aye, my lady, and we&#39;d discover<br />the coefficients are what make the code, so 1 x2 x4 is 10101 showed.<br />Then a=10101 is a ring, Rn (=F[x]/(xn-1)F[x]) is the notation we bring.   </p>
+<p>Serafina: What really can we see from this?   </p>
+<p>Gaius: That x*a(x) is a cyclic shift.   </p>
+<p>Serafina: You speak with such determination, could you show some explanation?   </p>
+<p>Gaius: Alas, time falls but trust my lady, I believe you can see it may be.   </p>
+<p><em>(A priest gives Serafina a potion, making her appear dead. Gaius flees, wrought with grief, and Serafina awakes cold and alone.)</em>   </p>
+<p>Image: Edwin Landseer &#8211; Scene from A Midsummer Night&#39;s Dream</p>
+</div>
+</main>
+
+    <footer class="c-footer">
+      🏛🌯🌳🎧
+      <div>
+        <a href="/privacy" class="c-footer__link">
+          Privacy
+        </a>
+        <span role="separator">-</span>
+        <a href="https://gitlab.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitLab</a>
+        <span role="separator">-</span>
+        <a href="https://github.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitHub</a>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+      // Analytics
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = "https://analytics.gregtyler.co.uk/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+  </body>
+</html>

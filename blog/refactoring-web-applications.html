@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#c82e14">
+    <link rel="preconnect" href="https://analytics.gregtyler.co.uk">
+    <link rel="manifest" href="/assets/manifest.webmanifest">
+    <link rel="shortcut icon" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
+    <link rel="alternate" type="application/rss+xml" title="Greg Tyler RSS Feed" href="/feed.rss" />
+    <meta name="description" content="Websites, quizzes, problem solving. I try to make stuff better.">
+    
+<title>Refactoring web applications - Greg Tyler</title>
+<link rel="canonical" href="https://gregtyler.co.uk/blog/refactoring-web-applications" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@gregtyler" />
+<meta name="twitter:creator" content="@gregtyler" />
+<meta name="og:url" content="https://gregtyler.co.uk/blog/refactoring-web-applications" />
+<meta name="og:title" content="Refactoring web applications" />
+<meta name="og:description" content="<p>I&#8217;ve been thinking a lot about refactoring recently (rewriting functional code to improve its quality, security, legibility etc.), particularly in relation to some projects I&#8217;ve recently been working on. This morning a twitter thread by Sarah Mei caught my attention and I thought I should finally write something on the subject.</p>
+" />
+
+
+    <style type="text/css">:root{--spacing:1rem;--color-brand:#c82e14;--color-brand-dark:#a82e14;--color-brand-contrast:#fff;--color-subbrand:#fbbf13;--color-link:#3973b1;--color-text:#555;--color-accent:#f5f5f5;--font-default:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif}@media (min-width:1000px){:root{--spacing:1.5rem}}@media (min-width:1500px){:root{--spacing:1.75rem}}*,:after,:before{box-sizing:border-box}a{color:#3973b1;color:var(--color-link)}body{display:flex;flex-direction:column;min-height:100vh;margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;font-family:var(--font-default);font-size:18px;background-color:#c82e14;background-color:var(--color-brand);background-image:radial-gradient(at 7rem,at 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem,at 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-image:radial-gradient(at 7rem 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-repeat:no-repeat;color:#555;color:var(--color-text);letter-spacing:-.03em}::-moz-selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}::selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}h1{margin:0}hr{border-top:1px solid #ccc;border-bottom:0}pre{overflow-x:auto}.o-carousel{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));justify-content:stretch;grid-gap:1rem;grid-gap:var(--spacing);grid-auto-rows:1fr}.o-linklist{display:flex;margin:0;padding:0;list-style-type:none}.o-linklist--vertical{flex-direction:column}.o-linklist--horizontal{flex-direction:row}.o-linklist--centered{justify-content:center}.o-linklist__link{display:block;padding:.5rem;padding:calc(var(--spacing)*0.5);color:inherit;text-decoration:none}.o-linklist__link:hover{text-decoration:underline}.c-card{display:inline-flex;padding:1rem;padding:var(--spacing);background-color:#fff;flex-direction:column;box-shadow:0 0 3px rgba(0 0 0/20%)}.c-card--link{color:#555;color:var(--color-text);text-decoration:none;transition:all .4s linear}.c-card--link:hover{background-color:#eee}.c-card__title{margin:0;font-size:1.2rem}.c-card__meta{color:#777;font-size:.9rem}.c-card__actions{text-align:right}.c-card__action{margin-left:1rem;margin-left:var(--spacing);font-size:.85rem;text-transform:uppercase}.c-card__action:hover{text-decoration:underline}.c-card__action--primary{color:#c82e14;color:var(--color-brand)}.c-card:hover .c-card__action--primary{text-decoration:underline}.c-footer{padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);font-family:1.5rem;text-align:center}.c-footer__link{color:inherit;font-size:.85rem}.c-navbar{display:flex;flex-direction:column;width:100%;padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);align-items:center;justify-content:space-between}.c-navbar__title-link{color:inherit;text-decoration:none}@media (min-width:500px){.c-navbar{flex-direction:row}}.c-page{padding:1rem;padding:var(--spacing);background-color:#fff;color:#555;color:var(--color-text)}.c-page__title{margin-bottom:1rem;margin-bottom:var(--spacing);text-align:center;font-size:2rem;line-height:1em}.c-page__meta{margin-left:-1rem;margin-left:calc(var(--spacing)*-1);margin-right:-1rem;margin-right:calc(var(--spacing)*-1);padding-top:1rem;padding-top:var(--spacing);padding-bottom:1rem;padding-bottom:var(--spacing);text-align:center;background-color:#f5f5f5;background-color:var(--color-accent)}.c-page__content{max-width:40rem;margin:0 auto;font-size:1.1rem;line-height:1.4em}@media (min-width:1000px){.c-page{padding:2rem;padding:calc(var(--spacing)*2)}.c-page__title{margin-bottom:2rem;margin-bottom:calc(var(--spacing)*2);font-size:3rem}.c-page__meta{margin-left:-2rem;margin-left:calc(var(--spacing)*-2);margin-right:-2rem;margin-right:calc(var(--spacing)*-2)}.c-page__content{font-size:1.2rem;line-height:1.5em}}.c-splash{display:flex;flex:1;align-items:center;justify-content:center;min-height:50vmin;color:#fff;color:var(--color-brand-contrast);font-size:8vmin;font-weight:300;text-transform:uppercase;letter-spacing:-.05em}.c-sunken{background-color:#ccc;box-shadow:inset 0 5px 10px -5px rgba(0 0 0/60%),inset 0 -5px 10px -5px rgba(0 0 0/60%);padding:1rem;padding:var(--spacing)}.c-sunken__title{margin-top:0;margin-bottom:1rem;margin-bottom:var(--spacing)}.c-tag{margin:.2rem;margin:calc(var(--spacing)*0.2);padding:.1rem .3rem;padding:calc(var(--spacing)*0.1) calc(var(--spacing)*0.3);background-color:#a82e14;background-color:var(--color-brand-dark);color:#fff;color:var(--color-brand-contrast);font-size:.85rem;text-decoration:none}.t-flex--fill{flex-grow:1}.hljs-comment,.hljs-quote{color:#969896}.hljs-deletion,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#c66}.hljs-built_in,.hljs-builtin-name,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#de935f}.hljs-attribute{color:#f0c674}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#b5bd68}.hljs-section,.hljs-title{color:#81a2be}.hljs-keyword,.hljs-selector-tag{color:#b294bb}.hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.wp-caption{max-width:100%;background-color:#eee}@media (min-width:1000px){.alignleft,.alignright{max-width:60%}.alignleft{float:left;margin-left:-20%;margin-right:1rem;margin-right:var(--spacing)}.alignright{float:right;margin-right:-20%;margin-left:1rem;margin-left:var(--spacing)}}[class*=wp-image-]{max-width:100%;height:auto!important}.size-full{display:block;margin-left:auto;margin-right:auto}.wp-caption-text{margin-bottom:0;padding-left:1rem;padding-left:var(--spacing);padding-right:1rem;padding-right:var(--spacing);padding-bottom:1rem;font-size:1rem;line-height:1.2em;font-style:italic}</style>
+  </head>
+  <body>
+    <header class="c-navbar">
+      <h1 class="c-navbar__title">
+        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
+      </h1>
+      <ul class="o-linklist o-linklist--horizontal">
+        <li>
+          <a href="/blog" class="o-linklist__link">Blog</a>
+        </li>
+        <li>
+          <a href="/blog/category/weeknotes" class="o-linklist__link">Weeknotes</a>
+        </li>
+        <li>
+          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/gregtyler" rel="me noreferrer" class="o-linklist__link">Twitter</a>
+        </li>
+      </ul>
+    </header>
+    
+<main class="c-page t-flex--fill">
+  <h1 class="c-page__title">Refactoring web applications</h1>
+
+  <div class="c-page__meta">
+    <div>Published on 31st January 2019</div>
+    
+      <ul class="o-linklist o-linklist--centered">
+        
+          <li><a class="c-tag" href="/blog/category/webdev">Web development</a></li>
+        
+      </ul>
+    
+  </div>
+  <div class="c-page__content">
+<p>I&#8217;ve been thinking a lot about refactoring recently (rewriting functional code to improve its quality, security, legibility etc.), particularly in relation to some projects I&#8217;ve been working on. This morning a <a href="https://twitter.com/sarahmei/status/1090860150712221698">twitter thread by Sarah Mei (@sarahmei)</a> caught my attention and I thought I should finally write something on the subject.</p>
+
+
+
+<p>I&#8217;ll come back to Sarah&#8217;s thread throughout this post, but it&#8217;s well worth a read and takes a different angle to what I&#8217;m about to say. My main talking point from it is that incremental refactoring is essential to a healthly project, and we don&#8217;t need to make massive changes all the time. But she also talks excellently on analysis and communication.</p>
+
+
+
+<blockquote class="wp-block-quote"><p>To actually fix it, you need to negotiate with the individuals who are  applying the pressure [to not refactor]. You need to understand THEIR incentives, and align your desired changes with those. </p><cite><a href="https://twitter.com/sarahmei/status/1090885026785284096">Sarah Mei (@sarahmei)</a></cite></blockquote>
+
+
+
+<h2>Bad code</h2>
+
+
+
+<p>Like many (most?) developers, I&#8217;ve spent a lot of time with &#8220;bad code&#8221;, most of which I&#8217;ve written myself. This is code that I know to not be high quality, and that I understand needs to be refactored. But I want to identify first what makes code &#8220;bad&#8221; and why we put up with it.</p>
+
+
+
+<p>There&#8217;s a category of bad code which is just poorly written, perhaps because of laziness or lack of skill. But that&#8217;s a tiny proportion of most of the code I&#8217;ve ever refactored. In my experience, most bad code was fine when it was originally written but has since turned sour, for a variety of reasons:</p>
+
+
+
+<ul><li>Perhaps <strong>best practices has moved on</strong> and what <em>was</em> best practice is now bad practice</li><li>Perhaps <strong>the scope has changed</strong> and what was a small throwaway feature has become a fundamental part of an application</li><li>Perhaps <strong>you originally made a rough proof-of-concept</strong> and it&#8217;s been blindly embedded into a real-world application</li><li>Perhaps <strong>dependencies have been upgraded</strong> and you&#8217;re using a package which is missing key features or, worse, isn&#8217;t being supported</li><li>Perhaps <strong>you&#8217;ve found a better way of doing things</strong> and you&#8217;re suddenly aware that the code could be faster, smaller or more pure</li><li>Perhaps <strong>your code has become insecure</strong> due to a vulnerability being discovered, or processing power evolving to make brute force attacks possible</li></ul>
+
+
+
+<p>All of these circumstances can be mitigated slightly with good preparation, but I think it&#8217;s naive to think of them as completely avoidable. Writing web applications is a constant stream of being blindsided by technology, market trends and user needs. So, at some point, your code will become bad and need to be refactored.</p>
+
+
+
+<h2>Recent experiences</h2>
+
+
+
+<p>I want to talk a bit about my experience lately and where I believe I went wrong. Then I&#8217;ll talk a bit about what I&#8217;ve learnt from the experience and what I&#8217;ll do to avoid it happening again on my next project.</p>
+
+
+
+<p>About six months ago I picked up a new front-end project, based on React and Redux. The project was started a couple of years back, and has been intermittently worked on since, but I believe I was the first developer to really start looking at it on a day-to-day basis with the vision to release it to customers.</p>
+
+
+
+<p>If you&#8217;re already seeing the red flags, then you did a better job than me. I picked up the project, got a feel for how it worked, and started implementing new features. Refactoring didn&#8217;t really cross my mind.</p>
+
+
+
+<p>What I missed was that the project was littered with bad code. And let me clarify again that this wasn&#8217;t because of anyone who worked on it previously, it was because:</p>
+
+
+
+<ul><li>The project had been started two years ago</li><li>It had only been worked on intermittently</li></ul>
+
+
+
+<p>Two years had been a long time for the React ecosystem, and best practices had moved on significantly. The project had been started from a popular-at-the-time template which structured code and used packages in a way that is now discouraged (I tracked down the original template, which explains it is now deprecated and not recommended).</p>
+
+
+
+<p>Over the course of two years, work hadn&#8217;t been properly planned or scheduled (the application was effectively a prototype during this time) so new features were introduced sporadically and inconsistently. With the time constraints this is excusable, but it left the application fragmented.</p>
+
+
+
+<p>Ultimately, coming into the project in mid-2018, the code was inconsistent and didn&#8217;t match any reference sources online (since documentation is updated to reflect current best practies) and a lot of the dependencies were out-of-date. Some of those dependencies could be upgraded quite easily, but some (for example, upgrading React Router from version 2 to 4) required complete code changes.</p>
+
+
+
+<h2>Lessons learned</h2>
+
+
+
+<p>A little while into the project I started to appreciate the scale of refactoring required and quickly pushed the thought from my mind because it was &#8220;too big&#8221;. I had features to implement, deadlines to meet, and I didn&#8217;t have time to rewrite data architecture (a scarily impactful change!).</p>
+
+
+
+<p>But reality shortly set in. Some features <em>required</em> packages to be upgraded, and documenting a system which mixed old and new techniques was becoming a nightmare. I started to pick a few battles and refactor the application as-and-when I came to problem areas. In effect, I was starting to read the advice I saw from Sarah today:</p>
+
+
+
+<blockquote class="wp-block-quote"><p>Improvement</p><p>Over</p><p>Consistency. </p><cite><a href="https://twitter.com/sarahmei/status/1090875259731890177">Sarah Mei (@sarahmei)</a></cite></blockquote>
+
+
+
+<p>Six months into the project, there&#8217;s been a lot of improvement. Our usage of Redux is (mostly) clean and consistent, we&#8217;re starting to build up a component library, ESLint is strict and passing, and this week our React Router dependency got upgraded to version 4.</p>
+
+
+
+<p>However, there&#8217;s still a lot to do: there&#8217;s some data duplication across Redux stores, directory structure is unintuitive and there&#8217;s a 2000+ line component that I&#8217;m dreading having to tackle.</p>
+
+
+
+<p>As I see it, incremental improvement to the application was the only way to keep this project working. Avoiding these small refactors would have led to a slower, harder to develop application; a large refactor would have meant throwing out a lot of our good work and delaying the project. Instead, we have a <em>functional</em>, <em>better</em> but <em>imperfect</em> codebase, happy clients and a good vision for future work.</p>
+
+
+
+<p>Improvement over consistency.</p>
+
+
+
+<h2>Planning refactoring</h2>
+
+
+
+<p>I&#8217;m well aware of the mistakes I made on this project. I didn&#8217;t acknowledge the need to refactor quick enough, didn&#8217;t communicate this to my colleagues and managers, and didn&#8217;t suitably plan how I would perform the refactoring. So, as ever, let&#8217;s make this a learning opportunity. What will I do differently next time?</p>
+
+
+
+<p>Firstly, I&#8217;ll make sure I <strong>properly assess bad code</strong> when taking over new projects or at regular intervals when working on my own. There&#8217;s no shame in acknowledging that code falls out-of-date and identifying where improvements can be made.</p>
+
+
+
+<p>However, I&#8217;ll be careful in this process not to over-estimate the bad code. It&#8217;s easy to get carried away and insist on making sweeping changes which won&#8217;t actually help (e.g. migrating to the hottest new tool when your existing one works and is actively supported).</p>
+
+
+
+<p>Assessing the bad code will also involve <strong>writing a report</strong> about my findings. I&#8217;ll identify the <em>isolated</em> areas of the code which need to be refactored, make suggestions about how they can be improved, and provide options for how that might be approached.</p>
+
+
+
+<p>I&#8217;ll <strong>share the report with colleagues</strong> to raise awareness of the problems and indicate what additional work might need to be prioritised. They may be able to suggest solutions they&#8217;ve adopted in the past, or identify other projects which could benefit from the same refactoring.</p>
+
+
+
+<p>Doing this proper analysis and report writing will ensure that I&#8217;m aware of the refactoring opportunities, and can properly plan for how to enact them. When I have capacity, or am working in a related area, I can refer to my report to pick up the additional refactoring work without having to do all the analysis again.</p>
+
+
+
+<h2>Communicating refactoring</h2>
+
+
+
+<p>Finally, I wanted to end with a brief note about how to ensure that you suitably communicate the importance of refactoring. In the introduction I suggested that refactoring involves rewriting &#8220;functional code&#8221; (which isn&#8217;t high quality), and people can often balk at this idea: if the code is functional, why waste our time rewriting it when we have other things to work on?</p>
+
+
+
+<p>Again, Sarah&#8217;s Twitter thread covers this very well.</p>
+
+
+
+<blockquote class="wp-block-quote"><p>There’s almost always a win-win in there SOMEWHERE. You can start by   trying to understand what is driving that desire for them. It might not   be what you think.  </p><cite><a href="https://twitter.com/sarahmei/status/1090888376926892033">Sarah Mei (@sarahmei)</a></cite></blockquote>
+
+
+
+<p>Refactoring will often bring tangible improvements: faster, smaller, fewer errors, looks nicer. If these match with your colleague&#8217;s/manager&#8217;s/company&#8217;s priorities, then you have a great opportunity to sell the benefits and get buy-in.</p>
+
+
+
+<p>But some refactoring isn&#8217;t like that. It can have other reasons:</p>
+
+
+
+<ul><li>Using an old version of a depedency may <em>work</em> but it won&#8217;t be supported if something goes wrong</li><li>Outdated or complex code is hard for new starts to understand</li><li>Old technology is battle-tested, but hard to recruit for</li><li>Inconsistent code is confusing, and damages developers&#8217; cognitive load</li><li>Complex code may work, but it&#8217;s fragile</li></ul>
+
+
+
+<p>Importantly, all of these reasons to refactor can save time and money in the future because they allow you to mitigate against anticipated problems. So whilst code might not be causing you problems <em>right now</em>, spending a few hours to refactor something today might save you five days, apologetic emails and wasted money in six months time.</p>
+
+
+
+<p>Ultimately, when agitating for refactoring, you need to make sure you know <em>why</em> it&#8217;s a good idea, and that you can sell that to your team. Identify the reasons, calculate the impact, and explain your strategy to mitigate.</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<p>Allow me to finish with one final plug for <a href="https://twitter.com/sarahmei/status/1090860150712221698">Sarah&#8217;s Twitter thread</a>. It covers a lot more topics than I go into here (I&#8217;m writing this to selfishly talk about my work) in a thoughtful and practical way. If this post was interesting to you, Sarah&#8217;s thread certainly will be too!</p>
+</div>
+</main>
+
+    <footer class="c-footer">
+      🏛🌯🌳🎧
+      <div>
+        <a href="/privacy" class="c-footer__link">
+          Privacy
+        </a>
+        <span role="separator">-</span>
+        <a href="https://gitlab.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitLab</a>
+        <span role="separator">-</span>
+        <a href="https://github.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitHub</a>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+      // Analytics
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = "https://analytics.gregtyler.co.uk/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+  </body>
+</html>

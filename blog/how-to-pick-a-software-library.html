@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#c82e14">
+    <link rel="preconnect" href="https://analytics.gregtyler.co.uk">
+    <link rel="manifest" href="/assets/manifest.webmanifest">
+    <link rel="shortcut icon" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
+    <link rel="alternate" type="application/rss+xml" title="Greg Tyler RSS Feed" href="/feed.rss" />
+    <meta name="description" content="Websites, quizzes, problem solving. I try to make stuff better.">
+    
+<title>How to pick a software library - Greg Tyler</title>
+<link rel="canonical" href="https://gregtyler.co.uk/blog/how-to-pick-a-software-library" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@gregtyler" />
+<meta name="twitter:creator" content="@gregtyler" />
+<meta name="og:url" content="https://gregtyler.co.uk/blog/how-to-pick-a-software-library" />
+<meta name="og:title" content="How to pick a software library" />
+<meta name="og:description" content="<p>Lately, I&#8217;ve been in the business of picking libraries. I explain some of the key things that I look out for in a library, and why they&#8217;re important.</p>
+" />
+
+
+    <style type="text/css">:root{--spacing:1rem;--color-brand:#c82e14;--color-brand-dark:#a82e14;--color-brand-contrast:#fff;--color-subbrand:#fbbf13;--color-link:#3973b1;--color-text:#555;--color-accent:#f5f5f5;--font-default:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif}@media (min-width:1000px){:root{--spacing:1.5rem}}@media (min-width:1500px){:root{--spacing:1.75rem}}*,:after,:before{box-sizing:border-box}a{color:#3973b1;color:var(--color-link)}body{display:flex;flex-direction:column;min-height:100vh;margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;font-family:var(--font-default);font-size:18px;background-color:#c82e14;background-color:var(--color-brand);background-image:radial-gradient(at 7rem,at 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem,at 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-image:radial-gradient(at 7rem 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-repeat:no-repeat;color:#555;color:var(--color-text);letter-spacing:-.03em}::-moz-selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}::selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}h1{margin:0}hr{border-top:1px solid #ccc;border-bottom:0}pre{overflow-x:auto}.o-carousel{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));justify-content:stretch;grid-gap:1rem;grid-gap:var(--spacing);grid-auto-rows:1fr}.o-linklist{display:flex;margin:0;padding:0;list-style-type:none}.o-linklist--vertical{flex-direction:column}.o-linklist--horizontal{flex-direction:row}.o-linklist--centered{justify-content:center}.o-linklist__link{display:block;padding:.5rem;padding:calc(var(--spacing)*0.5);color:inherit;text-decoration:none}.o-linklist__link:hover{text-decoration:underline}.c-card{display:inline-flex;padding:1rem;padding:var(--spacing);background-color:#fff;flex-direction:column;box-shadow:0 0 3px rgba(0 0 0/20%)}.c-card--link{color:#555;color:var(--color-text);text-decoration:none;transition:all .4s linear}.c-card--link:hover{background-color:#eee}.c-card__title{margin:0;font-size:1.2rem}.c-card__meta{color:#777;font-size:.9rem}.c-card__actions{text-align:right}.c-card__action{margin-left:1rem;margin-left:var(--spacing);font-size:.85rem;text-transform:uppercase}.c-card__action:hover{text-decoration:underline}.c-card__action--primary{color:#c82e14;color:var(--color-brand)}.c-card:hover .c-card__action--primary{text-decoration:underline}.c-footer{padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);font-family:1.5rem;text-align:center}.c-footer__link{color:inherit;font-size:.85rem}.c-navbar{display:flex;flex-direction:column;width:100%;padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);align-items:center;justify-content:space-between}.c-navbar__title-link{color:inherit;text-decoration:none}@media (min-width:500px){.c-navbar{flex-direction:row}}.c-page{padding:1rem;padding:var(--spacing);background-color:#fff;color:#555;color:var(--color-text)}.c-page__title{margin-bottom:1rem;margin-bottom:var(--spacing);text-align:center;font-size:2rem;line-height:1em}.c-page__meta{margin-left:-1rem;margin-left:calc(var(--spacing)*-1);margin-right:-1rem;margin-right:calc(var(--spacing)*-1);padding-top:1rem;padding-top:var(--spacing);padding-bottom:1rem;padding-bottom:var(--spacing);text-align:center;background-color:#f5f5f5;background-color:var(--color-accent)}.c-page__content{max-width:40rem;margin:0 auto;font-size:1.1rem;line-height:1.4em}@media (min-width:1000px){.c-page{padding:2rem;padding:calc(var(--spacing)*2)}.c-page__title{margin-bottom:2rem;margin-bottom:calc(var(--spacing)*2);font-size:3rem}.c-page__meta{margin-left:-2rem;margin-left:calc(var(--spacing)*-2);margin-right:-2rem;margin-right:calc(var(--spacing)*-2)}.c-page__content{font-size:1.2rem;line-height:1.5em}}.c-splash{display:flex;flex:1;align-items:center;justify-content:center;min-height:50vmin;color:#fff;color:var(--color-brand-contrast);font-size:8vmin;font-weight:300;text-transform:uppercase;letter-spacing:-.05em}.c-sunken{background-color:#ccc;box-shadow:inset 0 5px 10px -5px rgba(0 0 0/60%),inset 0 -5px 10px -5px rgba(0 0 0/60%);padding:1rem;padding:var(--spacing)}.c-sunken__title{margin-top:0;margin-bottom:1rem;margin-bottom:var(--spacing)}.c-tag{margin:.2rem;margin:calc(var(--spacing)*0.2);padding:.1rem .3rem;padding:calc(var(--spacing)*0.1) calc(var(--spacing)*0.3);background-color:#a82e14;background-color:var(--color-brand-dark);color:#fff;color:var(--color-brand-contrast);font-size:.85rem;text-decoration:none}.t-flex--fill{flex-grow:1}.hljs-comment,.hljs-quote{color:#969896}.hljs-deletion,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#c66}.hljs-built_in,.hljs-builtin-name,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#de935f}.hljs-attribute{color:#f0c674}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#b5bd68}.hljs-section,.hljs-title{color:#81a2be}.hljs-keyword,.hljs-selector-tag{color:#b294bb}.hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.wp-caption{max-width:100%;background-color:#eee}@media (min-width:1000px){.alignleft,.alignright{max-width:60%}.alignleft{float:left;margin-left:-20%;margin-right:1rem;margin-right:var(--spacing)}.alignright{float:right;margin-right:-20%;margin-left:1rem;margin-left:var(--spacing)}}[class*=wp-image-]{max-width:100%;height:auto!important}.size-full{display:block;margin-left:auto;margin-right:auto}.wp-caption-text{margin-bottom:0;padding-left:1rem;padding-left:var(--spacing);padding-right:1rem;padding-right:var(--spacing);padding-bottom:1rem;font-size:1rem;line-height:1.2em;font-style:italic}</style>
+  </head>
+  <body>
+    <header class="c-navbar">
+      <h1 class="c-navbar__title">
+        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
+      </h1>
+      <ul class="o-linklist o-linklist--horizontal">
+        <li>
+          <a href="/blog" class="o-linklist__link">Blog</a>
+        </li>
+        <li>
+          <a href="/blog/category/weeknotes" class="o-linklist__link">Weeknotes</a>
+        </li>
+        <li>
+          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/gregtyler" rel="me noreferrer" class="o-linklist__link">Twitter</a>
+        </li>
+      </ul>
+    </header>
+    
+<main class="c-page t-flex--fill">
+  <h1 class="c-page__title">How to pick a software library</h1>
+
+  <div class="c-page__meta">
+    <div>Published on 22nd October 2016</div>
+    
+      <ul class="o-linklist o-linklist--centered">
+        
+          <li><a class="c-tag" href="/blog/category/webdev">Web development</a></li>
+        
+      </ul>
+    
+  </div>
+  <div class="c-page__content"><p>Lately, I&#39;ve been in the business of picking libraries. Barcodes, PDFs and automated testing suites have been particularly in my sights recently, but it&#39;s a topic that comes up regularly. With that in mind, I thought I&#39;d provide a guide of things I look out for when picking what to use. A buying guide for software libraries, if you will.   </p>
+<p>Picking the best library is an important decision. Moreover, selecting poorly has the potential to really hinder your project in the future. Unfortunately, there are a lot of complex considerations to factor in to your decision. I think all of the ones I list here are important, but the weight put on each will differ between projects, people and subject matter. I&#39;d be really interested to hear how important you think each of them is, as well as anything else you take into consideration.   </p>
+<p>I should note that, due to personal experience, this mainly comes from the point-of-view of picking JavaScript libraries, but I believe it&#39;s completely transferable to other languages too.   </p>
+<h2 id="functionality">Functionality</h2>
+<p>I doubt you&#39;ll be surprised to see this high up in the list. If you&#39;re picking a barcode library and it doesn&#39;t produce <a href="https://en.wikipedia.org/wiki/Code_39">Code 39</a> then it&#39;s immediately out. Of course, not all functionality is as clearly nuanced as this so, if you can, it helps to identify up-front exactly what you need it to be able to do. I also try and think to the future, and what functionality we might need for the next iteration, or if we get funding to expand what we do with it.   </p>
+<p>When you get into shortlisting territory, functionality is something I find it&#39;s worth experimenting with yourself. Creating a small mock-up of what you&#39;re going to do with it can highlight gaps which might not be clear from the documentation but could stop you dead in your tracks.   </p>
+<h2 id="api">API</h2>
+<p>On the web we often think of APIs in terms of how services interact with each other, often through RESTful or GraphQL interfaces. In this context though, I&#39;m thinking more locally of how your existing codebase interacts with the library that you&#39;re looking to use. If you&#39;re using an app which is implemented solely with HTML (examples in Lea Verou&#39;s <a href="http://markapp.io/">MarkApp</a>), this decision is likely to be quite straightforward.   </p>
+<p>However, if your code is going to make calls to or reference the library then you need to ensure that they can interoperate in a way befitting your codebase, the library, and your sanity as a code author. I think a good thing to look out for is whether the design of the API matches its functionality. I expect a simple barcode library to have one function: <code>drawBarcode</code>. A more complex API may imply a tool that isn&#39;t well thought out, or is only a half-baked fork of another library.   </p>
+<p>It&#39;s probably important to note that I don&#39;t think that a bad API means that a library is bad, but I&#39;ve found it can be a good indicator of problems elsewhere. Plus, it&#39;s one of the few bits of the library you as a developer will see, so picking something you&#39;ll hate working with needs to facilitate some serious payoff.   </p>
+<h2 id="dependencies">Dependencies</h2>
+<p>If you can, I completely advise avoiding dependencies. I still work on projects which use a certain library purely because it&#39;s a dependency for something critical. You don&#39;t want to be adding jQuery to every page just because you wanted to add a filter to tables. Whilst you might use jQuery every day now, it&#39;s nice to know that you could drop it and wouldn&#39;t have to also find a new table filterer.   </p>
+<p>Sometimes dependencies may be unavoidable. For example, it used to be hard to find a good multiselect or tablesorter plugin that didn&#39;t use jQuery, Mootools or Prototype. In that case, it&#39;s best to opt for something you already use. You certainly don&#39;t want to have to keep using both jQuery <em>and</em> Prototype just because of legacy plugins you&#39;re still supporting. But these scenarios are far less common now.   </p>
+<p>(No hate for jQuery, it&#39;s just a good example. I still use it on loads of projects.)   </p>
+<h2 id="file-size">File size</h2>
+<p>Web pages are getting <a href="http://idlewords.com/talks/website_obesity.htm">ridiculously big</a>, and a massive contributor is unnecessarily large JavaScript libraries. Users hate slow websites, and slow websites very often are caused by bloated libraries. So don&#39;t use them.   </p>
+<p>Obviously, some libraries will be bigger than others. The difficult question is weighing size against functionality. In it&#39;s most basic form, if two libraries give you the exact same functionality and one is even 3 bytes bigger, choose the small one. With more nuanced decision making, consider what your budget is, what you&#39;re loading already, and what you can afford.   </p>
+<p>If there&#39;s nothing that will fit into your page load budget, consider whether you can build it yourself. It may be more for you to support, but if it helps your users get snappy load time and encourages them to keep using your site, then the cost of that support is easily worth it.   </p>
+<h2 id="support">Support</h2>
+<p>Support is always a <em>huge</em> point of consideration for me. When I&#39;m browsing libraries, I love being able to browse their issues on GitHub (or hosting platform of choice). Red flags for me include:   </p>
+<ul>
+<li>Lots of open issues (support not being actively provided)</li>
+</ul>
+<ul>
+<li>No issues at all, or only issues opened by the developer (no-one else is using this)</li>
+</ul>
+<ul>
+<li>Issues closed without resolution</li>
+</ul>
+<ul>
+<li>Issues which have been open a long time (typically hints that they may be fixing the easy, small things)</li>
+</ul>
+<p>Whereas things I like to see include: active discussion involving the developers, newbie questions answered probably (instead of being told to Read the Manual), pull requests being accepted from others with sensible reviews.   </p>
+<p>As with anything in this list, there are of course exceptions and you should be careful not to draw the wrong conclusion. Font Awesome has <a href="https://github.com/FortAwesome/Font-Awesome/issues">3,718</a> unresolved issues at time of writing, but only 38 are bugs. If you care about your library choices, be sure to look deeper than just the big number at the top.   </p>
+<blockquote>
+<p>I had a great experience recently when I was trying out the <a href="http://webdriver.io/">WebdriverIO library</a>. I found <a href="https://github.com/webdriverio/webdriverio/issues/1354">a bug</a> with the library and reported it, tried and failed to fix it myself. A developer replied within 24 hours with a fix. That support was fantastic and it allowed me to freely get on with my job. I&#39;ve been using WebdriverIO ever since, and can confidently state that support as one of the reasons why.</p>
+</blockquote>
+<p>Also worth looking at: forum posts, Stack Overflow questions (and their answers), blog articles. You may well need support, and it&#39;s good to know it&#39;s going to be there.   </p>
+<h2 id="documentation">Documentation</h2>
+<p>For even the most basic of libraries, documentation is essential for your new library. Without it, you won&#39;t be able to start. It&#39;s also your first point of support and perhaps your only opportunity to get an answer without having to wait for someone to reply. The best libraries have such good documentation that you don&#39;t ever need to ask for help. If you think about it, I&#39;m sure you can pick out some choice libraries that you&#39;ve never had to look further than the documentation to use. Perhaps not as many as you&#39;d like though.   </p>
+<p>If you&#39;ve got time, looking through a history of the documentation can be a very good indicator of how the developers treat it. What looks like great documentation at first might not have been updated in two years of new versions. If documentation has only recently been introduced, this could mean it&#39;s a new important priority, or that it&#39;s not going to be kept up-to-date past this point.   </p>
+<h2 id="ownership">Ownership</h2>
+<p>Is the library owned by a company, an individual or an organisation? All of them have pros and cons.   </p>
+<p>I would say that something like the jQuery Foundation or Mozilla is the most preferable, because their strategy is to support developers like us to make great things.   </p>
+<p>If a company owns the library, consider what their edge is. Many companies aren&#39;t going to support a library without a determined way to make money out of it. This might be by selling support, <a href="http://themes.getbootstrap.com/">by selling premium features</a>, by <a href="https://www.ampproject.org/">using it as a vehicle to promote other products</a>. Maybe they plan to hold future versions hostage. In many cases though, it&#39;s just to raise their company profile by getting their name out there. But you&#39;ve still got to be aware that the rug could be <a href="http://blog.parse.com/announcements/moving-on/">pulled from under your feet</a> if their business case stops adding up.   </p>
+<p>If an individual owns it, then what&#39;s their motivation to keep supporting it? What plans do they have when they stop? Again, consider what would happen if you were to <a href="http://www.theregister.co.uk/2016/03/23/npm_left_pad_chaos/">lose it overnight</a>.   </p>
+<h2 id="ability-to-edit">Ability to edit</h2>
+<p>I think it&#39;s good to know if the library accepts pull requests. If you find bugs you want to fix or new functionality to add, you want to be able to do it at the source. The alternative is forking, which means you&#39;ll miss updates and have to support yourself. If you choose to do that, you&#39;ll be supporting legacy software in your project and might as well write your whole own library.   </p>
+<h2 id="price">Price</h2>
+<p>I don&#39;t have much to say on price because, in this amazing world of open source, I haven&#39;t paid for a library in years. I would suggest that you have to re-evaluate almost everything in this list, weighing up the difference in price between each option against the functionality, support, documentation etc. that you&#39;ll gain.   </p>
+<p>Paying can be worthwhile. <a href="http://www.highcharts.com/">Highcharts</a> looks amazing, and I understand it&#39;s well worth the price tag if charts are a fundamental part of your application. If something is important enough to justify the price tag, don&#39;t just turn it down because you&#39;re cheap. Though equally, don&#39;t spend money on something with great flashy demos without evaluating it first (I&#39;ve fallen foul of this many times in life).   </p>
+<hr>
+<p>Over the years, I&#39;ve picked some libraries that have turned out great. Tools that I&#39;ve used for years since. But I&#39;ve also picked some duds, even when I&#39;ve been careful. In the real world, you can&#39;t account for everything and sometimes you&#39;ll get caught out. Yet you can mitigate that damage by choosing wisely and being aware of what you&#39;ve got. Minimising dependencies, understanding the reality of support and ownership, and knowing how you&#39;ll use the library are all extremely valuable bits of information.</p>
+</div>
+</main>
+
+    <footer class="c-footer">
+      🏛🌯🌳🎧
+      <div>
+        <a href="/privacy" class="c-footer__link">
+          Privacy
+        </a>
+        <span role="separator">-</span>
+        <a href="https://gitlab.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitLab</a>
+        <span role="separator">-</span>
+        <a href="https://github.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitHub</a>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+      // Analytics
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = "https://analytics.gregtyler.co.uk/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "short_name": "Greg Tyler",
+  "name": "Greg Tyler",
+  "theme_color": "#c82e14",
+  "background_color": "#FFF",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/assets/favicon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

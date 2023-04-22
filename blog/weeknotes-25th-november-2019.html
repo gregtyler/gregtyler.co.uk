@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#c82e14">
+    <link rel="preconnect" href="https://analytics.gregtyler.co.uk">
+    <link rel="manifest" href="/assets/manifest.webmanifest">
+    <link rel="shortcut icon" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
+    <link rel="alternate" type="application/rss+xml" title="Greg Tyler RSS Feed" href="/feed.rss" />
+    <meta name="description" content="Websites, quizzes, problem solving. I try to make stuff better.">
+    
+<title>Weeknotes: 25th November 2019 - Greg Tyler</title>
+<link rel="canonical" href="https://gregtyler.co.uk/blog/weeknotes-25th-november-2019" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@gregtyler" />
+<meta name="twitter:creator" content="@gregtyler" />
+<meta name="og:url" content="https://gregtyler.co.uk/blog/weeknotes-25th-november-2019" />
+<meta name="og:title" content="Weeknotes: 25th November 2019" />
+<meta name="og:description" content="<p>This week I fixed a lot of PHP errors. Last week I talked about how I was reviewing logs and errors. We wanted to increase our error logging strictness so that we get properly notified when things go wrong. After implementing the stricter rules though, we found lots of existing errors. We obviously don&#8217;t want [&hellip;]</p>
+" />
+
+
+    <style type="text/css">:root{--spacing:1rem;--color-brand:#c82e14;--color-brand-dark:#a82e14;--color-brand-contrast:#fff;--color-subbrand:#fbbf13;--color-link:#3973b1;--color-text:#555;--color-accent:#f5f5f5;--font-default:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif}@media (min-width:1000px){:root{--spacing:1.5rem}}@media (min-width:1500px){:root{--spacing:1.75rem}}*,:after,:before{box-sizing:border-box}a{color:#3973b1;color:var(--color-link)}body{display:flex;flex-direction:column;min-height:100vh;margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;font-family:var(--font-default);font-size:18px;background-color:#c82e14;background-color:var(--color-brand);background-image:radial-gradient(at 7rem,at 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem,at 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-image:radial-gradient(at 7rem 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-repeat:no-repeat;color:#555;color:var(--color-text);letter-spacing:-.03em}::-moz-selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}::selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}h1{margin:0}hr{border-top:1px solid #ccc;border-bottom:0}pre{overflow-x:auto}.o-carousel{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));justify-content:stretch;grid-gap:1rem;grid-gap:var(--spacing);grid-auto-rows:1fr}.o-linklist{display:flex;margin:0;padding:0;list-style-type:none}.o-linklist--vertical{flex-direction:column}.o-linklist--horizontal{flex-direction:row}.o-linklist--centered{justify-content:center}.o-linklist__link{display:block;padding:.5rem;padding:calc(var(--spacing)*0.5);color:inherit;text-decoration:none}.o-linklist__link:hover{text-decoration:underline}.c-card{display:inline-flex;padding:1rem;padding:var(--spacing);background-color:#fff;flex-direction:column;box-shadow:0 0 3px rgba(0 0 0/20%)}.c-card--link{color:#555;color:var(--color-text);text-decoration:none;transition:all .4s linear}.c-card--link:hover{background-color:#eee}.c-card__title{margin:0;font-size:1.2rem}.c-card__meta{color:#777;font-size:.9rem}.c-card__actions{text-align:right}.c-card__action{margin-left:1rem;margin-left:var(--spacing);font-size:.85rem;text-transform:uppercase}.c-card__action:hover{text-decoration:underline}.c-card__action--primary{color:#c82e14;color:var(--color-brand)}.c-card:hover .c-card__action--primary{text-decoration:underline}.c-footer{padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);font-family:1.5rem;text-align:center}.c-footer__link{color:inherit;font-size:.85rem}.c-navbar{display:flex;flex-direction:column;width:100%;padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);align-items:center;justify-content:space-between}.c-navbar__title-link{color:inherit;text-decoration:none}@media (min-width:500px){.c-navbar{flex-direction:row}}.c-page{padding:1rem;padding:var(--spacing);background-color:#fff;color:#555;color:var(--color-text)}.c-page__title{margin-bottom:1rem;margin-bottom:var(--spacing);text-align:center;font-size:2rem;line-height:1em}.c-page__meta{margin-left:-1rem;margin-left:calc(var(--spacing)*-1);margin-right:-1rem;margin-right:calc(var(--spacing)*-1);padding-top:1rem;padding-top:var(--spacing);padding-bottom:1rem;padding-bottom:var(--spacing);text-align:center;background-color:#f5f5f5;background-color:var(--color-accent)}.c-page__content{max-width:40rem;margin:0 auto;font-size:1.1rem;line-height:1.4em}@media (min-width:1000px){.c-page{padding:2rem;padding:calc(var(--spacing)*2)}.c-page__title{margin-bottom:2rem;margin-bottom:calc(var(--spacing)*2);font-size:3rem}.c-page__meta{margin-left:-2rem;margin-left:calc(var(--spacing)*-2);margin-right:-2rem;margin-right:calc(var(--spacing)*-2)}.c-page__content{font-size:1.2rem;line-height:1.5em}}.c-splash{display:flex;flex:1;align-items:center;justify-content:center;min-height:50vmin;color:#fff;color:var(--color-brand-contrast);font-size:8vmin;font-weight:300;text-transform:uppercase;letter-spacing:-.05em}.c-sunken{background-color:#ccc;box-shadow:inset 0 5px 10px -5px rgba(0 0 0/60%),inset 0 -5px 10px -5px rgba(0 0 0/60%);padding:1rem;padding:var(--spacing)}.c-sunken__title{margin-top:0;margin-bottom:1rem;margin-bottom:var(--spacing)}.c-tag{margin:.2rem;margin:calc(var(--spacing)*0.2);padding:.1rem .3rem;padding:calc(var(--spacing)*0.1) calc(var(--spacing)*0.3);background-color:#a82e14;background-color:var(--color-brand-dark);color:#fff;color:var(--color-brand-contrast);font-size:.85rem;text-decoration:none}.t-flex--fill{flex-grow:1}.hljs-comment,.hljs-quote{color:#969896}.hljs-deletion,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#c66}.hljs-built_in,.hljs-builtin-name,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#de935f}.hljs-attribute{color:#f0c674}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#b5bd68}.hljs-section,.hljs-title{color:#81a2be}.hljs-keyword,.hljs-selector-tag{color:#b294bb}.hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.wp-caption{max-width:100%;background-color:#eee}@media (min-width:1000px){.alignleft,.alignright{max-width:60%}.alignleft{float:left;margin-left:-20%;margin-right:1rem;margin-right:var(--spacing)}.alignright{float:right;margin-right:-20%;margin-left:1rem;margin-left:var(--spacing)}}[class*=wp-image-]{max-width:100%;height:auto!important}.size-full{display:block;margin-left:auto;margin-right:auto}.wp-caption-text{margin-bottom:0;padding-left:1rem;padding-left:var(--spacing);padding-right:1rem;padding-right:var(--spacing);padding-bottom:1rem;font-size:1rem;line-height:1.2em;font-style:italic}</style>
+  </head>
+  <body>
+    <header class="c-navbar">
+      <h1 class="c-navbar__title">
+        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
+      </h1>
+      <ul class="o-linklist o-linklist--horizontal">
+        <li>
+          <a href="/blog" class="o-linklist__link">Blog</a>
+        </li>
+        <li>
+          <a href="/blog/category/weeknotes" class="o-linklist__link">Weeknotes</a>
+        </li>
+        <li>
+          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/gregtyler" rel="me noreferrer" class="o-linklist__link">Twitter</a>
+        </li>
+      </ul>
+    </header>
+    
+<main class="c-page t-flex--fill">
+  <h1 class="c-page__title">Weeknotes: 25th November 2019</h1>
+
+  <div class="c-page__meta">
+    <div>Published on 1st December 2019</div>
+    
+      <ul class="o-linklist o-linklist--centered">
+        
+          <li><a class="c-tag" href="/blog/category/weeknotes">Weeknotes</a></li>
+        
+      </ul>
+    
+  </div>
+  <div class="c-page__content">
+<p>This week I fixed a lot of PHP errors.</p>
+
+
+
+<p><a href="https://gregtyler.co.uk/blog/weeknotes-18th-november-2019">Last week</a> I talked about how I was reviewing logs and errors. We wanted to increase our error logging strictness so that we get properly notified when things go wrong.</p>
+
+
+
+<p>After implementing the stricter rules though, we found lots of <em>existing</em> errors. We obviously don&#8217;t want to be unduly notified, so I spent a large chunk of week fixing a lot of them.</p>
+
+
+
+<p>For the most part, this was simply a case of downgrading errors from <a href="https://www.php.net/manual/en/class.runtimeexception.php">RuntimeExceptions</a> to <a href="https://github.com/symfony/symfony/blob/master/src/Symfony/Component/HttpKernel/Exception/HttpException.php">HttpExceptions</a>, which Symfony gracefully turns into 403 and 404 errors.</p>
+
+
+
+<p>The other major piece of work was deciding where errors should be thrown. For example, a report not being found is not really an error state, but a user who has <em>no</em> reports indicates that something has done wrong in our data process.</p>
+
+
+
+<h2>Summary</h2>
+
+
+
+<ul><li>Implemented stricter alarms for error messages in our application</li><li>Ensured all alarms and trusted advisor notifications are sent to the team</li><li>Fixed a whole bunch of PHP errors to avoid alarms going off unnecessarily</li><li>Started enabling <a href="https://symfony.com/doc/current/service_container/autowiring.html">autowiring</a> in our application</li><li>Started working towards ensuring we meet the <a href="https://ministryofjustice.github.io/security-guidance/standards/baseline-aws-accounts/">MoJ security baseline</a></li><li>Reviewed CVs for a development role <a href="https://jobs.jobvite.com/justicedigitalandtechnology">we&#8217;re recruiting for</a></li></ul>
+</div>
+</main>
+
+    <footer class="c-footer">
+      🏛🌯🌳🎧
+      <div>
+        <a href="/privacy" class="c-footer__link">
+          Privacy
+        </a>
+        <span role="separator">-</span>
+        <a href="https://gitlab.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitLab</a>
+        <span role="separator">-</span>
+        <a href="https://github.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitHub</a>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+      // Analytics
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = "https://analytics.gregtyler.co.uk/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+  </body>
+</html>

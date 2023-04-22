@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#c82e14">
+    <link rel="preconnect" href="https://analytics.gregtyler.co.uk">
+    <link rel="manifest" href="/assets/manifest.webmanifest">
+    <link rel="shortcut icon" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
+    <link rel="alternate" type="application/rss+xml" title="Greg Tyler RSS Feed" href="/feed.rss" />
+    <meta name="description" content="Websites, quizzes, problem solving. I try to make stuff better.">
+    
+<title>Building gregtyler.co.uk - Greg Tyler</title>
+<link rel="canonical" href="https://gregtyler.co.uk/blog/building-gregtyler-co-uk" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@gregtyler" />
+<meta name="twitter:creator" content="@gregtyler" />
+<meta name="og:url" content="https://gregtyler.co.uk/blog/building-gregtyler-co-uk" />
+<meta name="og:title" content="Building gregtyler.co.uk" />
+<meta name="og:description" content="<p>My blog is a (fairly) recent creation which involved some new tools and techniques, as well as a significant change to the way that I write.</p>
+" />
+
+
+    <style type="text/css">:root{--spacing:1rem;--color-brand:#c82e14;--color-brand-dark:#a82e14;--color-brand-contrast:#fff;--color-subbrand:#fbbf13;--color-link:#3973b1;--color-text:#555;--color-accent:#f5f5f5;--font-default:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif}@media (min-width:1000px){:root{--spacing:1.5rem}}@media (min-width:1500px){:root{--spacing:1.75rem}}*,:after,:before{box-sizing:border-box}a{color:#3973b1;color:var(--color-link)}body{display:flex;flex-direction:column;min-height:100vh;margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;font-family:var(--font-default);font-size:18px;background-color:#c82e14;background-color:var(--color-brand);background-image:radial-gradient(at 7rem,at 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem 3rem,#a82e14 5%,#c82e14 30%,#c82e14 70%,#fbbf13);background-image:radial-gradient(at 7rem,at 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-image:radial-gradient(at 7rem 3rem,var(--color-brand-dark) 5%,var(--color-brand) 30%,var(--color-brand) 70%,var(--color-subbrand));background-repeat:no-repeat;color:#555;color:var(--color-text);letter-spacing:-.03em}::-moz-selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}::selection{background-color:#c82e14;background-color:var(--color-brand);color:#fff;color:var(--color-brand-contrast)}h1{margin:0}hr{border-top:1px solid #ccc;border-bottom:0}pre{overflow-x:auto}.o-carousel{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));justify-content:stretch;grid-gap:1rem;grid-gap:var(--spacing);grid-auto-rows:1fr}.o-linklist{display:flex;margin:0;padding:0;list-style-type:none}.o-linklist--vertical{flex-direction:column}.o-linklist--horizontal{flex-direction:row}.o-linklist--centered{justify-content:center}.o-linklist__link{display:block;padding:.5rem;padding:calc(var(--spacing)*0.5);color:inherit;text-decoration:none}.o-linklist__link:hover{text-decoration:underline}.c-card{display:inline-flex;padding:1rem;padding:var(--spacing);background-color:#fff;flex-direction:column;box-shadow:0 0 3px rgba(0 0 0/20%)}.c-card--link{color:#555;color:var(--color-text);text-decoration:none;transition:all .4s linear}.c-card--link:hover{background-color:#eee}.c-card__title{margin:0;font-size:1.2rem}.c-card__meta{color:#777;font-size:.9rem}.c-card__actions{text-align:right}.c-card__action{margin-left:1rem;margin-left:var(--spacing);font-size:.85rem;text-transform:uppercase}.c-card__action:hover{text-decoration:underline}.c-card__action--primary{color:#c82e14;color:var(--color-brand)}.c-card:hover .c-card__action--primary{text-decoration:underline}.c-footer{padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);font-family:1.5rem;text-align:center}.c-footer__link{color:inherit;font-size:.85rem}.c-navbar{display:flex;flex-direction:column;width:100%;padding:1rem;padding:var(--spacing);color:#fff;color:var(--color-brand-contrast);align-items:center;justify-content:space-between}.c-navbar__title-link{color:inherit;text-decoration:none}@media (min-width:500px){.c-navbar{flex-direction:row}}.c-page{padding:1rem;padding:var(--spacing);background-color:#fff;color:#555;color:var(--color-text)}.c-page__title{margin-bottom:1rem;margin-bottom:var(--spacing);text-align:center;font-size:2rem;line-height:1em}.c-page__meta{margin-left:-1rem;margin-left:calc(var(--spacing)*-1);margin-right:-1rem;margin-right:calc(var(--spacing)*-1);padding-top:1rem;padding-top:var(--spacing);padding-bottom:1rem;padding-bottom:var(--spacing);text-align:center;background-color:#f5f5f5;background-color:var(--color-accent)}.c-page__content{max-width:40rem;margin:0 auto;font-size:1.1rem;line-height:1.4em}@media (min-width:1000px){.c-page{padding:2rem;padding:calc(var(--spacing)*2)}.c-page__title{margin-bottom:2rem;margin-bottom:calc(var(--spacing)*2);font-size:3rem}.c-page__meta{margin-left:-2rem;margin-left:calc(var(--spacing)*-2);margin-right:-2rem;margin-right:calc(var(--spacing)*-2)}.c-page__content{font-size:1.2rem;line-height:1.5em}}.c-splash{display:flex;flex:1;align-items:center;justify-content:center;min-height:50vmin;color:#fff;color:var(--color-brand-contrast);font-size:8vmin;font-weight:300;text-transform:uppercase;letter-spacing:-.05em}.c-sunken{background-color:#ccc;box-shadow:inset 0 5px 10px -5px rgba(0 0 0/60%),inset 0 -5px 10px -5px rgba(0 0 0/60%);padding:1rem;padding:var(--spacing)}.c-sunken__title{margin-top:0;margin-bottom:1rem;margin-bottom:var(--spacing)}.c-tag{margin:.2rem;margin:calc(var(--spacing)*0.2);padding:.1rem .3rem;padding:calc(var(--spacing)*0.1) calc(var(--spacing)*0.3);background-color:#a82e14;background-color:var(--color-brand-dark);color:#fff;color:var(--color-brand-contrast);font-size:.85rem;text-decoration:none}.t-flex--fill{flex-grow:1}.hljs-comment,.hljs-quote{color:#969896}.hljs-deletion,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#c66}.hljs-built_in,.hljs-builtin-name,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#de935f}.hljs-attribute{color:#f0c674}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#b5bd68}.hljs-section,.hljs-title{color:#81a2be}.hljs-keyword,.hljs-selector-tag{color:#b294bb}.hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.wp-caption{max-width:100%;background-color:#eee}@media (min-width:1000px){.alignleft,.alignright{max-width:60%}.alignleft{float:left;margin-left:-20%;margin-right:1rem;margin-right:var(--spacing)}.alignright{float:right;margin-right:-20%;margin-left:1rem;margin-left:var(--spacing)}}[class*=wp-image-]{max-width:100%;height:auto!important}.size-full{display:block;margin-left:auto;margin-right:auto}.wp-caption-text{margin-bottom:0;padding-left:1rem;padding-left:var(--spacing);padding-right:1rem;padding-right:var(--spacing);padding-bottom:1rem;font-size:1rem;line-height:1.2em;font-style:italic}</style>
+  </head>
+  <body>
+    <header class="c-navbar">
+      <h1 class="c-navbar__title">
+        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
+      </h1>
+      <ul class="o-linklist o-linklist--horizontal">
+        <li>
+          <a href="/blog" class="o-linklist__link">Blog</a>
+        </li>
+        <li>
+          <a href="/blog/category/weeknotes" class="o-linklist__link">Weeknotes</a>
+        </li>
+        <li>
+          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/gregtyler" rel="me noreferrer" class="o-linklist__link">Twitter</a>
+        </li>
+      </ul>
+    </header>
+    
+<main class="c-page t-flex--fill">
+  <h1 class="c-page__title">Building gregtyler.co.uk</h1>
+
+  <div class="c-page__meta">
+    <div>Published on 6th May 2017</div>
+    
+      <ul class="o-linklist o-linklist--centered">
+        
+          <li><a class="c-tag" href="/blog/category/webdev">Web development</a></li>
+        
+      </ul>
+    
+  </div>
+  <div class="c-page__content"><p>At the start of 2017, I decided to completely rebuild my blog from scratch in Node.js. My old blog was hosted on WordPress but over the years I&#39;d got tired of the framework&#39;s complexity and speed issues, particularly because I didn&#39;t use the majority of the features.</p>
+<p>I wanted to build something that was simple, lean, nicely designed and usable on all devices by all viewers. I was also inspired by the work Nicolás Bevacqua did on <a href="https://ponyfoo.com/articles/two-way-synchronization-for-a-web-app-and-git">Pony Foo</a> to track his articles through Git and make it easy for anyone to suggest edits through GitHub.</p>
+<p>In this post, I want to go through some of the decisions I made in redesigning <a href="https://gregtyler.co.uk/blog/">gregtyler.co.uk</a> and the tools I used to do so.</p>
+<h2 id="building-a-blog">Building a blog</h2>
+<p>Let&#39;s start with the technical bits. This website is written bespoke in Node, without even a application framework like Express (the notable modules I use are <a href="https://www.npmjs.com/package/marked">marked</a> for Markdown parsing, <a href="https://highlightjs.org/">highlight.js</a> for code display, and <a href="https://mozilla.github.io/nunjucks/">nunjucks</a> for templating). Not using an application framework might seem like a silly idea and, in general, it probably is. But this project was as much about learning how to build a Node application as it was about having a new blog, so I used the opportunity to learn properly about how Node handles HTTP requests and responses by handling them all myself.</p>
+<p>In development I focused on a couple of major goals. One was to ensure the site is performant, which not having an application framework helps with because I can see everything happening end-to-end between a request and response. Another was to build an application that would be robust for the future. I&#39;ve got no plans to roll out the application (which I&#39;ve called &quot;Palomar&quot;) to any other websites, but designed it as if I did intend to. I also designed it to be extensible in the future so that adding new features won&#39;t require rewriting the whole application.</p>
+<p>The application is hosted on <a href="https://www.digitalocean.com/">DigitalOcean</a>, which is new for me. I switched from my old host because I was having performance issues, bad customer support and paying too much. So far DigitalOcean has been cheaper, faster and, whilst I haven&#39;t had to experience customer support yet, I&#39;ve been impressed by the wealth of <a href="https://www.digitalocean.com/community/tutorials">tutorials</a> on their site documenting how to install and manage all sort of software on their servers.</p>
+<p>On the server, I use <a href="https://www.nginx.com/">nginx</a> as a server and, thanks to <a href="https://letsencrypt.org/">Let&#39;s Encrypt</a>, I&#39;m using HTTPS everywhere.</p>
+<p>You might wonder what database I&#39;m using, and be surprised to find that I&#39;m not. See <a href="#blogging-with-git">Blogging with Git</a> below to find out more.</p>
+<h1 id="designing-a-blog">Designing a blog</h1>
+<p>Anyone who visited my old blog will be familiar with the new design. The colour scheme, fonts and general layout are all very familiar, and I&#39;m continuing to use &quot;card&quot; structures on the home page.</p>
+<p>There are a couple of significant changes. One is that every post has a &quot;series&quot;. These work similar to categories in other blogging platforms, except that every post only gets one, and it&#39;s used to determine where the post is stored in the Git repository. I&#39;m not sure this is the best idea, but so far it&#39;s working out quite well as a way to section off particular kinds of content (friends may not interested in my <a href="/webdev">Web development</a>, colleagues might not want to read about <a href="/christmas-2014">Christmas films</a>).</p>
+<p>Another big change is the addition of &quot;linked articles&quot;. These display alongside normal articles on index and archive pages, but are actually links out to articles I&#39;ve written on other sites. This means that my blog is now the index page for <em>everything</em> I write online rather than just the things I&#39;ve written here.</p>
+<p>The CSS for the site is quite simple. There&#39;s <a href="https://gregtyler.co.uk/blog/main.css">one CSS file</a>, which uses no frameworks and sits at a tidy 1.9KB. I&#39;ve used the patterns of <a href="https://en.bem.info/methodology/quick-start/">BEM</a> and <a href="http://itcss.io/">ITCSS</a>, mostly inspired by the work of <a href="https://csswizardry.com/">Harry Roberts</a> and <a href="https://medium.com/@shaunbent/css-at-bbc-sport-part-1-bab546184e66">BBC Sport</a>.</p>
+<p>There&#39;s only one JavaScript file and that&#39;s Google Analytics, which I&#39;m planning to remove for something more ethical.</p>
+<h1 id="blogging-with-git">Blogging with Git</h1>
+<p>By far the biggest decision in this development was moving all of the blog writing to <a href="https://git-scm.com/">Git</a>. Git is a version control system, which means it keeps track of all of the changes ever made to a bunch of files, can give detailed history of each and restore to any point in time. It&#39;s a much more involved, powerful version of track changes.</p>
+<p>The benefits of having Git support writing should be obvious, but the implementation of doing so certainly is slightly involved. I have a <a href="https://github.com/gregtyler/gregtyler-pichon">repository of all of my articles</a> which is mirrored on the blog server. The application then uses its copy of the files to render and display pages as they are requested. This means that changes can be made either on my computer, or on GitHub, and then need to be pushed onto the server before they are live.</p>
+<p>As explained in the <a href="https://ponyfoo.com/articles/two-way-synchronization-for-a-web-app-and-git">article from Nicolás Bevacqua</a>, a key benefit of this is that readers can identify mistakes or improvements and fix them themselves in GitHub. It also means that, when not at home, I can write drafts and articles through GitHub&#39;s interface rather than on my computer.</p>
+<p>One regret I have about the current set-up that I would like to change is that it relies on a push to the application server. In the future, I&#39;d like the server to automatically take any new updates directly from GitHub without needing a push. This would enable to handle my entire editing and publishing process through GitHub rather than needing my PC to actually put the new posts on the server.</p>
+<hr>
+<p>There&#39;s clearly more work to be done on <a href="https://gregtyler.co.uk/blog/">gregtyler.co.uk</a>, but I&#39;m extremely happy with the results so far.</p>
+<p><small>&#x1f3b6;&#x1f3a7; Writing music for this post: <a href="https://play.google.com/music/m/B3c5mbp3mdo6xbzloxs7cwehdh4?t=The_Barber_of_Seville_-_London_Symphony_Orchestra__James_Levine">The Barber of Seville</a></small></p>
+</div>
+</main>
+
+    <footer class="c-footer">
+      🏛🌯🌳🎧
+      <div>
+        <a href="/privacy" class="c-footer__link">
+          Privacy
+        </a>
+        <span role="separator">-</span>
+        <a href="https://gitlab.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitLab</a>
+        <span role="separator">-</span>
+        <a href="https://github.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitHub</a>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+      // Analytics
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = "https://analytics.gregtyler.co.uk/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+  </body>
+</html>
