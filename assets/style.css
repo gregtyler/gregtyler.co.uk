@@ -8,6 +8,7 @@
   --color-page-background: #fff;
   --color-text: #555;
   --color-accent: #f5f5f5;
+  --color-shadow: rgba(0 0 0/20%);
   --font-default: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif;
 }
@@ -155,18 +156,19 @@ pre {
   padding: var(--spacing);
   background-color: var(--color-page-background);
   flex-direction: column;
-  box-shadow: 0 0 3px rgba(0 0 0/20%);
+  box-shadow: 0 0 3px var(--color-shadow);
 }
 
 .c-card--link {
   color: #555;
   color: var(--color-text);
   text-decoration: none;
-  transition: all 0.4s linear;
+  transition: all 0.1s linear;
 }
 
 .c-card--link:hover {
-  background-color: #eee;
+  outline: 3px solid var(--color-brand);
+  transform: scale(1.05);
 }
 
 .c-card__title {
@@ -196,7 +198,7 @@ pre {
 
 .c-card__action--primary {
   color: #c82e14;
-  color: var(--color-brand);
+  color: var(--color-link);
 }
 
 .c-card:hover .c-card__action--primary {
@@ -411,7 +413,8 @@ pre {
 
 .wp-caption {
   max-width: 100%;
-  background-color: #eee;
+  background-color: var(--color-accent);
+  margin-top: 0;
 }
 
 @media (min-width: 1000px) {
@@ -445,6 +448,7 @@ pre {
 }
 
 .wp-caption-text {
+  margin-top: 1rem;
   margin-bottom: 0;
   padding-left: 1rem;
   padding-left: var(--spacing);
@@ -453,7 +457,6 @@ pre {
   padding-bottom: 1rem;
   font-size: 1rem;
   line-height: 1.2em;
-  font-style: italic;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -463,5 +466,6 @@ pre {
     --color-accent: #444;
     --color-link: #f8bfb5;
     --color-subbrand: #936e0b;
+    --color-shadow: rgba(255 255 255/20%);
   }
 }
