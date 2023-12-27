@@ -1,0 +1,26 @@
+---
+layout: base.njk
+---
+
+<main class="c-page t-flex--fill">
+  <h1 class="c-page__title">{{ title }}</h1>
+
+  <div class="c-page__meta">
+    <div>
+      Published on <time datetime="{{ published | dateISO }}">{{ published | date }}</time>
+    </div>
+
+    <ul class="o-linklist o-linklist--centered">
+      {% for tag in tags %}
+        <li>
+          <a class="c-tag" href="/blog/category/{{ tag }}">
+            {{ tag }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="c-page__content">
+    {{ content | safe }}
+  </div>
+</main>

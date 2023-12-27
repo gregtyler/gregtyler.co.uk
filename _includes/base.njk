@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="theme-color" content="#c82e14"/>
+    <link rel="manifest" href="/assets/manifest.webmanifest"/>
+    <link rel="shortcut icon" href="/assets/favicon.png"/>
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png"/>
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Greg Tyler RSS Feed"
+      href="/feed.rss"
+/>
+    <meta
+      name="description"
+      content="Websites, quizzes, problem solving. I try to make stuff better."
+/>
+
+    <title>{{ title }} - Greg Tyler</title>
+    <link rel="canonical" href="{{ page.url | toAbsoluteUrl }}"/>
+    <meta name="og:url" content="{{ page.url | toAbsoluteUrl }}"/>
+    <meta name="og:title" content="{{ title }}"/>
+
+    {% if summary -%}
+      <meta name="og:description" content="{{ summary }}"/>
+    {%- endif %}
+
+    {% if poster -%}
+      <meta name="og:image" content="{{ poster | toAbsoluteUrl }}"/>
+    {%- endif %}
+
+    <link rel="stylesheet" href="/assets/style.css"/>
+
+  </head>
+  <body>
+    {{absolutePageUrl}}
+    <header class="c-navbar">
+      <h1 class="c-navbar__title">
+        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
+      </h1>
+      <ul class="o-linklist o-linklist--horizontal">
+        <li>
+          <a href="/blog" class="o-linklist__link">Blog</a>
+        </li>
+        <li>
+          <a href="/blog/category/weeknotes" class="o-linklist__link"
+            >Weeknotes</a
+          >
+        </li>
+        <li>
+          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
+        </li>
+        <li>
+          <a
+            href="https://twitter.com/gregtyler"
+            rel="me noreferrer"
+            class="o-linklist__link"
+            >Twitter</a
+          >
+        </li>
+      </ul>
+    </header>
+
+    {{ content | safe }}
+
+    <footer class="c-footer">
+      🏛🌯🌳🎧
+      <div>
+        <a href="/privacy" class="c-footer__link"> Privacy </a>
+        <span role="separator">-</span>
+        <a
+          href="https://gitlab.com/gregtyler"
+          rel="me noreferrer"
+          class="c-footer__link"
+          >GitLab</a
+        >
+        <span role="separator">-</span>
+        <a
+          href="https://github.com/gregtyler"
+          rel="me noreferrer"
+          class="c-footer__link"
+          >GitHub</a
+        >
+      </div>
+    </footer>
+    <script
+      data-goatcounter="https://gregtyler.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
+  </body>
+</html>
