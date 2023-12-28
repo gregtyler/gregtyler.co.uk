@@ -182,6 +182,10 @@ pre {
   transition: all 0.1s linear;
 }
 
+.c-card--link:visited {
+  color: var(--color-text);
+}
+
 .c-card--link:hover {
   outline: 3px solid var(--color-brand);
   transform: scale(1.05);
@@ -215,6 +219,10 @@ pre {
 .c-card__action--primary {
   color: #c82e14;
   color: var(--color-link);
+}
+
+.c-card:visited .c-card__action--primary {
+  color: var(--color-link-visited);
 }
 
 .c-card:hover .c-card__action--primary {
