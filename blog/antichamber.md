@@ -1,5 +1,6 @@
 ---
 layout: post.njk
+isMigrated: true
 title: "[Video] Alexander Bruce about the development of Antichamber"
 date: 2014-04-21
 tags:
