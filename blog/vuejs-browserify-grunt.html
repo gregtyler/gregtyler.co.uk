@@ -1,256 +1,144 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>
-      Building Vue Single File Components with Grunt and Browserify - Greg Tyler
-    </title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/vuejs-browserify-grunt"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/vuejs-browserify-grunt"
-    />
-    <meta
-      name="og:title"
-      content="Building Vue Single File Components with Grunt and Browserify"
-    />
-    <meta
-      name="og:description"
-      content="<p>A quick tutorial of how to build Vue&#8217;s Single File Components with Grunt and Browserify</p>
-"
-    />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">
-        Building Vue Single File Components with Grunt and Browserify
-      </h1>
-
-      <div class="c-page__meta">
-        <div>Published on 16th November 2017</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li>
-            <a class="c-tag" href="/blog/category/webdev">Web development</a>
-          </li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          <a href="https://vuejs.org/">Vue.js&#39;s</a> Single File Components
-          are great: they&#39;re easy to use, easy to share and satisfying to
-          work with. There are lots of tutorials online about how to use them,
-          and plenty too about how to build them using various build tools
-          (Webpack, Rollup, Gulp&#8230;). However, I struggled to find a good
-          guide to building Single File Components with Grunt and Browserify, so
-          I thought I&#39;d write one.
-        </p>
-        <p>
-          I should start by saying that I wouldn&#39;t necessarily recommend
-          using Grunt and/or Browserify. There&#39;s nothing wrong with them,
-          but they wouldn&#39;t be my first choice. However, they&#39;re what we
-          use in my current job so they&#39;re what I implemented Vue with.
-        </p>
-        <p>
-          I&#39;m also going to assume that you&#39;re familiar with Vue and its
-          Single File Components.
-        </p>
-        <h2 id="the-tools">The tools</h2>
-        <p>
-          <a href="https://gruntjs.com/">Grunt</a> is a programmable task runner
-          that automates common processes. In the context of this tutorial, it
-          automates the process of combining all of your component files into
-          one to put them onto a server.
-        </p>
-        <p>
-          <a href="http://browserify.org/">Browserify</a> is a build tool that
-          allows you to use the <code>require</code> function (common in
-          Node.js) to import other JavaScript files into the one you&#39;re
-          currently using. In the context of Vue, it allows you to specify which
-          other components are used within your current component.
-        </p>
-        <h2 id="the-files">The files</h2>
-        <p>
-          An example of a Vue Single File Component is shown below. Notice how
-          it uses <code>require</code> to use another, smaller component. This
-          file isn&#39;t much good on its own, so we want to use Grunt and
-          Browserify to compile it into Vue and make it usable in our
-          application.
-        </p>
-        <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"colour-selector"</span>&gt;</span>Select your colour, and click to continue<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"colour-selector"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"colour"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Red<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Green<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Blue<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ActionButton</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">"arrow-right"</span>&gt;</span>Continue<span class="hljs-tag">&lt;/<span class="hljs-name">ActionButton</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+---
+layout: post.njk
+title:  Building Vue Single File Components with Grunt and Browserify
+published: 2017-11-16
+tags:
+  - Web development
+summary: A quick tutorial of how to build Vue's Single File Components with Grunt and Browserify
+---
+<p>
+  <a href="https://vuejs.org/">Vue.js&#39;s</a> Single File Components
+  are great: they&#39;re easy to use, easy to share and satisfying to
+  work with. There are lots of tutorials online about how to use them,
+  and plenty too about how to build them using various build tools
+  (Webpack, Rollup, Gulp&#8230;). However, I struggled to find a good
+  guide to building Single File Components with Grunt and Browserify, so
+  I thought I&#39;d write one.
+</p>
+<p>
+  I should start by saying that I wouldn&#39;t necessarily recommend
+  using Grunt and/or Browserify. There&#39;s nothing wrong with them,
+  but they wouldn&#39;t be my first choice. However, they&#39;re what we
+  use in my current job so they&#39;re what I implemented Vue with.
+</p>
+<p>
+  I&#39;m also going to assume that you&#39;re familiar with Vue and its
+  Single File Components.
+</p>
+<h2 id="the-tools">The tools</h2>
+<p>
+  <a href="https://gruntjs.com/">Grunt</a> is a programmable task runner
+  that automates common processes. In the context of this tutorial, it
+  automates the process of combining all of your component files into
+  one to put them onto a server.
+</p>
+<p>
+  <a href="http://browserify.org/">Browserify</a> is a build tool that
+  allows you to use the <code>require</code> function (common in
+  Node.js) to import other JavaScript files into the one you&#39;re
+  currently using. In the context of Vue, it allows you to specify which
+  other components are used within your current component.
+</p>
+<h2 id="the-files">The files</h2>
+<p>
+  An example of a Vue Single File Component is shown below. Notice how
+  it uses <code>require</code> to use another, smaller component. This
+  file isn&#39;t much good on its own, so we want to use Grunt and
+  Browserify to compile it into Vue and make it usable in our
+  application.
+</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"colour-selector"</span>&gt;</span>Select your colour, and click to continue<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"colour-selector"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"colour"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Red<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Green<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Blue<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ActionButton</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">"arrow-right"</span>&gt;</span>Continue<span class="hljs-tag">&lt;/<span class="hljs-name">ActionButton</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
 <span class="hljs-keyword">const</span> ActionButton = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./ActionButton.vue'</span>);
 
 <span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
-    <span class="hljs-attr">colour</span>: <span class="hljs-string">'Red'</span>
-  }),
-  <span class="hljs-attr">components</span>: {
-    ActionButton
-  }
+<span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+<span class="hljs-attr">colour</span>: <span class="hljs-string">'Red'</span>
+}),
+<span class="hljs-attr">components</span>: {
+ActionButton
+}
 };
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-        <p>
-          As well as your Vue components, you&#39;ll also need to have an
-          <strong>entry file</strong>. This is a vanilla JavaScript file which
-          requires and renders whatever your main root component is. This file
-          also needs to require the <code>vue</code> NPM package so that all of
-          Vue&#39;s functionality is included in the bundle.
-        </p>
-        <pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue'</span>);
+<p>
+  As well as your Vue components, you&#39;ll also need to have an
+  <strong>entry file</strong>. This is a vanilla JavaScript file which
+  requires and renders whatever your main root component is. This file
+  also needs to require the <code>vue</code> NPM package so that all of
+  Vue&#39;s functionality is included in the bundle.
+</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue'</span>);
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./components/App.vue'</span>);
 
 <span class="hljs-keyword">new</span> Vue({
-  <span class="hljs-attr">el</span>: <span class="hljs-string">'#app'</span>,
-  <span class="hljs-attr">render</span>: <span class="hljs-function">(<span class="hljs-params">createElement</span>) =&gt;</span> createElement(App)
+<span class="hljs-attr">el</span>: <span class="hljs-string">'#app'</span>,
+<span class="hljs-attr">render</span>: <span class="hljs-function">(<span class="hljs-params">createElement</span>) =&gt;</span> createElement(App)
 });</code></pre>
-        <h2 id="the-npm-packages">The NPM packages</h2>
-        <p>We need four core packages to make this work:</p>
-        <ul>
-          <li>grunt</li>
-          <li>grunt-browserify</li>
-          <li>vueify</li>
-          <li>vue</li>
-        </ul>
-        <p>
-          These can be installed through NPM with the command:<br />
-          <code>npm install --save-dev grunt grunt-browserify vueify vue</code>
-        </p>
-        <h2 id="the-grunt-file">The Grunt file</h2>
-        <p>
-          The Grunt file is very simple, just pulling together the various
-          things we&#39;ve installed. <code>src/index.js</code> is the entry
-          file that we described above. Notice that we don&#39;t need to specify
-          <em>any</em> component files: since they&#39;re required by either the
-          entry file or a component that it requires, Browserify will
-          automatically include them in the bundle.
-        </p>
-        <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grunt</span>) </span>{
-  grunt.initConfig({
-    <span class="hljs-attr">browserify</span>: {
-      <span class="hljs-attr">bundle</span>: {
-        <span class="hljs-attr">src</span>: <span class="hljs-string">'index.js'</span>,
-        <span class="hljs-attr">dest</span>: <span class="hljs-string">'bundle.min.js'</span>
-      },
-      <span class="hljs-attr">options</span>: {
-        <span class="hljs-attr">browserifyOptions</span>: {
-          <span class="hljs-attr">debug</span>: <span class="hljs-literal">true</span>
-        },
-        <span class="hljs-attr">transform</span>: [
-          [<span class="hljs-string">'vueify'</span>]
-        ]
-      }
-    }
-  });
+<h2 id="the-npm-packages">The NPM packages</h2>
+<p>We need four core packages to make this work:</p>
+<ul>
+  <li>grunt</li>
+  <li>grunt-browserify</li>
+  <li>vueify</li>
+  <li>vue</li>
+</ul>
+<p>
+  These can be installed through NPM with the command:<br />
+  <code>npm install --save-dev grunt grunt-browserify vueify vue</code>
+</p>
+<h2 id="the-grunt-file">The Grunt file</h2>
+<p>
+  The Grunt file is very simple, just pulling together the various
+  things we&#39;ve installed. <code>src/index.js</code> is the entry
+  file that we described above. Notice that we don&#39;t need to specify
+  <em>any</em> component files: since they&#39;re required by either the
+  entry file or a component that it requires, Browserify will
+  automatically include them in the bundle.
+</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grunt</span>) </span>{
+grunt.initConfig({
+<span class="hljs-attr">browserify</span>: {
+<span class="hljs-attr">bundle</span>: {
+<span class="hljs-attr">src</span>: <span class="hljs-string">'index.js'</span>,
+<span class="hljs-attr">dest</span>: <span class="hljs-string">'bundle.min.js'</span>
+},
+<span class="hljs-attr">options</span>: {
+<span class="hljs-attr">browserifyOptions</span>: {
+  <span class="hljs-attr">debug</span>: <span class="hljs-literal">true</span>
+},
+<span class="hljs-attr">transform</span>: [
+  [<span class="hljs-string">'vueify'</span>]
+]
+}
+}
+});
 
-  grunt.loadNpmTasks(<span class="hljs-string">'grunt-browserify'</span>);
+grunt.loadNpmTasks(<span class="hljs-string">'grunt-browserify'</span>);
 
-  grunt.registerTask(<span class="hljs-string">'build'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    grunt.task.run(<span class="hljs-string">'browserify'</span>);
-  });
+grunt.registerTask(<span class="hljs-string">'build'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+grunt.task.run(<span class="hljs-string">'browserify'</span>);
+});
 };</code></pre>
-        <p>
-          With the Grunt file written, we just need to run
-          <code>grunt build</code> in the command line (in the same directory as
-          the file) and Grunt will use Browserify to generate a single file
-          called <code>bundle.min.js</code> which you can put in your web
-          application to render the Vue components you&#39;ve built.
-        </p>
-        <h2 id="next-steps">Next steps</h2>
-        <p>
-          If you want to do more with Grunt, consider using
-          <a href="https://eslint.org/">ESLint</a> to check all of your code
-          follows linting guidelines. And use
-          <a href="https://www.npmjs.com/package/grunt-ssh">grunt-ssh</a> to
-          deploy your bundle onto your webserver.
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+<p>
+  With the Grunt file written, we just need to run
+  <code>grunt build</code> in the command line (in the same directory as
+  the file) and Grunt will use Browserify to generate a single file
+  called <code>bundle.min.js</code> which you can put in your web
+  application to render the Vue components you&#39;ve built.
+</p>
+<h2 id="next-steps">Next steps</h2>
+<p>
+  If you want to do more with Grunt, consider using
+  <a href="https://eslint.org/">ESLint</a> to check all of your code
+  follows linting guidelines. And use
+  <a href="https://www.npmjs.com/package/grunt-ssh">grunt-ssh</a> to
+  deploy your bundle onto your webserver.
+</p>

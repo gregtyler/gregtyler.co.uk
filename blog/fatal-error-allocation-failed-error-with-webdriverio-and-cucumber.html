@@ -1,168 +1,54 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>
-      &#8220;FATAL ERROR: Allocation failed&#8221; error with WebdriverIO and
-      Cucumber - Greg Tyler
-    </title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/fatal-error-allocation-failed-error-with-webdriverio-and-cucumber"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/fatal-error-allocation-failed-error-with-webdriverio-and-cucumber"
-    />
-    <meta
-      name="og:title"
-      content="&#8220;FATAL ERROR: Allocation failed&#8221; error with WebdriverIO and Cucumber"
-    />
-    <meta
-      name="og:description"
-      content="<p>I got this error when using WebdriverIO and Cucumber. It turned out to be because Selenium Grid wasn&#8217;t running on the server.</p>
-"
-    />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">
-        &#8220;FATAL ERROR: Allocation failed&#8221; error with WebdriverIO and
-        Cucumber
-      </h1>
-
-      <div class="c-page__meta">
-        <div>Published on 9th August 2016</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li>
-            <a class="c-tag" href="/blog/category/webdev">Web development</a>
-          </li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          It feels a bit silly writing articles about handling very specific
-          bugs, but
-          <a href="https://gregtyler.co.uk/blog/ssl-read-errno-10054/"
-            >a similar article I wrote previously</a
-          >
-          is consistently one of my most-viewed articles and appears high in
-          Google search results. So, assuming that&#39;s because it&#39;s
-          useful, I&#39;ll do so again.
-        </p>
-        <p>
-          Yesterday I wrote a WebdriverIO test in the Cucumber handler. When I
-          ran it this morning, I got the following error:
-        </p>
-        <pre><code>&lt;--- Last few GCs ---&gt;
-   <span class="hljs-number">96024</span> ms: Mark-sweep <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) -&gt; <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) MB, <span class="hljs-number">1806.3</span> / <span class="hljs-number">0</span> ms [allocation failure] [GC <span class="hljs-keyword">in</span> old space requested].
-   <span class="hljs-number">97817</span> ms: Mark-sweep <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) -&gt; <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) MB, <span class="hljs-number">1793.4</span> / <span class="hljs-number">0</span> ms [allocation failure] [GC <span class="hljs-keyword">in</span> old space requested].
-   <span class="hljs-number">99611</span> ms: Mark-sweep <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) -&gt; <span class="hljs-number">1197.7</span> (<span class="hljs-number">1437.0</span>) MB, <span class="hljs-number">1794.2</span> / <span class="hljs-number">0</span> ms [last resort gc].
-  <span class="hljs-number">101388</span> ms: Mark-sweep <span class="hljs-number">1197.7</span> (<span class="hljs-number">1437.0</span>) -&gt; <span class="hljs-number">1197.7</span> (<span class="hljs-number">1437.0</span>) MB, <span class="hljs-number">1776.7</span> / <span class="hljs-number">0</span> ms [last resort gc].
+---
+layout: post.njk
+title: "“FATAL ERROR: Allocation failed” error with WebdriverIO and Cucumber"
+published: 2016-08-09
+tags:
+  - Web development
+summary: I got this error when using WebdriverIO and Cucumber. It turned out to be because Selenium Grid wasn't running on the server.
+---
+<p>
+  It feels a bit silly writing articles about handling very specific
+  bugs, but
+  <a href="https://gregtyler.co.uk/blog/ssl-read-errno-10054/"
+    >a similar article I wrote previously</a
+  >
+  is consistently one of my most-viewed articles and appears high in
+  Google search results. So, assuming that&#39;s because it&#39;s
+  useful, I&#39;ll do so again.
+</p>
+<p>
+  Yesterday I wrote a WebdriverIO test in the Cucumber handler. When I
+  ran it this morning, I got the following error:
+</p>
+<pre><code>&lt;--- Last few GCs ---&gt;
+<span class="hljs-number">96024</span> ms: Mark-sweep <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) -&gt; <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) MB, <span class="hljs-number">1806.3</span> / <span class="hljs-number">0</span> ms [allocation failure] [GC <span class="hljs-keyword">in</span> old space requested].
+<span class="hljs-number">97817</span> ms: Mark-sweep <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) -&gt; <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) MB, <span class="hljs-number">1793.4</span> / <span class="hljs-number">0</span> ms [allocation failure] [GC <span class="hljs-keyword">in</span> old space requested].
+<span class="hljs-number">99611</span> ms: Mark-sweep <span class="hljs-number">1197.8</span> (<span class="hljs-number">1437.0</span>) -&gt; <span class="hljs-number">1197.7</span> (<span class="hljs-number">1437.0</span>) MB, <span class="hljs-number">1794.2</span> / <span class="hljs-number">0</span> ms [last resort gc].
+<span class="hljs-number">101388</span> ms: Mark-sweep <span class="hljs-number">1197.7</span> (<span class="hljs-number">1437.0</span>) -&gt; <span class="hljs-number">1197.7</span> (<span class="hljs-number">1437.0</span>) MB, <span class="hljs-number">1776.7</span> / <span class="hljs-number">0</span> ms [last resort gc].
 &lt;--- JS stacktrace ---&gt;
 
 ==== JS stack trace =========================================
 
 Security context: <span class="hljs-number">00000329E79</span>C9E79 &lt;JS Object&gt;
-    <span class="hljs-number">2</span>: create [C:websitssrccomponentsassessmenttestsnode_moduleswebdriveriobuildlibutilsRequestHandler.js:<span class="hljs-number">170</span>] [pc=<span class="hljs-number">00000058</span>FB2FCC0A] (<span class="hljs-keyword">this</span>=<span class="hljs-number">00000362</span>DEC984D1 &lt;a RequestHandler with map <span class="hljs-number">00000232920</span>B51D9&gt;,requestOptions=<span class="hljs-number">000002</span>D782E76EB9 &lt;String[<span class="hljs-number">30</span>]: /session/:sessionId/screenshot&gt;,data=<span class="hljs-number">00000329E7904189</span> &lt;undefined&gt;)
-    <span class="hljs-number">3</span>: arguments adaptor frame: <span class="hljs-number">1</span>-&gt;<span class="hljs-number">2</span>
-    <span class="hljs-number">4</span>: screenshot [C:websitssr...
+<span class="hljs-number">2</span>: create [C:websitssrccomponentsassessmenttestsnode_moduleswebdriveriobuildlibutilsRequestHandler.js:<span class="hljs-number">170</span>] [pc=<span class="hljs-number">00000058</span>FB2FCC0A] (<span class="hljs-keyword">this</span>=<span class="hljs-number">00000362</span>DEC984D1 &lt;a RequestHandler with map <span class="hljs-number">00000232920</span>B51D9&gt;,requestOptions=<span class="hljs-number">000002</span>D782E76EB9 &lt;String[<span class="hljs-number">30</span>]: /session/:sessionId/screenshot&gt;,data=<span class="hljs-number">00000329E7904189</span> &lt;undefined&gt;)
+<span class="hljs-number">3</span>: arguments adaptor frame: <span class="hljs-number">1</span>-&gt;<span class="hljs-number">2</span>
+<span class="hljs-number">4</span>: screenshot [C:websitssr...
 
 FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap <span class="hljs-keyword">out</span> of memory</code></pre>
-        <p>
-          The error message and some cursory Google searching pointed towards a
-          memory problem, so I started looking at increasing the memory limit.
-          However, this turned out to be a waste of time since the problem was
-          quite simple:
-        </p>
-        <p>
-          <strong>Selenium Grid wasn&#39;t running on my server.</strong> I
-          started it up and everything worked fine.
-        </p>
-        <p>
-          Bugs like this are frustrating because, if the error message had been
-          &quot;can&#39;t connect to Selenium Grid server&quot;, it wouldn&#39;t
-          have taken any of my time to resolve. Hopefully though, now that
-          I&#39;ve documented it, other people can find this on Google and not
-          waste <em>their</em> time trying to fiddle with memory allocations.
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+<p>
+  The error message and some cursory Google searching pointed towards a
+  memory problem, so I started looking at increasing the memory limit.
+  However, this turned out to be a waste of time since the problem was
+  quite simple:
+</p>
+<p>
+  <strong>Selenium Grid wasn&#39;t running on my server.</strong> I
+  started it up and everything worked fine.
+</p>
+<p>
+  Bugs like this are frustrating because, if the error message had been
+  &quot;can&#39;t connect to Selenium Grid server&quot;, it wouldn&#39;t
+  have taken any of my time to resolve. Hopefully though, now that
+  I&#39;ve documented it, other people can find this on Google and not
+  waste <em>their</em> time trying to fiddle with memory allocations.
+</p>

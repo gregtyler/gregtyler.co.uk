@@ -1,311 +1,205 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>When is a window closable? - Greg Tyler</title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/when-is-a-window-closable"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/when-is-a-window-closable"
-    />
-    <meta name="og:title" content="When is a window closable?" />
-    <meta
-      name="og:description"
-      content='<p>JavaScript has a function window.close() which, under certain circumstances, will close the current window. However sometimes you&#39;ll run into an error like: Scripts may close only the windows that were opened by it. In this situation, your helpful "close this window" buttons don&#39;t work. We have exactly this in situation in a current project I [&hellip;]</p>
-'
-    />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">When is a window closable?</h1>
-
-      <div class="c-page__meta">
-        <div>Published on 19th January 2015</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li>
-            <a class="c-tag" href="/blog/category/webdev">Web development</a>
-          </li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          JavaScript has a function <code>window.close()</code> which, under
-          certain circumstances, will close the current window. However
-          sometimes you&#39;ll run into an error like:
-        </p>
-        <blockquote>
-          <p>Scripts may close only the windows that were opened by it.</p>
-        </blockquote>
-        <p>
-          In this situation, your helpful &quot;close this window&quot; buttons
-          don&#39;t work.
-        </p>
-        <p>
-          We have exactly this in situation in a current project I work on,
-          where we ask people to open a link in a new tab so that
-          <code>window.close()</code> will take them back out of it.
-        </p>
-        <p>
-          The problem we had was knowing when <code>window.close()</code> will
-          work. If you open a new window with JavaScript (using
-          <code>window.open()</code> no less) then it you&#39;re fine. But if
-          you right click and open in a new tab, then submit a form, it
-          won&#39;t be happy. So when is a window closable?
-        </p>
-        <p>
-          My first thought was the <code>opener</code> property of
-          <code>window</code> which presumably would hint at where the window
-          came from and &#8211; hence &#8211; what can close it. So I made a
-          table of various difference situations which I experimented with in
-          each of the major desktop browsers (Chrome, Firefox, IE). Find the
-          table below and some terminology explained beneath it.
-        </p>
-        <table class="results-table">
-          <tbody>
-            <tr>
-              <th rowspan="2" style="width: 25%"></th>
-              <th colspan="2" style="background-color: #ddd">Chrome 39</th>
-              <th colspan="2" style="background-color: #f70">Firefox 31</th>
-              <th colspan="2" style="background-color: #8df">
-                Internet Explorer 11 \*
-              </th>
-            </tr>
-            <tr>
-              <th>Click</th>
-              <th>New tab</th>
-              <th>Click</th>
-              <th>New tab</th>
-              <th>Click</th>
-              <th>New tab</th>
-            </tr>
-            <tr>
-              <th>Child</th>
-              <td class="bad">N</td>
-              <td>N</td>
-              <td class="bad">N</td>
-              <td class="bad">N</td>
-              <td>U</td>
-              <td>U</td>
-            </tr>
-            <tr>
-              <th>Child (\_blank)</th>
-              <td>W</td>
-              <td>W</td>
-              <td>W</td>
-              <td class="bad">N</td>
-              <td>W</td>
-              <td>U</td>
-            </tr>
-            <tr>
-              <th>Child (JS)</th>
-              <td colspan="2">W</td>
-              <td colspan="2">W</td>
-              <td colspan="2">W</td>
-            </tr>
-            <tr>
-              <th>Through form</th>
-              <td class="bad">N</td>
-              <td class="bad">N</td>
-              <td class="bad">N</td>
-              <td class="bad">N</td>
-              <td>U</td>
-              <td>U</td>
-            </tr>
-            <tr>
-              <th>Through form (\_blank)</th>
-              <td>W</td>
-              <td>W</td>
-              <td>W</td>
-              <td class="bad">N</td>
-              <td>W</td>
-              <td>U</td>
-            </tr>
-            <tr>
-              <th>Through form (JS)</th>
-              <td colspan="2">W</td>
-              <td colspan="2">W</td>
-              <td colspan="2">W</td>
-            </tr>
-            <tr>
-              <th>Through link</th>
-              <td class="bad">N</td>
-              <td class="bad">N</td>
-              <td class="bad">N</td>
-              <td class="bad">N</td>
-              <td>U</td>
-              <td>U</td>
-            </tr>
-            <tr>
-              <th>Through link (\_blank)</th>
-              <td>W</td>
-              <td>W</td>
-              <td>W</td>
-              <td class="bad">N</td>
-              <td>W</td>
-              <td>U</td>
-            </tr>
-            <tr>
-              <th>Through link (JS)</th>
-              <td colspan="2">W</td>
-              <td colspan="2">W</td>
-              <td colspan="2">W</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          <strong>Notes:</strong><br />&quot;Child&quot; means that the user was
-          taken straight to a page with a close button on it. &quot;Through
-          form&quot; means they were taken to a page which had a form submission
-          before the close page. &quot;Through link&quot; means that they were
-          taken to a page with a link to the close page.
-        </p>
-        <p>
-          &quot;(_blank)&quot; means that the window was opened using an
-          <code>&lt;a&gt;</code> tag with the
-          <code>target=&quot;_blank&quot;</code> attribute. &quot;(JS)&quot;
-          means that the window was opened with the
-          <code>window.open</code> function. All other examples were
-          <code>&lt;a&gt;</code> tags with no attributes.
-        </p>
-        <p>
-          The colour of each cell is whether or not it could successfully be
-          closed. The text denotes the value of <code>window.opener</code>.
-          Where the text is &quot;N&quot;, this value was <code>null</code>,
-          where it is &quot;W&quot; it returned a <code>window</code> object.
-          Where it is &quot;U&quot;, it returned <code>undefined</code>.
-        </p>
-        <ul>
-          <li>
-            Internet Explorer always prompts you to confirm the window closure.
-          </li>
-        </ul>
-        <h2 id="what-have-we-learnt-">What have we learnt?</h2>
-        <p>
-          Firstly, Internet Explorer is noticeably unusual. It returns
-          <code>undefined</code> rather than <code>null</code> and then lets you
-          close the window no matter what situation you&#39;re in (though with a
-          prompt). Secondly, and important for my situation, asking people to
-          open a new tab doesn&#39;t mean we&#39;ll be able to close it. As soon
-          as they follow a link or submit a form, both Firefox and Internet
-          Explorer lose control.
-        </p>
-        <p>
-          In a goal to find some sort of check whether a window is closable, I
-          can recommend the following from my results:
-        </p>
-        <pre><code class="language-js"><span class="hljs-keyword">if</span>( <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span>.opener === <span class="hljs-string">'object'</span> &amp;&amp; <span class="hljs-built_in">window</span>.opener <span class="hljs-keyword">instanceof</span> Window ) {
-    <span class="hljs-comment">// We can certainly use window.close</span>
+---
+layout: post.njk
+title: When is a window closable?
+published: 2015-01-19
+tags:
+  - Web development
+---
+<p>
+  JavaScript has a function <code>window.close()</code> which, under
+  certain circumstances, will close the current window. However
+  sometimes you&#39;ll run into an error like:
+</p>
+<blockquote>
+  <p>Scripts may close only the windows that were opened by it.</p>
+</blockquote>
+<p>
+  In this situation, your helpful &quot;close this window&quot; buttons
+  don&#39;t work.
+</p>
+<p>
+  We have exactly this in situation in a current project I work on,
+  where we ask people to open a link in a new tab so that
+  <code>window.close()</code> will take them back out of it.
+</p>
+<p>
+  The problem we had was knowing when <code>window.close()</code> will
+  work. If you open a new window with JavaScript (using
+  <code>window.open()</code> no less) then it you&#39;re fine. But if
+  you right click and open in a new tab, then submit a form, it
+  won&#39;t be happy. So when is a window closable?
+</p>
+<p>
+  My first thought was the <code>opener</code> property of
+  <code>window</code> which presumably would hint at where the window
+  came from and &#8211; hence &#8211; what can close it. So I made a
+  table of various difference situations which I experimented with in
+  each of the major desktop browsers (Chrome, Firefox, IE). Find the
+  table below and some terminology explained beneath it.
+</p>
+<table class="results-table">
+  <tbody>
+    <tr>
+      <th rowspan="2" style="width: 25%"></th>
+      <th colspan="2" style="background-color: #ddd; color: #000">Chrome 39</th>
+      <th colspan="2" style="background-color: #f70">Firefox 31</th>
+      <th colspan="2" style="background-color: #8df; color: #000">
+        Internet Explorer 11 \*
+      </th>
+    </tr>
+    <tr>
+      <th>Click</th>
+      <th>New tab</th>
+      <th>Click</th>
+      <th>New tab</th>
+      <th>Click</th>
+      <th>New tab</th>
+    </tr>
+    <tr>
+      <th>Child</th>
+      <td class="bad">N</td>
+      <td>N</td>
+      <td class="bad">N</td>
+      <td class="bad">N</td>
+      <td>U</td>
+      <td>U</td>
+    </tr>
+    <tr>
+      <th>Child (\_blank)</th>
+      <td>W</td>
+      <td>W</td>
+      <td>W</td>
+      <td class="bad">N</td>
+      <td>W</td>
+      <td>U</td>
+    </tr>
+    <tr>
+      <th>Child (JS)</th>
+      <td colspan="2">W</td>
+      <td colspan="2">W</td>
+      <td colspan="2">W</td>
+    </tr>
+    <tr>
+      <th>Through form</th>
+      <td class="bad">N</td>
+      <td class="bad">N</td>
+      <td class="bad">N</td>
+      <td class="bad">N</td>
+      <td>U</td>
+      <td>U</td>
+    </tr>
+    <tr>
+      <th>Through form (\_blank)</th>
+      <td>W</td>
+      <td>W</td>
+      <td>W</td>
+      <td class="bad">N</td>
+      <td>W</td>
+      <td>U</td>
+    </tr>
+    <tr>
+      <th>Through form (JS)</th>
+      <td colspan="2">W</td>
+      <td colspan="2">W</td>
+      <td colspan="2">W</td>
+    </tr>
+    <tr>
+      <th>Through link</th>
+      <td class="bad">N</td>
+      <td class="bad">N</td>
+      <td class="bad">N</td>
+      <td class="bad">N</td>
+      <td>U</td>
+      <td>U</td>
+    </tr>
+    <tr>
+      <th>Through link (\_blank)</th>
+      <td>W</td>
+      <td>W</td>
+      <td>W</td>
+      <td class="bad">N</td>
+      <td>W</td>
+      <td>U</td>
+    </tr>
+    <tr>
+      <th>Through link (JS)</th>
+      <td colspan="2">W</td>
+      <td colspan="2">W</td>
+      <td colspan="2">W</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <strong>Notes:</strong><br/>&quot;Child&quot; means that the user was
+  taken straight to a page with a close button on it. &quot;Through
+  form&quot; means they were taken to a page which had a form submission
+  before the close page. &quot;Through link&quot; means that they were
+  taken to a page with a link to the close page.
+</p>
+<p>
+  &quot;(_blank)&quot; means that the window was opened using an
+  <code>&lt;a&gt;</code> tag with the
+  <code>target=&quot;_blank&quot;</code> attribute. &quot;(JS)&quot;
+  means that the window was opened with the
+  <code>window.open</code> function. All other examples were
+  <code>&lt;a&gt;</code> tags with no attributes.
+</p>
+<p>
+  The colour of each cell is whether or not it could successfully be
+  closed. The text denotes the value of <code>window.opener</code>.
+  Where the text is &quot;N&quot;, this value was <code>null</code>,
+  where it is &quot;W&quot; it returned a <code>window</code> object.
+  Where it is &quot;U&quot;, it returned <code>undefined</code>.
+</p>
+<ul>
+  <li>
+    Internet Explorer always prompts you to confirm the window closure.
+  </li>
+</ul>
+<h2 id="what-have-we-learnt-">What have we learnt?</h2>
+<p>
+  Firstly, Internet Explorer is noticeably unusual. It returns
+  <code>undefined</code> rather than <code>null</code> and then lets you
+  close the window no matter what situation you&#39;re in (though with a
+  prompt). Secondly, and important for my situation, asking people to
+  open a new tab doesn&#39;t mean we&#39;ll be able to close it. As soon
+  as they follow a link or submit a form, both Firefox and Internet
+  Explorer lose control.
+</p>
+<p>
+  In a goal to find some sort of check whether a window is closable, I
+  can recommend the following from my results:
+</p>
+<pre><code class="language-js"><span class="hljs-keyword">if</span>( <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span>.opener === <span class="hljs-string">'object'</span> &amp;&amp; <span class="hljs-built_in">window</span>.opener <span class="hljs-keyword">instanceof</span> Window ) {
+<span class="hljs-comment">// We can certainly use window.close</span>
 } <span class="hljs-keyword">else</span> {
-    <span class="hljs-comment">// We can't be sure window.close will work</span>
+<span class="hljs-comment">// We can't be sure window.close will work</span>
 }</code></pre>
-        <p>
-          This is (from the experience above) a cross-browser way to be certain
-          that <code>window.close</code> will work, without any browser
-          sniffing.
-        </p>
-        <p>Are my figures right? Any views on this? Comment below!</p>
-        <style type="text/css">
-          .results-table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-          }
-          .results-table th,
-          .results-table td {
-            padding: 0.5em;
-            border: 1px solid #ccc;
-            text-align: center;
-          }
-          .results-table td {
-            background-color: #9d9;
-            color: darkgreen;
-            font-weight: bold;
-          }
-          .results-table td.bad {
-            background-color: #fd6e6e;
-            color: darkred;
-          }
-        </style>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+<p>
+  This is (from the experience above) a cross-browser way to be certain
+  that <code>window.close</code> will work, without any browser
+  sniffing.
+</p>
+<p>Are my figures right? Any views on this? Comment below!</p>
+<style type="text/css">
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .results-table th,
+  .results-table td {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  .results-table td {
+    background-color: #9d9;
+    color: darkgreen;
+    font-weight: bold;
+  }
+  .results-table td.bad {
+    background-color: #fd6e6e;
+    color: darkred;
+  }
+</style>

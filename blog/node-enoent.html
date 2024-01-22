@@ -1,202 +1,102 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>Node.js ENOENT error explanations - Greg Tyler</title>
-    <link rel="canonical" href="https://gregtyler.co.uk/blog/node-enoent" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta name="og:url" content="https://gregtyler.co.uk/blog/node-enoent" />
-    <meta name="og:title" content="Node.js ENOENT error explanations" />
-    <meta
-      name="og:description"
-      content="<p>I came across an ENOENT error in Node, which was hard to decipher. Because explanations and advice across the Internet and sparsely laid out, I tried to compile all the reasons in one place.   </p>
-<p>Includes fixes and example code to regenerate each scenario.</p>
-"
-    />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Node.js ENOENT error explanations</h1>
-
-      <div class="c-page__meta">
-        <div>Published on 25th August 2016</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li>
-            <a class="c-tag" href="/blog/category/webdev">Web development</a>
-          </li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          Recently when using the <code>saveScreenshot</code> function of
-          WebdriverIO, I came across the following Node error:
-        </p>
-        <pre><code>ENOENT: no such <span class="hljs-built_in">file</span> <span class="hljs-keyword">or</span> <span class="hljs-built_in">directory</span>, <span class="hljs-built_in">open</span> <span class="hljs-string">'{filepath}'</span></code></pre>
-        <p>
-          There are a lot of reasons this error could occur, all of which I
-          looked at when trying to solve the problem. Because they are widely
-          spread across the internet, and I couldn&#39;t find anyone addressing
-          the problem I actually had, I thought I would enumerate them here.
-        </p>
-        <p>
-          I&#39;ve also given some
-          <a href="https://github.com/gregtyler/enoent">example code</a> for you
-          to look at and play with. Reproducing the errors may help you figure
-          out what causes them.
-        </p>
-        <h2 id="1-you-re-trying-to-read-a-file-that-doesn-t-exist">
-          1. You&#39;re trying to read a file that doesn&#39;t exist
-        </h2>
-        <p>
-          As the error message suggests, the file you&#39;re trying to read
-          isn&#39;t there.
-        </p>
-        <p>
-          <strong>To fix:</strong> Use the first parameter of the (e.g.
-          <code>readFile</code>) function to catch the error. Perhaps use
-          <code>fs.stat</code> or <code>fs.access</code> to check for access
-          first.
-        </p>
-        <h2
-          id="2-you-re-trying-to-create-a-file-in-a-directory-that-doesn-t-exist"
-        >
-          2. You&#39;re trying to create a file in a <em>directory</em> that
-          doesn&#39;t exist
-        </h2>
-        <p>
-          Node won&#39;t create your intermediary directories. So if you try to
-          create a file <code>logs/pushout.log</code> and
-          <code>logs</code> directory doesn&#39;t exist, you&#39;ll see this
-          error.
-        </p>
-        <p>
-          <strong>To fix:</strong> Create the <code>logs</code> directory first
-          with <code>fs.mkdir</code>.
-        </p>
-        <h2 id="3-you-re-using-a-relative-path-incorrectly">
-          3. You&#39;re using a relative path incorrectly
-        </h2>
-        <p>
-          This often is related to Issue 2, but without the developer&#39;s
-          knowledge. Paths specified in <code>fs</code> functions are relative
-          to the _currently executing script location_, not the file where the
-          code is called from. So if <code>index.js</code> calls
-          <code>processes/makeLogFile.js</code>, then the path used is relative
-          to <code>index.js</code>.
-        </p>
-        <p>
-          <strong>To fix:</strong> Either use <code>__dirname</code> to get the
-          path that the code is being written in, and add to that, or add
-          subdirectories as necessary.
-        </p>
-        <h2 id="4-you-re-trying-to-create-a-file-that-can-t-exist">
-          4. You&#39;re trying to create a file that <em>can&#39;t</em> exist
-        </h2>
-        <p>
-          This was my problem. I had the following, fairly self-explanatory
-          code:
-        </p>
-        <pre><code>driver.save<span class="hljs-constructor">Screenshot('.<span class="hljs-operator">/</span><span class="hljs-params">screens</span><span class="hljs-operator">/</span><span class="hljs-params">error</span>-'   (<span class="hljs-params">new</span> Date()</span>).<span class="hljs-keyword">to</span><span class="hljs-constructor">ISOString()</span>   '.png');</code></pre>
-        <p>
-          This was supposed to create a unique screenshot in the
-          <code>screens</code> directory but I got the ENOENT error instead.
-        </p>
-        <p>
-          What I didn&#39;t account for is that
-          <code>toISOString()</code> creates a time format with colons in it,
-          and Windows will not allow colons in file names. So the error
-          wasn&#39;t really saying that the file <em>doesn&#39;t</em> exist, but
-          that it simply <em>couldn&#39;t</em>.
-        </p>
-        <p>
-          <strong>To fix:</strong> My fix was just using
-          <code>replace(/:/g, &#39;-&#39;)</code> to turn all the colons into
-          hyphens. But, generally, fix this by making sure there are no
-          disallowed characters in the file name.
-        </p>
-        <hr />
-        <p>
-          I hope these explanations help you. If you&#39;ve got any questions,
-          corrections or additions, please
-          <a href="https://github.com/gregtyler/enoent/issues">open an issue</a>
-          on the GitHub repository containing the example code.
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+---
+layout: post.njk
+title: Node.js ENOENT error explanations
+published: 2016-08-25
+tags:
+  - Web development
+summary: I came across an ENOENT error in Node, which was hard to decipher. Because explanations and advice across the Internet and sparsely laid out, I tried to compile all the reasons in one place. Includes fixes and example code to regenerate each scenario.
+---
+<p>
+  Recently when using the <code>saveScreenshot</code> function of
+  WebdriverIO, I came across the following Node error:
+</p>
+<pre><code>ENOENT: no such file or directory, open '{filepath}'</code></pre>
+<p>
+  There are a lot of reasons this error could occur, all of which I
+  looked at when trying to solve the problem. Because they are widely
+  spread across the internet, and I couldn&#39;t find anyone addressing
+  the problem I actually had, I thought I would enumerate them here.
+</p>
+<p>
+  I&#39;ve also given some
+  <a href="https://github.com/gregtyler/enoent">example code</a> for you
+  to look at and play with. Reproducing the errors may help you figure
+  out what causes them.
+</p>
+<h2 id="1-you-re-trying-to-read-a-file-that-doesn-t-exist">
+  1. You&#39;re trying to read a file that doesn&#39;t exist
+</h2>
+<p>
+  As the error message suggests, the file you&#39;re trying to read
+  isn&#39;t there.
+</p>
+<p>
+  <strong>To fix:</strong> Use the first parameter of the (e.g.
+  <code>readFile</code>) function to catch the error. Perhaps use
+  <code>fs.stat</code> or <code>fs.access</code> to check for access
+  first.
+</p>
+<h2
+  id="2-you-re-trying-to-create-a-file-in-a-directory-that-doesn-t-exist"
+>
+  2. You&#39;re trying to create a file in a <em>directory</em> that
+  doesn&#39;t exist
+</h2>
+<p>
+  Node won&#39;t create your intermediary directories. So if you try to
+  create a file <code>logs/pushout.log</code> and
+  <code>logs</code> directory doesn&#39;t exist, you&#39;ll see this
+  error.
+</p>
+<p>
+  <strong>To fix:</strong> Create the <code>logs</code> directory first
+  with <code>fs.mkdir</code>.
+</p>
+<h2 id="3-you-re-using-a-relative-path-incorrectly">
+  3. You&#39;re using a relative path incorrectly
+</h2>
+<p>
+  This often is related to Issue 2, but without the developer&#39;s
+  knowledge. Paths specified in <code>fs</code> functions are relative
+  to the _currently executing script location_, not the file where the
+  code is called from. So if <code>index.js</code> calls
+  <code>processes/makeLogFile.js</code>, then the path used is relative
+  to <code>index.js</code>.
+</p>
+<p>
+  <strong>To fix:</strong> Either use <code>__dirname</code> to get the
+  path that the code is being written in, and add to that, or add
+  subdirectories as necessary.
+</p>
+<h2 id="4-you-re-trying-to-create-a-file-that-can-t-exist">
+  4. You&#39;re trying to create a file that <em>can&#39;t</em> exist
+</h2>
+<p>
+  This was my problem. I had the following, fairly self-explanatory
+  code:
+</p>
+<pre><code>driver.save<span class="hljs-constructor">Screenshot('.<span class="hljs-operator">/</span><span class="hljs-params">screens</span><span class="hljs-operator">/</span><span class="hljs-params">error</span>-'   (<span class="hljs-params">new</span> Date()</span>).<span class="hljs-keyword">to</span><span class="hljs-constructor">ISOString()</span>   '.png');</code></pre>
+<p>
+  This was supposed to create a unique screenshot in the
+  <code>screens</code> directory but I got the ENOENT error instead.
+</p>
+<p>
+  What I didn&#39;t account for is that
+  <code>toISOString()</code> creates a time format with colons in it,
+  and Windows will not allow colons in file names. So the error
+  wasn&#39;t really saying that the file <em>doesn&#39;t</em> exist, but
+  that it simply <em>couldn&#39;t</em>.
+</p>
+<p>
+  <strong>To fix:</strong> My fix was just using
+  <code>replace(/:/g, &#39;-&#39;)</code> to turn all the colons into
+  hyphens. But, generally, fix this by making sure there are no
+  disallowed characters in the file name.
+</p>
+<hr />
+<p>
+  I hope these explanations help you. If you&#39;ve got any questions,
+  corrections or additions, please
+  <a href="https://github.com/gregtyler/enoent/issues">open an issue</a>
+  on the GitHub repository containing the example code.
+</p>

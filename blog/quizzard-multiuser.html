@@ -1,149 +1,44 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>Quizzard gets multiuser editing! - Greg Tyler</title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/quizzard-multiuser"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/quizzard-multiuser"
-    />
-    <meta name="og:title" content="Quizzard gets multiuser editing!" />
-    <meta
-      name="og:description"
-      content="<p>For the past couple of days (I&#39;m not much of a Christmas person), I&#39;ve been working on live multiuser editing for Quizzard. This means that quizzes with more than one quizmaster (like the one I run), will be able to have more than one user editing the questions and scores at the same time, with [&hellip;]</p>
-"
-    />
-
-    <meta name="og:image" content="/images/qu-live-comp.png" />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Quizzard gets multiuser editing!</h1>
-
-      <div class="c-page__meta">
-        <div>Published on 27th December 2012</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li><a class="c-tag" href="/blog/category/projects">Projects</a></li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          For the past couple of days (I&#39;m not much of a Christmas person),
-          I&#39;ve been working on live multiuser editing for Quizzard. This
-          means that quizzes with more than one quizmaster (like the one I run),
-          will be able to have more than one user editing the questions and
-          scores at the same time, with those details being updated live on the
-          other user&#39;s screen.
-        </p>
-        <div
-          id="attachment_1197"
-          style="width: 1034px"
-          class="wp-caption alignnone"
-        >
-          <img
-            aria-describedby="caption-attachment-1197"
-            class="size-full wp-image-1197"
-            src="/images/qu-live-comp.png"
-            alt="When a question is updated, it lights up yellow for a bit."
-            width="1024"
-            height="219"
-            srcset="
-              /images/qu-live-comp.png         1024w,
-              /images/qu-live-comp-300x64.png   300w,
-              /images/qu-live-comp-768x164.png  768w,
-              /images/qu-live-comp-625x134.png  625w
-            "
-            sizes="(max-width: 1024px) 100vw, 1024px"
-          />
-          <p id="caption-attachment-1197" class="wp-caption-text">
-            When a question is updated, it lights up yellow for a bit.
-          </p>
-        </div>
-        <p>
-          There are still a few bugs to iron out here and there, but this is a
-          great step forward!
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+---
+layout: post.njk
+title: Quizzard gets multiuser editing!
+published: 2012-12-27
+tags:
+  - Projects
+poster: /images/qu-live-comp.png
+---
+<p>
+  For the past couple of days (I&#39;m not much of a Christmas person),
+  I&#39;ve been working on live multiuser editing for Quizzard. This
+  means that quizzes with more than one quizmaster (like the one I run),
+  will be able to have more than one user editing the questions and
+  scores at the same time, with those details being updated live on the
+  other user&#39;s screen.
+</p>
+<div
+  id="attachment_1197"
+  style="width: 1034px"
+  class="wp-caption alignnone"
+>
+  <img
+    aria-describedby="caption-attachment-1197"
+    class="size-full wp-image-1197"
+    src="/images/qu-live-comp.png"
+    alt="When a question is updated, it lights up yellow for a bit."
+    width="1024"
+    height="219"
+    srcset="
+      /images/qu-live-comp.png         1024w,
+      /images/qu-live-comp-300x64.png   300w,
+      /images/qu-live-comp-768x164.png  768w,
+      /images/qu-live-comp-625x134.png  625w
+    "
+    sizes="(max-width: 1024px) 100vw, 1024px"
+  />
+  <p id="caption-attachment-1197" class="wp-caption-text">
+    When a question is updated, it lights up yellow for a bit.
+  </p>
+</div>
+<p>
+  There are still a few bugs to iron out here and there, but this is a
+  great step forward!
+</p>

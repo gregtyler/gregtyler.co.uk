@@ -1,450 +1,345 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
+---
+layout: post.njk
+title: Refactoring web applications
+published: 2019-01-31
+tags:
+  - Web development
+summary: I've been thinking a lot about refactoring recently (rewriting functional code to improve its quality, security, legibility etc.), particularly in relation to some projects I've recently been working on. This morning a twitter thread by Sarah Mei caught my attention and I thought I should finally write something on the subject.
+---
+<p>
+  I&#8217;ve been thinking a lot about refactoring recently (rewriting
+  functional code to improve its quality, security, legibility etc.),
+  particularly in relation to some projects I&#8217;ve been working on.
+  This morning a
+  <a href="https://twitter.com/sarahmei/status/1090860150712221698"
+    >twitter thread by Sarah Mei (@sarahmei)</a
+  >
+  caught my attention and I thought I should finally write something on
+  the subject.
+</p>
 
-    <title>Refactoring web applications - Greg Tyler</title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/refactoring-web-applications"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/refactoring-web-applications"
-    />
-    <meta name="og:title" content="Refactoring web applications" />
-    <meta
-      name="og:description"
-      content="<p>I&#8217;ve been thinking a lot about refactoring recently (rewriting functional code to improve its quality, security, legibility etc.), particularly in relation to some projects I&#8217;ve recently been working on. This morning a twitter thread by Sarah Mei caught my attention and I thought I should finally write something on the subject.</p>
-"
-    />
+<p>
+  I&#8217;ll come back to Sarah&#8217;s thread throughout this post, but
+  it&#8217;s well worth a read and takes a different angle to what
+  I&#8217;m about to say. My main talking point from it is that
+  incremental refactoring is essential to a healthly project, and we
+  don&#8217;t need to make massive changes all the time. But she also
+  talks excellently on analysis and communication.
+</p>
 
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
+<blockquote class="wp-block-quote">
+  <p>
+    To actually fix it, you need to negotiate with the individuals who
+    are applying the pressure [to not refactor]. You need to understand
+    THEIR incentives, and align your desired changes with those.
+  </p>
+  <cite
+    ><a href="https://twitter.com/sarahmei/status/1090885026785284096"
+      >Sarah Mei (@sarahmei)</a
+    ></cite
+  >
+</blockquote>
 
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Refactoring web applications</h1>
+<h2>Bad code</h2>
 
-      <div class="c-page__meta">
-        <div>Published on 31st January 2019</div>
+<p>
+  Like many (most?) developers, I&#8217;ve spent a lot of time with
+  &#8220;bad code&#8221;, most of which I&#8217;ve written myself. This
+  is code that I know to not be high quality, and that I understand
+  needs to be refactored. But I want to identify first what makes code
+  &#8220;bad&#8221; and why we put up with it.
+</p>
 
-        <ul class="o-linklist o-linklist--centered">
-          <li>
-            <a class="c-tag" href="/blog/category/webdev">Web development</a>
-          </li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          I&#8217;ve been thinking a lot about refactoring recently (rewriting
-          functional code to improve its quality, security, legibility etc.),
-          particularly in relation to some projects I&#8217;ve been working on.
-          This morning a
-          <a href="https://twitter.com/sarahmei/status/1090860150712221698"
-            >twitter thread by Sarah Mei (@sarahmei)</a
-          >
-          caught my attention and I thought I should finally write something on
-          the subject.
-        </p>
+<p>
+  There&#8217;s a category of bad code which is just poorly written,
+  perhaps because of laziness or lack of skill. But that&#8217;s a tiny
+  proportion of most of the code I&#8217;ve ever refactored. In my
+  experience, most bad code was fine when it was originally written but
+  has since turned sour, for a variety of reasons:
+</p>
 
-        <p>
-          I&#8217;ll come back to Sarah&#8217;s thread throughout this post, but
-          it&#8217;s well worth a read and takes a different angle to what
-          I&#8217;m about to say. My main talking point from it is that
-          incremental refactoring is essential to a healthly project, and we
-          don&#8217;t need to make massive changes all the time. But she also
-          talks excellently on analysis and communication.
-        </p>
+<ul>
+  <li>
+    Perhaps <strong>best practices has moved on</strong> and what
+    <em>was</em> best practice is now bad practice
+  </li>
+  <li>
+    Perhaps <strong>the scope has changed</strong> and what was a small
+    throwaway feature has become a fundamental part of an application
+  </li>
+  <li>
+    Perhaps
+    <strong>you originally made a rough proof-of-concept</strong> and
+    it&#8217;s been blindly embedded into a real-world application
+  </li>
+  <li>
+    Perhaps <strong>dependencies have been upgraded</strong> and
+    you&#8217;re using a package which is missing key features or,
+    worse, isn&#8217;t being supported
+  </li>
+  <li>
+    Perhaps
+    <strong>you&#8217;ve found a better way of doing things</strong> and
+    you&#8217;re suddenly aware that the code could be faster, smaller
+    or more pure
+  </li>
+  <li>
+    Perhaps <strong>your code has become insecure</strong> due to a
+    vulnerability being discovered, or processing power evolving to make
+    brute force attacks possible
+  </li>
+</ul>
 
-        <blockquote class="wp-block-quote">
-          <p>
-            To actually fix it, you need to negotiate with the individuals who
-            are applying the pressure [to not refactor]. You need to understand
-            THEIR incentives, and align your desired changes with those.
-          </p>
-          <cite
-            ><a href="https://twitter.com/sarahmei/status/1090885026785284096"
-              >Sarah Mei (@sarahmei)</a
-            ></cite
-          >
-        </blockquote>
+<p>
+  All of these circumstances can be mitigated slightly with good
+  preparation, but I think it&#8217;s naive to think of them as
+  completely avoidable. Writing web applications is a constant stream of
+  being blindsided by technology, market trends and user needs. So, at
+  some point, your code will become bad and need to be refactored.
+</p>
 
-        <h2>Bad code</h2>
+<h2>Recent experiences</h2>
 
-        <p>
-          Like many (most?) developers, I&#8217;ve spent a lot of time with
-          &#8220;bad code&#8221;, most of which I&#8217;ve written myself. This
-          is code that I know to not be high quality, and that I understand
-          needs to be refactored. But I want to identify first what makes code
-          &#8220;bad&#8221; and why we put up with it.
-        </p>
+<p>
+  I want to talk a bit about my experience lately and where I believe I
+  went wrong. Then I&#8217;ll talk a bit about what I&#8217;ve learnt
+  from the experience and what I&#8217;ll do to avoid it happening again
+  on my next project.
+</p>
 
-        <p>
-          There&#8217;s a category of bad code which is just poorly written,
-          perhaps because of laziness or lack of skill. But that&#8217;s a tiny
-          proportion of most of the code I&#8217;ve ever refactored. In my
-          experience, most bad code was fine when it was originally written but
-          has since turned sour, for a variety of reasons:
-        </p>
+<p>
+  About six months ago I picked up a new front-end project, based on
+  React and Redux. The project was started a couple of years back, and
+  has been intermittently worked on since, but I believe I was the first
+  developer to really start looking at it on a day-to-day basis with the
+  vision to release it to customers.
+</p>
 
-        <ul>
-          <li>
-            Perhaps <strong>best practices has moved on</strong> and what
-            <em>was</em> best practice is now bad practice
-          </li>
-          <li>
-            Perhaps <strong>the scope has changed</strong> and what was a small
-            throwaway feature has become a fundamental part of an application
-          </li>
-          <li>
-            Perhaps
-            <strong>you originally made a rough proof-of-concept</strong> and
-            it&#8217;s been blindly embedded into a real-world application
-          </li>
-          <li>
-            Perhaps <strong>dependencies have been upgraded</strong> and
-            you&#8217;re using a package which is missing key features or,
-            worse, isn&#8217;t being supported
-          </li>
-          <li>
-            Perhaps
-            <strong>you&#8217;ve found a better way of doing things</strong> and
-            you&#8217;re suddenly aware that the code could be faster, smaller
-            or more pure
-          </li>
-          <li>
-            Perhaps <strong>your code has become insecure</strong> due to a
-            vulnerability being discovered, or processing power evolving to make
-            brute force attacks possible
-          </li>
-        </ul>
+<p>
+  If you&#8217;re already seeing the red flags, then you did a better
+  job than me. I picked up the project, got a feel for how it worked,
+  and started implementing new features. Refactoring didn&#8217;t really
+  cross my mind.
+</p>
 
-        <p>
-          All of these circumstances can be mitigated slightly with good
-          preparation, but I think it&#8217;s naive to think of them as
-          completely avoidable. Writing web applications is a constant stream of
-          being blindsided by technology, market trends and user needs. So, at
-          some point, your code will become bad and need to be refactored.
-        </p>
+<p>
+  What I missed was that the project was littered with bad code. And let
+  me clarify again that this wasn&#8217;t because of anyone who worked
+  on it previously, it was because:
+</p>
 
-        <h2>Recent experiences</h2>
+<ul>
+  <li>The project had been started two years ago</li>
+  <li>It had only been worked on intermittently</li>
+</ul>
 
-        <p>
-          I want to talk a bit about my experience lately and where I believe I
-          went wrong. Then I&#8217;ll talk a bit about what I&#8217;ve learnt
-          from the experience and what I&#8217;ll do to avoid it happening again
-          on my next project.
-        </p>
+<p>
+  Two years had been a long time for the React ecosystem, and best
+  practices had moved on significantly. The project had been started
+  from a popular-at-the-time template which structured code and used
+  packages in a way that is now discouraged (I tracked down the original
+  template, which explains it is now deprecated and not recommended).
+</p>
 
-        <p>
-          About six months ago I picked up a new front-end project, based on
-          React and Redux. The project was started a couple of years back, and
-          has been intermittently worked on since, but I believe I was the first
-          developer to really start looking at it on a day-to-day basis with the
-          vision to release it to customers.
-        </p>
+<p>
+  Over the course of two years, work hadn&#8217;t been properly planned
+  or scheduled (the application was effectively a prototype during this
+  time) so new features were introduced sporadically and inconsistently.
+  With the time constraints this is excusable, but it left the
+  application fragmented.
+</p>
 
-        <p>
-          If you&#8217;re already seeing the red flags, then you did a better
-          job than me. I picked up the project, got a feel for how it worked,
-          and started implementing new features. Refactoring didn&#8217;t really
-          cross my mind.
-        </p>
+<p>
+  Ultimately, coming into the project in mid-2018, the code was
+  inconsistent and didn&#8217;t match any reference sources online
+  (since documentation is updated to reflect current best practies) and
+  a lot of the dependencies were out-of-date. Some of those dependencies
+  could be upgraded quite easily, but some (for example, upgrading React
+  Router from version 2 to 4) required complete code changes.
+</p>
 
-        <p>
-          What I missed was that the project was littered with bad code. And let
-          me clarify again that this wasn&#8217;t because of anyone who worked
-          on it previously, it was because:
-        </p>
+<h2>Lessons learned</h2>
 
-        <ul>
-          <li>The project had been started two years ago</li>
-          <li>It had only been worked on intermittently</li>
-        </ul>
+<p>
+  A little while into the project I started to appreciate the scale of
+  refactoring required and quickly pushed the thought from my mind
+  because it was &#8220;too big&#8221;. I had features to implement,
+  deadlines to meet, and I didn&#8217;t have time to rewrite data
+  architecture (a scarily impactful change!).
+</p>
 
-        <p>
-          Two years had been a long time for the React ecosystem, and best
-          practices had moved on significantly. The project had been started
-          from a popular-at-the-time template which structured code and used
-          packages in a way that is now discouraged (I tracked down the original
-          template, which explains it is now deprecated and not recommended).
-        </p>
+<p>
+  But reality shortly set in. Some features <em>required</em> packages
+  to be upgraded, and documenting a system which mixed old and new
+  techniques was becoming a nightmare. I started to pick a few battles
+  and refactor the application as-and-when I came to problem areas. In
+  effect, I was starting to read the advice I saw from Sarah today:
+</p>
 
-        <p>
-          Over the course of two years, work hadn&#8217;t been properly planned
-          or scheduled (the application was effectively a prototype during this
-          time) so new features were introduced sporadically and inconsistently.
-          With the time constraints this is excusable, but it left the
-          application fragmented.
-        </p>
+<blockquote class="wp-block-quote">
+  <p>Improvement</p>
+  <p>Over</p>
+  <p>Consistency.</p>
+  <cite
+    ><a href="https://twitter.com/sarahmei/status/1090875259731890177"
+      >Sarah Mei (@sarahmei)</a
+    ></cite
+  >
+</blockquote>
 
-        <p>
-          Ultimately, coming into the project in mid-2018, the code was
-          inconsistent and didn&#8217;t match any reference sources online
-          (since documentation is updated to reflect current best practies) and
-          a lot of the dependencies were out-of-date. Some of those dependencies
-          could be upgraded quite easily, but some (for example, upgrading React
-          Router from version 2 to 4) required complete code changes.
-        </p>
+<p>
+  Six months into the project, there&#8217;s been a lot of improvement.
+  Our usage of Redux is (mostly) clean and consistent, we&#8217;re
+  starting to build up a component library, ESLint is strict and
+  passing, and this week our React Router dependency got upgraded to
+  version 4.
+</p>
 
-        <h2>Lessons learned</h2>
+<p>
+  However, there&#8217;s still a lot to do: there&#8217;s some data
+  duplication across Redux stores, directory structure is unintuitive
+  and there&#8217;s a 2000+ line component that I&#8217;m dreading
+  having to tackle.
+</p>
 
-        <p>
-          A little while into the project I started to appreciate the scale of
-          refactoring required and quickly pushed the thought from my mind
-          because it was &#8220;too big&#8221;. I had features to implement,
-          deadlines to meet, and I didn&#8217;t have time to rewrite data
-          architecture (a scarily impactful change!).
-        </p>
+<p>
+  As I see it, incremental improvement to the application was the only
+  way to keep this project working. Avoiding these small refactors would
+  have led to a slower, harder to develop application; a large refactor
+  would have meant throwing out a lot of our good work and delaying the
+  project. Instead, we have a <em>functional</em>, <em>better</em> but
+  <em>imperfect</em> codebase, happy clients and a good vision for
+  future work.
+</p>
 
-        <p>
-          But reality shortly set in. Some features <em>required</em> packages
-          to be upgraded, and documenting a system which mixed old and new
-          techniques was becoming a nightmare. I started to pick a few battles
-          and refactor the application as-and-when I came to problem areas. In
-          effect, I was starting to read the advice I saw from Sarah today:
-        </p>
+<p>Improvement over consistency.</p>
 
-        <blockquote class="wp-block-quote">
-          <p>Improvement</p>
-          <p>Over</p>
-          <p>Consistency.</p>
-          <cite
-            ><a href="https://twitter.com/sarahmei/status/1090875259731890177"
-              >Sarah Mei (@sarahmei)</a
-            ></cite
-          >
-        </blockquote>
+<h2>Planning refactoring</h2>
 
-        <p>
-          Six months into the project, there&#8217;s been a lot of improvement.
-          Our usage of Redux is (mostly) clean and consistent, we&#8217;re
-          starting to build up a component library, ESLint is strict and
-          passing, and this week our React Router dependency got upgraded to
-          version 4.
-        </p>
+<p>
+  I&#8217;m well aware of the mistakes I made on this project. I
+  didn&#8217;t acknowledge the need to refactor quick enough,
+  didn&#8217;t communicate this to my colleagues and managers, and
+  didn&#8217;t suitably plan how I would perform the refactoring. So, as
+  ever, let&#8217;s make this a learning opportunity. What will I do
+  differently next time?
+</p>
 
-        <p>
-          However, there&#8217;s still a lot to do: there&#8217;s some data
-          duplication across Redux stores, directory structure is unintuitive
-          and there&#8217;s a 2000+ line component that I&#8217;m dreading
-          having to tackle.
-        </p>
+<p>
+  Firstly, I&#8217;ll make sure I
+  <strong>properly assess bad code</strong> when taking over new
+  projects or at regular intervals when working on my own. There&#8217;s
+  no shame in acknowledging that code falls out-of-date and identifying
+  where improvements can be made.
+</p>
 
-        <p>
-          As I see it, incremental improvement to the application was the only
-          way to keep this project working. Avoiding these small refactors would
-          have led to a slower, harder to develop application; a large refactor
-          would have meant throwing out a lot of our good work and delaying the
-          project. Instead, we have a <em>functional</em>, <em>better</em> but
-          <em>imperfect</em> codebase, happy clients and a good vision for
-          future work.
-        </p>
+<p>
+  However, I&#8217;ll be careful in this process not to over-estimate
+  the bad code. It&#8217;s easy to get carried away and insist on making
+  sweeping changes which won&#8217;t actually help (e.g. migrating to
+  the hottest new tool when your existing one works and is actively
+  supported).
+</p>
 
-        <p>Improvement over consistency.</p>
+<p>
+  Assessing the bad code will also involve
+  <strong>writing a report</strong> about my findings. I&#8217;ll
+  identify the <em>isolated</em> areas of the code which need to be
+  refactored, make suggestions about how they can be improved, and
+  provide options for how that might be approached.
+</p>
 
-        <h2>Planning refactoring</h2>
+<p>
+  I&#8217;ll <strong>share the report with colleagues</strong> to raise
+  awareness of the problems and indicate what additional work might need
+  to be prioritised. They may be able to suggest solutions they&#8217;ve
+  adopted in the past, or identify other projects which could benefit
+  from the same refactoring.
+</p>
 
-        <p>
-          I&#8217;m well aware of the mistakes I made on this project. I
-          didn&#8217;t acknowledge the need to refactor quick enough,
-          didn&#8217;t communicate this to my colleagues and managers, and
-          didn&#8217;t suitably plan how I would perform the refactoring. So, as
-          ever, let&#8217;s make this a learning opportunity. What will I do
-          differently next time?
-        </p>
+<p>
+  Doing this proper analysis and report writing will ensure that
+  I&#8217;m aware of the refactoring opportunities, and can properly
+  plan for how to enact them. When I have capacity, or am working in a
+  related area, I can refer to my report to pick up the additional
+  refactoring work without having to do all the analysis again.
+</p>
 
-        <p>
-          Firstly, I&#8217;ll make sure I
-          <strong>properly assess bad code</strong> when taking over new
-          projects or at regular intervals when working on my own. There&#8217;s
-          no shame in acknowledging that code falls out-of-date and identifying
-          where improvements can be made.
-        </p>
+<h2>Communicating refactoring</h2>
 
-        <p>
-          However, I&#8217;ll be careful in this process not to over-estimate
-          the bad code. It&#8217;s easy to get carried away and insist on making
-          sweeping changes which won&#8217;t actually help (e.g. migrating to
-          the hottest new tool when your existing one works and is actively
-          supported).
-        </p>
+<p>
+  Finally, I wanted to end with a brief note about how to ensure that
+  you suitably communicate the importance of refactoring. In the
+  introduction I suggested that refactoring involves rewriting
+  &#8220;functional code&#8221; (which isn&#8217;t high quality), and
+  people can often balk at this idea: if the code is functional, why
+  waste our time rewriting it when we have other things to work on?
+</p>
 
-        <p>
-          Assessing the bad code will also involve
-          <strong>writing a report</strong> about my findings. I&#8217;ll
-          identify the <em>isolated</em> areas of the code which need to be
-          refactored, make suggestions about how they can be improved, and
-          provide options for how that might be approached.
-        </p>
+<p>Again, Sarah&#8217;s Twitter thread covers this very well.</p>
 
-        <p>
-          I&#8217;ll <strong>share the report with colleagues</strong> to raise
-          awareness of the problems and indicate what additional work might need
-          to be prioritised. They may be able to suggest solutions they&#8217;ve
-          adopted in the past, or identify other projects which could benefit
-          from the same refactoring.
-        </p>
+<blockquote class="wp-block-quote">
+  <p>
+    There’s almost always a win-win in there SOMEWHERE. You can start by
+    trying to understand what is driving that desire for them. It might
+    not be what you think.
+  </p>
+  <cite
+    ><a href="https://twitter.com/sarahmei/status/1090888376926892033"
+      >Sarah Mei (@sarahmei)</a
+    ></cite
+  >
+</blockquote>
 
-        <p>
-          Doing this proper analysis and report writing will ensure that
-          I&#8217;m aware of the refactoring opportunities, and can properly
-          plan for how to enact them. When I have capacity, or am working in a
-          related area, I can refer to my report to pick up the additional
-          refactoring work without having to do all the analysis again.
-        </p>
+<p>
+  Refactoring will often bring tangible improvements: faster, smaller,
+  fewer errors, looks nicer. If these match with your
+  colleague&#8217;s/manager&#8217;s/company&#8217;s priorities, then you
+  have a great opportunity to sell the benefits and get buy-in.
+</p>
 
-        <h2>Communicating refactoring</h2>
+<p>
+  But some refactoring isn&#8217;t like that. It can have other reasons:
+</p>
 
-        <p>
-          Finally, I wanted to end with a brief note about how to ensure that
-          you suitably communicate the importance of refactoring. In the
-          introduction I suggested that refactoring involves rewriting
-          &#8220;functional code&#8221; (which isn&#8217;t high quality), and
-          people can often balk at this idea: if the code is functional, why
-          waste our time rewriting it when we have other things to work on?
-        </p>
+<ul>
+  <li>
+    Using an old version of a depedency may <em>work</em> but it
+    won&#8217;t be supported if something goes wrong
+  </li>
+  <li>Outdated or complex code is hard for new starts to understand</li>
+  <li>Old technology is battle-tested, but hard to recruit for</li>
+  <li>
+    Inconsistent code is confusing, and damages developers&#8217;
+    cognitive load
+  </li>
+  <li>Complex code may work, but it&#8217;s fragile</li>
+</ul>
 
-        <p>Again, Sarah&#8217;s Twitter thread covers this very well.</p>
+<p>
+  Importantly, all of these reasons to refactor can save time and money
+  in the future because they allow you to mitigate against anticipated
+  problems. So whilst code might not be causing you problems
+  <em>right now</em>, spending a few hours to refactor something today
+  might save you five days, apologetic emails and wasted money in six
+  months time.
+</p>
 
-        <blockquote class="wp-block-quote">
-          <p>
-            There’s almost always a win-win in there SOMEWHERE. You can start by
-            trying to understand what is driving that desire for them. It might
-            not be what you think.
-          </p>
-          <cite
-            ><a href="https://twitter.com/sarahmei/status/1090888376926892033"
-              >Sarah Mei (@sarahmei)</a
-            ></cite
-          >
-        </blockquote>
+<p>
+  Ultimately, when agitating for refactoring, you need to make sure you
+  know <em>why</em> it&#8217;s a good idea, and that you can sell that
+  to your team. Identify the reasons, calculate the impact, and explain
+  your strategy to mitigate.
+</p>
 
-        <p>
-          Refactoring will often bring tangible improvements: faster, smaller,
-          fewer errors, looks nicer. If these match with your
-          colleague&#8217;s/manager&#8217;s/company&#8217;s priorities, then you
-          have a great opportunity to sell the benefits and get buy-in.
-        </p>
+<hr class="wp-block-separator" />
 
-        <p>
-          But some refactoring isn&#8217;t like that. It can have other reasons:
-        </p>
-
-        <ul>
-          <li>
-            Using an old version of a depedency may <em>work</em> but it
-            won&#8217;t be supported if something goes wrong
-          </li>
-          <li>Outdated or complex code is hard for new starts to understand</li>
-          <li>Old technology is battle-tested, but hard to recruit for</li>
-          <li>
-            Inconsistent code is confusing, and damages developers&#8217;
-            cognitive load
-          </li>
-          <li>Complex code may work, but it&#8217;s fragile</li>
-        </ul>
-
-        <p>
-          Importantly, all of these reasons to refactor can save time and money
-          in the future because they allow you to mitigate against anticipated
-          problems. So whilst code might not be causing you problems
-          <em>right now</em>, spending a few hours to refactor something today
-          might save you five days, apologetic emails and wasted money in six
-          months time.
-        </p>
-
-        <p>
-          Ultimately, when agitating for refactoring, you need to make sure you
-          know <em>why</em> it&#8217;s a good idea, and that you can sell that
-          to your team. Identify the reasons, calculate the impact, and explain
-          your strategy to mitigate.
-        </p>
-
-        <hr class="wp-block-separator" />
-
-        <p>
-          Allow me to finish with one final plug for
-          <a href="https://twitter.com/sarahmei/status/1090860150712221698"
-            >Sarah&#8217;s Twitter thread</a
-          >. It covers a lot more topics than I go into here (I&#8217;m writing
-          this to selfishly talk about my work) in a thoughtful and practical
-          way. If this post was interesting to you, Sarah&#8217;s thread
-          certainly will be too!
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+<p>
+  Allow me to finish with one final plug for
+  <a href="https://twitter.com/sarahmei/status/1090860150712221698"
+    >Sarah&#8217;s Twitter thread</a
+  >. It covers a lot more topics than I go into here (I&#8217;m writing
+  this to selfishly talk about my work) in a thoughtful and practical
+  way. If this post was interesting to you, Sarah&#8217;s thread
+  certainly will be too!
+</p>

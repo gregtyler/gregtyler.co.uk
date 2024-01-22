@@ -1,168 +1,64 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>Upworthy Headline Generator - Greg Tyler</title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/upworthy-headline-generator"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/upworthy-headline-generator"
-    />
-    <meta name="og:title" content="Upworthy Headline Generator" />
-    <meta
-      name="og:description"
-      content="<p>Recently I&#8217;ve been getting a lot of people posting links to Upworthy articles on Facebook. I realised their headlines often followed a similar style so decided to make a little application to generate them.</p>
-"
-    />
-
-    <meta name="og:image" content="/images/upworthy.png" />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Upworthy Headline Generator</h1>
-
-      <div class="c-page__meta">
-        <div>Published on 9th November 2013</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li><a class="c-tag" href="/blog/category/projects">Projects</a></li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          Recently I&#39;ve been getting a lot of people posting links to
-          <a href="https://www.upworthy.com/">Upworthy</a> articles on Facebook.
-          I realised their headlines often followed a similar style so decided
-          to make a little application to generate them.
-        </p>
-        <p>You can check out the generator at the link below:</p>
-        <p>
-          <a href="http://play.gregtyler.co.uk/upworthy/"
-            >http://play.gregtyler.co.uk/upworthy/</a
-          >
-        </p>
-        <div
-          id="attachment_1213"
-          style="width: 970px"
-          class="wp-caption alignnone"
-        >
-          <img
-            aria-describedby="caption-attachment-1213"
-            class="size-full wp-image-1213"
-            src="/images/upworthy.png"
-            alt="Screenshot of Upworthy Headline Generator"
-            width="960"
-            height="590"
-            srcset="
-              /images/upworthy.png         960w,
-              /images/upworthy-300x184.png 300w,
-              /images/upworthy-768x472.png 768w,
-              /images/upworthy-625x384.png 625w
-            "
-            sizes="(max-width: 960px) 100vw, 960px"
-          />
-          <p id="caption-attachment-1213" class="wp-caption-text">
-            The generator at work
-          </p>
-        </div>
-        <h2 id="technical-stuff">Technical stuff</h2>
-        <p>
-          A quick technical note: The code that pulls out random terms is
-          weighted in this (which is why some people and events show up more or
-          less regularly than others). To do this, every term is an object with
-          a label and a weight. I take the sum of all the weights then generate
-          a random number, <code>rand</code>, between 0 and that. The code then
-          iterates through the array of objects and subtracts the weight of each
-          one from the <code>rand</code>. When <code>rand</code> falls below 0,
-          we&#39;re at the object we want.
-        </p>
-        <p>
-          I actually had the code for this sitting around already for another
-          project I&#39;m working on, which was timely.
-        </p>
-        <p>
-          To learn something new, why not visit
-          <a href="https://www.upworthy.com/">upworthy.com</a>?
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+---
+layout: post.njk
+title: Upworthy Headline Generator
+published: 2013-11-09
+tags:
+  - Projects
+summary: Recently I've been getting a lot of people posting links to Upworthy articles on Facebook. I realised their headlines often followed a similar style so decided to make a little application to generate them.
+poster: /images/upworthy.png
+---
+<p>
+  Recently I&#39;ve been getting a lot of people posting links to
+  <a href="https://www.upworthy.com/">Upworthy</a> articles on Facebook.
+  I realised their headlines often followed a similar style so decided
+  to make a little application to generate them.
+</p>
+<p>You can check out the generator at the link below:</p>
+<p>
+  <a href="http://play.gregtyler.co.uk/upworthy/"
+    >http://play.gregtyler.co.uk/upworthy/</a
+  >
+</p>
+<div
+  id="attachment_1213"
+  style="width: 970px"
+  class="wp-caption alignnone"
+>
+  <img
+    aria-describedby="caption-attachment-1213"
+    class="size-full wp-image-1213"
+    src="/images/upworthy.png"
+    alt="Screenshot of Upworthy Headline Generator"
+    width="960"
+    height="590"
+    srcset="
+      /images/upworthy.png         960w,
+      /images/upworthy-300x184.png 300w,
+      /images/upworthy-768x472.png 768w,
+      /images/upworthy-625x384.png 625w
+    "
+    sizes="(max-width: 960px) 100vw, 960px"
+  />
+  <p id="caption-attachment-1213" class="wp-caption-text">
+    The generator at work
+  </p>
+</div>
+<h2 id="technical-stuff">Technical stuff</h2>
+<p>
+  A quick technical note: The code that pulls out random terms is
+  weighted in this (which is why some people and events show up more or
+  less regularly than others). To do this, every term is an object with
+  a label and a weight. I take the sum of all the weights then generate
+  a random number, <code>rand</code>, between 0 and that. The code then
+  iterates through the array of objects and subtracts the weight of each
+  one from the <code>rand</code>. When <code>rand</code> falls below 0,
+  we&#39;re at the object we want.
+</p>
+<p>
+  I actually had the code for this sitting around already for another
+  project I&#39;m working on, which was timely.
+</p>
+<p>
+  To learn something new, why not visit
+  <a href="https://www.upworthy.com/">upworthy.com</a>?
+</p>

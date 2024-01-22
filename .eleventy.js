@@ -18,6 +18,14 @@ module.exports = function (config) {
     return DateTime.fromJSDate(dateObj).toISODate();
   });
 
+  config.addFilter("toTagSlug", (tag) => {
+    if (tag === "Web development") {
+      return "webdev";
+    }
+
+    return tag.toLowerCase().replace(/ /g, "-");
+  });
+
   config.addFilter("toAbsoluteUrl", (url) => {
     return new URL(url, site.baseUrl).href;
   });
@@ -32,7 +40,7 @@ module.exports = function (config) {
     return `<figure class="${classes}">
 ${trimmed.startsWith("!") ? md.renderInline(trimmed) : trimmed}
 ${
-  caption ? `<figcaption class="c-figure__caption">${caption}</figcaption>` : ""
+  caption ? ` ${caption}</figcaption>` : ""
 }
 </figure>`;
   });
