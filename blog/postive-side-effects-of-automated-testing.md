@@ -1,7 +1,7 @@
 ---
 layout: link.njk
 title: Positive side effects of automated testing
-published: 2016-10-24
+date: 2016-10-24
 tags:
   - Web development
 summary: I wrote about some of the positive side effects I've noticed when writing automated tests as part of development.

@@ -1,7 +1,7 @@
 ---
 layout: post.njk
 title: Castle – Secret Santa
-published: 2016-12-04
+date: 2016-12-04
 tags:
   - Christmas 2016
 summary: In classic Castle style, the body of someone who appears to be Santa Claus falls from the sky into Central Park.

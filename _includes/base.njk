@@ -18,7 +18,11 @@
       content="Websites, quizzes, problem solving. I try to make stuff better."
 />
 
-    <title>{{ title }} - Greg Tyler</title>
+    {% if title -%}
+      <title>{{ title }} - Greg Tyler</title>
+    {% else %}
+      <title>Greg Tyler</title>
+    {%- endif %}
     <link rel="canonical" href="{{ page.url | toAbsoluteUrl }}"/>
     <meta name="og:url" content="{{ page.url | toAbsoluteUrl }}"/>
     <meta name="og:title" content="{{ title }}"/>
