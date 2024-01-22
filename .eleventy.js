@@ -1,12 +1,15 @@
 const site = require("./_data/site");
 const { DateTime } = require("luxon");
 const markdownit = require("markdown-it");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 const md = markdownit();
 
 module.exports = function (config) {
   config.addPassthroughCopy("assets");
   config.addPassthroughCopy("images");
+
+  config.addPlugin(pluginRss);
 
   config.addFilter("date", (dateObj) => {
     return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_FULL, {
