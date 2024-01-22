@@ -1,203 +1,127 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>Portfolio - Greg Tyler</title>
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
+---
+layout: base.njk
+title: Portfolio
+eleventyExcludeFromCollections: true
+---
+<main class="c-page t-flex--fill">
+  <h1 class="c-page__title">{{ title }}</h1>
+  <div class="c-page__content">
+    <div
+      class="c-post__body c-post__body--article o-overflow o-text-container u-clearfix"
+    >
+      <p>
+        These are websites I&#8217;ve worked on, some on my own, some with
+        others. More recently I&#8217;ve been working for the University of
+        Edinburgh, mainly on sites only accessible to university staff and
+        students, so I can&#8217;t link to that work.
+      </p>
+      <p>
+        You can see much of my mockups and in-progress work on
+        <a href="https://codepen.io/gregtyler/">CodePen</a>, and some
+        experimental work on
+        <a href="https://glitch.com/@gregtyler">Glitch</a>.
+      </p>
+      <h2 id="path">Path</h2>
+      <figure class="wp-caption alignleft">
+        <a href="/images/path-screenshot.png"
+          ><img
+            class="size-full wp-image-1187"
+            src="/images/path-screenshot.png"
+            alt=""
+            width="200"
+            height="144"
+        /></a>
+        <figcaption class="wp-caption-text">
+          <a href="http://path.is.ed.ac.uk/">http://path.is.ed.ac.uk/</a>
+        </figcaption>
+      </figure>
+      <p>
+        The University&#8217;s course selection website didn&#8217;t appear
+        to be aimed enough at students. Path was designed to combat this, by
+        providing a website that told students what they needed to know
+        about a course, rather than the minutiae that the university stored.
+      </p>
+      <p>
+        <strong
+          >Find out how to access Path with
+          <a href="https://gregtyler.co.uk/projects/external-path-access"
+            >this guide</a
+          >.</strong
+        >
+      </p>
+      <p><br style="clear: both" /></p>
+      <h2 id="london-school-of-geometry-and-number-theory">
+        London School of Geometry and Number Theory
+      </h2>
+      <figure class="wp-caption alignleft">
+        <a href="/images/lsgnt-screenshot.png"
+          ><img
+            class="size-full wp-image-1176"
+            src="/images/lsgnt-screenshot.png"
+            alt=""
+            width="250"
+            height="204"
+        /></a>
+        <figcaption class="wp-caption-text">
+          <a href="http://www.lsgnt-cdt.ac.uk/"
+            >http://www.lsgnt-cdt.ac.uk/</a
           >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
+        </figcaption>
+      </figure>
+      <p>
+        Working under the
+        <a href="http://croftmedia.co.uk/">Croft Media</a> banner, I helped
+        design and build a website for a new mathematics school in London,
+        led by three of the city&#8217;s main universities. Building from
+        scratch, this improved creating an admissions system and an
+        administration portal.
+      </p>
+      <p><br style="clear: both" /></p>
+      <h2 id="talk-like-a-poirot-day">Talk like a Poirot Day</h2>
+      <figure class="wp-caption alignleft">
+        <a href="/images/poirot-screenshot.png"
+          ><img
+            class="size-full wp-image-1192"
+            src="/images/poirot-screenshot.png"
+            alt=""
+            width="200"
+            height="255"
+        /></a>
+        <figcaption class="wp-caption-text">
+          <a href="http://talklikeapoirotday.co.uk/"
+            >http://talklikeapoirotday.co.uk/</a
           >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Portfolio</h1>
-      <div class="c-page__content">
-        <div
-          class="c-post__body c-post__body--article o-overflow o-text-container u-clearfix"
+        </figcaption>
+      </figure>
+      <p>
+        A personal project, I thought that &#8220;Talk like a Pirate
+        Day&#8221; was a bit too immature and created the print pun of
+        &#8220;Talk like a Poirot Day&#8221;.
+      </p>
+      <p><br style="clear: both" /></p>
+      <h2 id="exotic-pet-refuge">Exotic Pet Refuge</h2>
+      <figure class="wp-caption alignleft">
+        <a href="/images/epr-screenshot.png"
+          ><img
+            class="size-full wp-image-1156"
+            src="/images/epr-screenshot.png"
+            alt=""
+            width="200"
+            height="209" /></a
         >
-          <p>
-            These are websites I&#8217;ve worked on, some on my own, some with
-            others. More recently I&#8217;ve been working for the University of
-            Edinburgh, mainly on sites only accessible to university staff and
-            students, so I can&#8217;t link to that work.
-          </p>
-          <p>
-            You can see much of my mockups and in-progress work on
-            <a href="https://codepen.io/gregtyler/">CodePen</a>, and some
-            experimental work on
-            <a href="https://glitch.com/@gregtyler">Glitch</a>.
-          </p>
-          <h2 id="path">Path</h2>
-          <figure class="wp-caption alignleft">
-            <a href="/images/path-screenshot.png"
-              ><img
-                class="size-full wp-image-1187"
-                src="/images/path-screenshot.png"
-                alt=""
-                width="200"
-                height="144"
-            /></a>
-            <figcaption class="wp-caption-text">
-              <a href="http://path.is.ed.ac.uk/">http://path.is.ed.ac.uk/</a>
-            </figcaption>
-          </figure>
-          <p>
-            The University&#8217;s course selection website didn&#8217;t appear
-            to be aimed enough at students. Path was designed to combat this, by
-            providing a website that told students what they needed to know
-            about a course, rather than the minutiae that the university stored.
-          </p>
-          <p>
-            <strong
-              >Find out how to access Path with
-              <a href="https://gregtyler.co.uk/projects/external-path-access"
-                >this guide</a
-              >.</strong
-            >
-          </p>
-          <p><br style="clear: both" /></p>
-          <h2 id="london-school-of-geometry-and-number-theory">
-            London School of Geometry and Number Theory
-          </h2>
-          <figure class="wp-caption alignleft">
-            <a href="/images/lsgnt-screenshot.png"
-              ><img
-                class="size-full wp-image-1176"
-                src="/images/lsgnt-screenshot.png"
-                alt=""
-                width="250"
-                height="204"
-            /></a>
-            <figcaption class="wp-caption-text">
-              <a href="http://www.lsgnt-cdt.ac.uk/"
-                >http://www.lsgnt-cdt.ac.uk/</a
-              >
-            </figcaption>
-          </figure>
-          <p>
-            Working under the
-            <a href="http://croftmedia.co.uk/">Croft Media</a> banner, I helped
-            design and build a website for a new mathematics school in London,
-            led by three of the city&#8217;s main universities. Building from
-            scratch, this improved creating an admissions system and an
-            administration portal.
-          </p>
-          <p><br style="clear: both" /></p>
-          <h2 id="talk-like-a-poirot-day">Talk like a Poirot Day</h2>
-          <figure class="wp-caption alignleft">
-            <a href="/images/poirot-screenshot.png"
-              ><img
-                class="size-full wp-image-1192"
-                src="/images/poirot-screenshot.png"
-                alt=""
-                width="200"
-                height="255"
-            /></a>
-            <figcaption class="wp-caption-text">
-              <a href="http://talklikeapoirotday.co.uk/"
-                >http://talklikeapoirotday.co.uk/</a
-              >
-            </figcaption>
-          </figure>
-          <p>
-            A personal project, I thought that &#8220;Talk like a Pirate
-            Day&#8221; was a bit too immature and created the print pun of
-            &#8220;Talk like a Poirot Day&#8221;.
-          </p>
-          <p><br style="clear: both" /></p>
-          <h2 id="exotic-pet-refuge">Exotic Pet Refuge</h2>
-          <figure class="wp-caption alignleft">
-            <a href="/images/epr-screenshot.png"
-              ><img
-                class="size-full wp-image-1156"
-                src="/images/epr-screenshot.png"
-                alt=""
-                width="200"
-                height="209" /></a
-            >
-            <figcation class="wp-caption-text"><a href="http://exoticpetrefuge.org.uk/"
-              >http://exoticpetrefuge.org.uk/</a
-            ></figcaption>
-          </figure>
-          <p>
-            Working under the
-            <a href="https://gregtyler.co.uk/projects/external-path-access"
-              >Croft Media</a
-            >
-            banner, I helped make a site for Deeping St James&#8217; Exotic Pet
-            Refuge to promote their online presence, and tell people more about
-            the work they do.
-          </p>
-        </div>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
+        <figcation class="wp-caption-text"><a href="http://exoticpetrefuge.org.uk/"
+          >http://exoticpetrefuge.org.uk/</a
+        ></figcaption>
+      </figure>
+      <p>
+        Working under the
+        <a href="https://gregtyler.co.uk/projects/external-path-access"
+          >Croft Media</a
         >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+        banner, I helped make a site for Deeping St James&#8217; Exotic Pet
+        Refuge to promote their online presence, and tell people more about
+        the work they do.
+      </p>
+    </div>
+  </div>
+</main>

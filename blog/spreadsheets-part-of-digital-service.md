@@ -1,7 +1,7 @@
 ---
 title: Your spreadsheets are part of your digital service
 layout: post.njk
-published: 2023-12-28
+date: 2023-12-28
 summary: Spreadsheets are often thought as out of the control of digital service teams, but they're part of your service.
 ---
 
