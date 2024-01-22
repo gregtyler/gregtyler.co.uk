@@ -1,286 +1,182 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
+---
+layout: post.njk
+title: Building gregtyler.co.uk
+published: 2017-05-06
+summary: My blog is a (fairly) recent creation which involved some new tools and techniques, as well as a significant change to the way that I write.
+tags:
+  - Web development
+---
 
-    <title>Building gregtyler.co.uk - Greg Tyler</title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/building-gregtyler-co-uk"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/building-gregtyler-co-uk"
-    />
-    <meta name="og:title" content="Building gregtyler.co.uk" />
-    <meta
-      name="og:description"
-      content="<p>My blog is a (fairly) recent creation which involved some new tools and techniques, as well as a significant change to the way that I write.</p>
-"
-    />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Building gregtyler.co.uk</h1>
-
-      <div class="c-page__meta">
-        <div>Published on 6th May 2017</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li>
-            <a class="c-tag" href="/blog/category/webdev">Web development</a>
-          </li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          At the start of 2017, I decided to completely rebuild my blog from
-          scratch in Node.js. My old blog was hosted on WordPress but over the
-          years I&#39;d got tired of the framework&#39;s complexity and speed
-          issues, particularly because I didn&#39;t use the majority of the
-          features.
-        </p>
-        <p>
-          I wanted to build something that was simple, lean, nicely designed and
-          usable on all devices by all viewers. I was also inspired by the work
-          Nicolás Bevacqua did on
-          <a
-            href="https://ponyfoo.com/articles/two-way-synchronization-for-a-web-app-and-git"
-            >Pony Foo</a
-          >
-          to track his articles through Git and make it easy for anyone to
-          suggest edits through GitHub.
-        </p>
-        <p>
-          In this post, I want to go through some of the decisions I made in
-          redesigning
-          <a href="https://gregtyler.co.uk/blog/">gregtyler.co.uk</a> and the
-          tools I used to do so.
-        </p>
-        <h2 id="building-a-blog">Building a blog</h2>
-        <p>
-          Let&#39;s start with the technical bits. This website is written
-          bespoke in Node, without even a application framework like Express
-          (the notable modules I use are
-          <a href="https://www.npmjs.com/package/marked">marked</a> for Markdown
-          parsing, <a href="https://highlightjs.org/">highlight.js</a> for code
-          display, and
-          <a href="https://mozilla.github.io/nunjucks/">nunjucks</a> for
-          templating). Not using an application framework might seem like a
-          silly idea and, in general, it probably is. But this project was as
-          much about learning how to build a Node application as it was about
-          having a new blog, so I used the opportunity to learn properly about
-          how Node handles HTTP requests and responses by handling them all
-          myself.
-        </p>
-        <p>
-          In development I focused on a couple of major goals. One was to ensure
-          the site is performant, which not having an application framework
-          helps with because I can see everything happening end-to-end between a
-          request and response. Another was to build an application that would
-          be robust for the future. I&#39;ve got no plans to roll out the
-          application (which I&#39;ve called &quot;Palomar&quot;) to any other
-          websites, but designed it as if I did intend to. I also designed it to
-          be extensible in the future so that adding new features won&#39;t
-          require rewriting the whole application.
-        </p>
-        <p>
-          The application is hosted on
-          <a href="https://www.digitalocean.com/">DigitalOcean</a>, which is new
-          for me. I switched from my old host because I was having performance
-          issues, bad customer support and paying too much. So far DigitalOcean
-          has been cheaper, faster and, whilst I haven&#39;t had to experience
-          customer support yet, I&#39;ve been impressed by the wealth of
-          <a href="https://www.digitalocean.com/community/tutorials"
-            >tutorials</a
-          >
-          on their site documenting how to install and manage all sort of
-          software on their servers.
-        </p>
-        <p>
-          On the server, I use <a href="https://www.nginx.com/">nginx</a> as a
-          server and, thanks to
-          <a href="https://letsencrypt.org/">Let&#39;s Encrypt</a>, I&#39;m
-          using HTTPS everywhere.
-        </p>
-        <p>
-          You might wonder what database I&#39;m using, and be surprised to find
-          that I&#39;m not. See
-          <a href="#blogging-with-git">Blogging with Git</a> below to find out
-          more.
-        </p>
-        <h1 id="designing-a-blog">Designing a blog</h1>
-        <p>
-          Anyone who visited my old blog will be familiar with the new design.
-          The colour scheme, fonts and general layout are all very familiar, and
-          I&#39;m continuing to use &quot;card&quot; structures on the home
-          page.
-        </p>
-        <p>
-          There are a couple of significant changes. One is that every post has
-          a &quot;series&quot;. These work similar to categories in other
-          blogging platforms, except that every post only gets one, and it&#39;s
-          used to determine where the post is stored in the Git repository.
-          I&#39;m not sure this is the best idea, but so far it&#39;s working
-          out quite well as a way to section off particular kinds of content
-          (friends may not interested in my
-          <a href="/webdev">Web development</a>, colleagues might not want to
-          read about <a href="/christmas-2014">Christmas films</a>).
-        </p>
-        <p>
-          Another big change is the addition of &quot;linked articles&quot;.
-          These display alongside normal articles on index and archive pages,
-          but are actually links out to articles I&#39;ve written on other
-          sites. This means that my blog is now the index page for
-          <em>everything</em> I write online rather than just the things
-          I&#39;ve written here.
-        </p>
-        <p>
-          The CSS for the site is quite simple. There&#39;s
-          <a href="https://gregtyler.co.uk/blog/main.css">one CSS file</a>,
-          which uses no frameworks and sits at a tidy 1.9KB. I&#39;ve used the
-          patterns of
-          <a href="https://en.bem.info/methodology/quick-start/">BEM</a> and
-          <a href="http://itcss.io/">ITCSS</a>, mostly inspired by the work of
-          <a href="https://csswizardry.com/">Harry Roberts</a> and
-          <a
-            href="https://medium.com/@shaunbent/css-at-bbc-sport-part-1-bab546184e66"
-            >BBC Sport</a
-          >.
-        </p>
-        <p>
-          There&#39;s only one JavaScript file and that&#39;s Google Analytics,
-          which I&#39;m planning to remove for something more ethical.
-        </p>
-        <h1 id="blogging-with-git">Blogging with Git</h1>
-        <p>
-          By far the biggest decision in this development was moving all of the
-          blog writing to <a href="https://git-scm.com/">Git</a>. Git is a
-          version control system, which means it keeps track of all of the
-          changes ever made to a bunch of files, can give detailed history of
-          each and restore to any point in time. It&#39;s a much more involved,
-          powerful version of track changes.
-        </p>
-        <p>
-          The benefits of having Git support writing should be obvious, but the
-          implementation of doing so certainly is slightly involved. I have a
-          <a href="https://github.com/gregtyler/gregtyler-pichon"
-            >repository of all of my articles</a
-          >
-          which is mirrored on the blog server. The application then uses its
-          copy of the files to render and display pages as they are requested.
-          This means that changes can be made either on my computer, or on
-          GitHub, and then need to be pushed onto the server before they are
-          live.
-        </p>
-        <p>
-          As explained in the
-          <a
-            href="https://ponyfoo.com/articles/two-way-synchronization-for-a-web-app-and-git"
-            >article from Nicolás Bevacqua</a
-          >, a key benefit of this is that readers can identify mistakes or
-          improvements and fix them themselves in GitHub. It also means that,
-          when not at home, I can write drafts and articles through GitHub&#39;s
-          interface rather than on my computer.
-        </p>
-        <p>
-          One regret I have about the current set-up that I would like to change
-          is that it relies on a push to the application server. In the future,
-          I&#39;d like the server to automatically take any new updates directly
-          from GitHub without needing a push. This would enable to handle my
-          entire editing and publishing process through GitHub rather than
-          needing my PC to actually put the new posts on the server.
-        </p>
-        <hr />
-        <p>
-          There&#39;s clearly more work to be done on
-          <a href="https://gregtyler.co.uk/blog/">gregtyler.co.uk</a>, but
-          I&#39;m extremely happy with the results so far.
-        </p>
-        <p>
-          <small
-            >&#x1f3b6;&#x1f3a7; Writing music for this post:
-            <a
-              href="https://play.google.com/music/m/B3c5mbp3mdo6xbzloxs7cwehdh4?t=The_Barber_of_Seville_-_London_Symphony_Orchestra__James_Levine"
-              >The Barber of Seville</a
-            ></small
-          >
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+<p>
+  At the start of 2017, I decided to completely rebuild my blog from
+  scratch in Node.js. My old blog was hosted on WordPress but over the
+  years I&#39;d got tired of the framework&#39;s complexity and speed
+  issues, particularly because I didn&#39;t use the majority of the
+  features.
+</p>
+<p>
+  I wanted to build something that was simple, lean, nicely designed and
+  usable on all devices by all viewers. I was also inspired by the work
+  Nicolás Bevacqua did on
+  <a
+    href="https://ponyfoo.com/articles/two-way-synchronization-for-a-web-app-and-git"
+    >Pony Foo</a
+  >
+  to track his articles through Git and make it easy for anyone to
+  suggest edits through GitHub.
+</p>
+<p>
+  In this post, I want to go through some of the decisions I made in
+  redesigning
+  <a href="https://gregtyler.co.uk/blog/">gregtyler.co.uk</a> and the
+  tools I used to do so.
+</p>
+<h2 id="building-a-blog">Building a blog</h2>
+<p>
+  Let&#39;s start with the technical bits. This website is written
+  bespoke in Node, without even a application framework like Express
+  (the notable modules I use are
+  <a href="https://www.npmjs.com/package/marked">marked</a> for Markdown
+  parsing, <a href="https://highlightjs.org/">highlight.js</a> for code
+  display, and
+  <a href="https://mozilla.github.io/nunjucks/">nunjucks</a> for
+  templating). Not using an application framework might seem like a
+  silly idea and, in general, it probably is. But this project was as
+  much about learning how to build a Node application as it was about
+  having a new blog, so I used the opportunity to learn properly about
+  how Node handles HTTP requests and responses by handling them all
+  myself.
+</p>
+<p>
+  In development I focused on a couple of major goals. One was to ensure
+  the site is performant, which not having an application framework
+  helps with because I can see everything happening end-to-end between a
+  request and response. Another was to build an application that would
+  be robust for the future. I&#39;ve got no plans to roll out the
+  application (which I&#39;ve called &quot;Palomar&quot;) to any other
+  websites, but designed it as if I did intend to. I also designed it to
+  be extensible in the future so that adding new features won&#39;t
+  require rewriting the whole application.
+</p>
+<p>
+  The application is hosted on
+  <a href="https://www.digitalocean.com/">DigitalOcean</a>, which is new
+  for me. I switched from my old host because I was having performance
+  issues, bad customer support and paying too much. So far DigitalOcean
+  has been cheaper, faster and, whilst I haven&#39;t had to experience
+  customer support yet, I&#39;ve been impressed by the wealth of
+  <a href="https://www.digitalocean.com/community/tutorials"
+    >tutorials</a
+  >
+  on their site documenting how to install and manage all sort of
+  software on their servers.
+</p>
+<p>
+  On the server, I use <a href="https://www.nginx.com/">nginx</a> as a
+  server and, thanks to
+  <a href="https://letsencrypt.org/">Let&#39;s Encrypt</a>, I&#39;m
+  using HTTPS everywhere.
+</p>
+<p>
+  You might wonder what database I&#39;m using, and be surprised to find
+  that I&#39;m not. See
+  <a href="#blogging-with-git">Blogging with Git</a> below to find out
+  more.
+</p>
+<h1 id="designing-a-blog">Designing a blog</h1>
+<p>
+  Anyone who visited my old blog will be familiar with the new design.
+  The colour scheme, fonts and general layout are all very familiar, and
+  I&#39;m continuing to use &quot;card&quot; structures on the home
+  page.
+</p>
+<p>
+  There are a couple of significant changes. One is that every post has
+  a &quot;series&quot;. These work similar to categories in other
+  blogging platforms, except that every post only gets one, and it&#39;s
+  used to determine where the post is stored in the Git repository.
+  I&#39;m not sure this is the best idea, but so far it&#39;s working
+  out quite well as a way to section off particular kinds of content
+  (friends may not interested in my
+  <a href="/webdev">Web development</a>, colleagues might not want to
+  read about <a href="/christmas-2014">Christmas films</a>).
+</p>
+<p>
+  Another big change is the addition of &quot;linked articles&quot;.
+  These display alongside normal articles on index and archive pages,
+  but are actually links out to articles I&#39;ve written on other
+  sites. This means that my blog is now the index page for
+  <em>everything</em> I write online rather than just the things
+  I&#39;ve written here.
+</p>
+<p>
+  The CSS for the site is quite simple. There&#39;s
+  <a href="https://gregtyler.co.uk/blog/main.css">one CSS file</a>,
+  which uses no frameworks and sits at a tidy 1.9KB. I&#39;ve used the
+  patterns of
+  <a href="https://en.bem.info/methodology/quick-start/">BEM</a> and
+  <a href="http://itcss.io/">ITCSS</a>, mostly inspired by the work of
+  <a href="https://csswizardry.com/">Harry Roberts</a> and
+  <a
+    href="https://medium.com/@shaunbent/css-at-bbc-sport-part-1-bab546184e66"
+    >BBC Sport</a
+  >.
+</p>
+<p>
+  There&#39;s only one JavaScript file and that&#39;s Google Analytics,
+  which I&#39;m planning to remove for something more ethical.
+</p>
+<h1 id="blogging-with-git">Blogging with Git</h1>
+<p>
+  By far the biggest decision in this development was moving all of the
+  blog writing to <a href="https://git-scm.com/">Git</a>. Git is a
+  version control system, which means it keeps track of all of the
+  changes ever made to a bunch of files, can give detailed history of
+  each and restore to any point in time. It&#39;s a much more involved,
+  powerful version of track changes.
+</p>
+<p>
+  The benefits of having Git support writing should be obvious, but the
+  implementation of doing so certainly is slightly involved. I have a
+  <a href="https://github.com/gregtyler/gregtyler-pichon"
+    >repository of all of my articles</a
+  >
+  which is mirrored on the blog server. The application then uses its
+  copy of the files to render and display pages as they are requested.
+  This means that changes can be made either on my computer, or on
+  GitHub, and then need to be pushed onto the server before they are
+  live.
+</p>
+<p>
+  As explained in the
+  <a
+    href="https://ponyfoo.com/articles/two-way-synchronization-for-a-web-app-and-git"
+    >article from Nicolás Bevacqua</a
+  >, a key benefit of this is that readers can identify mistakes or
+  improvements and fix them themselves in GitHub. It also means that,
+  when not at home, I can write drafts and articles through GitHub&#39;s
+  interface rather than on my computer.
+</p>
+<p>
+  One regret I have about the current set-up that I would like to change
+  is that it relies on a push to the application server. In the future,
+  I&#39;d like the server to automatically take any new updates directly
+  from GitHub without needing a push. This would enable to handle my
+  entire editing and publishing process through GitHub rather than
+  needing my PC to actually put the new posts on the server.
+</p>
+<hr />
+<p>
+  There&#39;s clearly more work to be done on
+  <a href="https://gregtyler.co.uk/blog/">gregtyler.co.uk</a>, but
+  I&#39;m extremely happy with the results so far.
+</p>
+<p>
+  <small
+    >&#x1f3b6;&#x1f3a7; Writing music for this post:
+    <a
+      href="https://play.google.com/music/m/B3c5mbp3mdo6xbzloxs7cwehdh4?t=The_Barber_of_Seville_-_London_Symphony_Orchestra__James_Levine"
+      >The Barber of Seville</a
+    ></small
+  >
+</p>

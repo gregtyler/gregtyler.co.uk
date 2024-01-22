@@ -1,65 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#c82e14">
-    <link rel="manifest" href="/assets/manifest.webmanifest">
-    <link rel="shortcut icon" href="/assets/favicon.png">
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link rel="alternate" type="application/rss+xml" title="Greg Tyler RSS Feed" href="/feed.rss" />
-    <meta name="description" content="Websites, quizzes, problem solving. I try to make stuff better.">
-
-<title>Beyond buttons: Web interactions - Greg Tyler</title>
-<link rel="canonical" href="https://gregtyler.co.uk/blog/web-interactions" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@gregtyler" />
-<meta name="twitter:creator" content="@gregtyler" />
-<meta name="og:url" content="https://gregtyler.co.uk/blog/web-interactions" />
-<meta name="og:title" content="Beyond buttons: Web interactions" />
-<meta name="og:description" content="<p>Looking at the various ways of interacting with web applications and technology in general, and discussing what could be next for the web.</p>
-" />
-
-  <meta name="og:image" content="/images/office365-outlook-shortcuts.jpg" />
-
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link">Weeknotes</a>
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a href="https://twitter.com/gregtyler" rel="me noreferrer" class="o-linklist__link">Twitter</a>
-        </li>
-      </ul>
-    </header>
-
-<main class="c-page t-flex--fill">
-  <h1 class="c-page__title">Beyond buttons: Web interactions</h1>
-
-  <div class="c-page__meta">
-    <div>Published on 10th March 2017</div>
-
-      <ul class="o-linklist o-linklist--centered">
-
-          <li><a class="c-tag" href="/blog/category/webdev">Web development</a></li>
-
-      </ul>
-
-  </div>
-  <div class="c-page__content"><p>I recently read <a href="https://medium.com/assist/theres-a-dozen-ways-to-order-a-coffee-why-do-dumb-bots-only-allow-one-27230542636d">an interesting article by Shane Mac</a> about the failings of modern bots. It&#39;s a great article and well worth reading in full but to summarise, bots should accept a comment like &quot;I want to book a table at La Granja at 7 tonight&quot; and know to ask &quot;how many people?&quot;, rather than the current prescriptive back-and-forth.</p>
+---
+layout: post.njk
+title: "Beyond buttons: Web interactions"
+published: 2017-03-10
+tags:
+  - Web development
+summary: Looking at the various ways of interacting with web applications and technology in general, and discussing what could be next for the web.
+poster: /images/office365-outlook-shortcuts.jpg
+---
+<p>I recently read <a href="https://medium.com/assist/theres-a-dozen-ways-to-order-a-coffee-why-do-dumb-bots-only-allow-one-27230542636d">an interesting article by Shane Mac</a> about the failings of modern bots. It&#39;s a great article and well worth reading in full but to summarise, bots should accept a comment like &quot;I want to book a table at La Granja at 7 tonight&quot; and know to ask &quot;how many people?&quot;, rather than the current prescriptive back-and-forth.</p>
 <p>This got me thinking about web page interactions, and where we&#39;re falling short as web developers. I think there are several themes and topics to explore here, but I&#39;d like to start by thinking about various types of interaction that are currently in place both in the web sphere, and with technology in general.</p>
 <h2 id="clicking-and-pointing">Clicking and pointing</h2>
 <p>The de facto standard for interacting with a web page is by clicking on things with your finger or mouse. Links were the original navigation experience of the web and were <em>fundamental</em> in shaping the network as it is today. More recently, buttons have allowed us to create rich form experiences where a user manipulates and submits data.</p>
@@ -70,7 +18,11 @@
 <p>However, keyboard navigation is still <em>massive</em> for some users. For example, it&#39;s a big accessibility element for those with poor vision or motor impairments because a mouse is difficult to work with. Web accessibility teaches us to make sites completely navigable with a keyboard for these users and many (myself included) often opt to use a keyboard for speed.</p>
 <p>Keyboard shortcuts can be extremely powerful. For users familiar with your system, it can make repetitive tasks much faster, not requiring them to move a cursor across the screen multiple times. They&#39;re omnipresent, so they can be applied by the user from any location on the page. This cuts down on scrolling, both because they don&#39;t have to go and find a button, and because they can perform operations without losing their place in the page. No scrolling back and forth to preview changes.</p>
 <p>The big drawback to keyboard shortcuts is that they are absolutely not forthcoming. Whilst some commands are fairly ubiquitous (<code>Ctrl+F</code> will find something on the page, <code>Ctrl+S</code> will save what you&#39;re working on), communicating new or unusual commands is difficult. On the flip side, the ubiquitous commands can get in the way. If you want to create a shortcut for a &quot;post&quot; command, you&#39;ll find that <code>Ctrl+P</code> is taken and may be left with something that seems nonsensical.</p>
-<p><div id="attachment_1184" style="width: 743px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1184" class="size-full wp-image-1184" src="/images/office365-outlook-shortcuts.jpg" alt="The list of shortcuts in Outlook on Office 365" width="733" height="562" srcset="/images/office365-outlook-shortcuts.jpg 733w, /images/office365-outlook-shortcuts-300x230.jpg 300w, /images/office365-outlook-shortcuts-625x479.jpg 625w" sizes="(max-width: 733px) 100vw, 733px" /><p id="caption-attachment-1184" class="wp-caption-text">A few of these main seem reasonable, but Outlook&#39;s shortcuts on Office 365 don&#39;t come naturally</p></div></p>
+<p>
+  <div id="attachment_1184" style="width: 743px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1184" class="size-full wp-image-1184" src="/images/office365-outlook-shortcuts.jpg" alt="The list of shortcuts in Outlook on Office 365" width="733" height="562" srcset="/images/office365-outlook-shortcuts.jpg 733w, /images/office365-outlook-shortcuts-300x230.jpg 300w, /images/office365-outlook-shortcuts-625x479.jpg 625w" sizes="(max-width: 733px) 100vw, 733px"/>
+    <p id="caption-attachment-1184" class="wp-caption-text">A few of these main seem reasonable, but Outlook&#39;s shortcuts on Office 365 don&#39;t come naturally</p>
+  </div>
+</p>
 <p>Finally, keyboard shortcuts are hard to onboard new users with. Whilst <code>Ctrl+S</code> may seem second nature now, it&#39;s a difficult concept to explain to users. &quot;What do you mean &#39;control&#39;?&quot; &quot;Why that button?&quot; &quot;How will I remember that?&quot; Try explaining that your site needs the user to press <code>Ctrl+Shift+8</code> to create a new bookmark and I doubt they&#39;ll be thrilled.</p>
 <h3 id="command-interface">Command interface</h3>
 <p>An extension to keyboard input is the command interface. These days mostly reserved to developers and computer engineers, the command line used to be the default tool of all computer users. Yet only a few years ago I regularly used one in the NHS to administer patient records, and I wouldn&#39;t be surprised to hear they&#39;re still doing so now.</p>
@@ -79,11 +31,19 @@
 <p>Web sites typically don&#39;t have a command interface (I&#39;ve never seen one that isn&#39;t a novelty site), but I bring it up because in modern desktop browsers a command interface underlies all websites: the dev tools command line.</p>
 <p>That command line has <em>tremendous</em> possibilities for extending website control, and they&#39;re almost consistently ignored. The most you&#39;re likely to see from websites today is a job advert suggesting that if you&#39;ve managed to press F12, you could work for them.</p>
 <p>Throughout development we use the command line to debug, and we sometimes (temporarily) expose functions to it to help test things. Like the cheat codes of old, it is a hidden language allowing us to access additional features by typing <code>app.loadManyAnimals()</code>. What I would like to see more of though, is leaving these cheat codes in place and inviting power users to access them. If a user wants to pull out their data, they could run <code>app.data.toJSON()</code> to retrieve it. If they want to quickly add a note without using the UI, <code>app.insertNote(&#39;Buy milk&#39;, {reminder: &#39;16:00&#39;})</code>.</p>
-<p><div id="attachment_1148" style="width: 635px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1148" class="size-full wp-image-1148" src="/images/devtools-console-getcarttotal.jpg" alt="Screenshot of the DevTools console using a public function to get a cart&#39;s total in GBP" width="625" height="132" srcset="/images/devtools-console-getcarttotal.jpg 625w, /images/devtools-console-getcarttotal-300x63.jpg 300w" sizes="(max-width: 625px) 100vw, 625px" /><p id="caption-attachment-1148" class="wp-caption-text">You could expose functions publicly by design so that tech-savvy users could quickly access additional functionality</p></div></p>
+<p>
+  <div id="attachment_1148" style="width: 635px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1148" class="size-full wp-image-1148" src="/images/devtools-console-getcarttotal.jpg" alt="Screenshot of the DevTools console using a public function to get a cart&#39;s total in GBP" width="625" height="132" srcset="/images/devtools-console-getcarttotal.jpg 625w, /images/devtools-console-getcarttotal-300x63.jpg 300w" sizes="(max-width: 625px) 100vw, 625px"/>
+    <p id="caption-attachment-1148" class="wp-caption-text">You could expose functions publicly by design so that tech-savvy users could quickly access additional functionality</p>
+  </div>
+</p>
 <p>Command line interfaces aren&#39;t going to become mainstream any time soon, but I love the idea of opening up power-user features by giving them a bit more direct access. I think this would be a huge accessibility win too: I imagine keyboard-only users would rather press <code>F12</code> and type a quick command than tab around hidden buttons just to send their email.</p>
 <h2 id="voice">Voice</h2>
 <p>Voice interfaces have really come along recently. Last year, when Google <a href="https://madeby.google.com/phone/">announced their Pixel phone</a>, perhaps its <em>key</em> selling points was the built-in assistant that would interact with your apps and you could talk to at any time. Apple have touted Siri&#39;s convenience for years. Meanwhile, the Amazon Echo and Google Home have <em>only</em> voice input.</p>
-<p><div id="attachment_1137" style="width: 1010px" class="wp-caption alignright"><img aria-describedby="caption-attachment-1137" class="size-full wp-image-1137" src="/images/amazon-echo-lifestyle.jpg" alt="Photo of Amazon Echo device" width="1000" height="1000" srcset="/images/amazon-echo-lifestyle.jpg 1000w, /images/amazon-echo-lifestyle-300x300.jpg 300w, /images/amazon-echo-lifestyle-768x768.jpg 768w, /images/amazon-echo-lifestyle-625x625.jpg 625w" sizes="(max-width: 1000px) 100vw, 1000px" /><p id="caption-attachment-1137" class="wp-caption-text">The Amazon Echo</p></div></p>
+<p>
+  <div id="attachment_1137" style="width: 1010px" class="wp-caption alignright"><img aria-describedby="caption-attachment-1137" class="size-full wp-image-1137" src="/images/amazon-echo-lifestyle.jpg" alt="Photo of Amazon Echo device" width="1000" height="1000" srcset="/images/amazon-echo-lifestyle.jpg 1000w, /images/amazon-echo-lifestyle-300x300.jpg 300w, /images/amazon-echo-lifestyle-768x768.jpg 768w, /images/amazon-echo-lifestyle-625x625.jpg 625w" sizes="(max-width: 1000px) 100vw, 1000px"/>
+    <p id="caption-attachment-1137" class="wp-caption-text">The Amazon Echo</p>
+  </div>
+</p>
 <p>There are two major benefits to voice interfaces, and they&#39;re clear in all the adverts: the convenience of the interface and how natural it feels. Talking with an Amazon Echo or Google Home device is like having a chat: &quot;What&#39;s the weather today?&quot; &quot;How about tomorrow?&quot; &quot;And this weekend?&quot; When a topic pops into your head you can just ask it there and then.</p>
 <p>The downside to voice is that when it goes wrong, it&#39;s extremely frustrating. It can feel insulting, as if you weren&#39;t clear enough, or your accent is too thick. And it can be very hard to correct, particularly on these voice-only devices: there&#39;s no text box to type in what you really mean, or mouse to close the application that has opened.</p>
 <p>Voice interfaces aren&#39;t easy to use in public. In part because it can be quite embarrassing (no-one wants to hear an office colleague try and fail to order pizza with their voice), and also because background noise can get in the way. I&#39;m yet to see a parody of someone trying to use Siri at a gig to take a photo, but I&#39;m sure it exists.</p>
@@ -97,22 +57,3 @@
 <h2 id="conclusion">Conclusion</h2>
 <p>Clicking and pointing is still the de facto of user interfaces on the web, and I don&#39;t see that changing any time soon. But I&#39;m really excited about the possibilities of enabling future interaction through the dev tools command line and physical input. I also can&#39;t wait to see how voice control makes it way to web interfaces.</p>
 <p>In the future, I&#39;ll be writing about some practical applications of new interface methods and also looking further at the process flow and conversational interactions that Shane talks about in his article.</p>
-</div>
-</main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link">
-          Privacy
-        </a>
-        <span role="separator">-</span>
-        <a href="https://gitlab.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitLab</a>
-        <span role="separator">-</span>
-        <a href="https://github.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitHub</a>
-      </div>
-    </footer>
-
-    <script data-goatcounter="https://gregtyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  </body>
-</html>

@@ -1,304 +1,200 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
+---
+layout: post.njk
+title: Generative Quizzing
+published: 2019-08-04
+tags:
+  - Projects
+---
+<p>
+  I&#8217;m a big fan of <a href="https://www.sporcle.com/">Sporcle</a>.
+  It&#8217;s a quiz website which is entirely user-submitted, meaning
+  there&#8217;s a really wide array of quizzes on a variety of subjects.
+  Subjects like
+  <a href="https://www.sporcle.com/games/gb271/goalsforcfc?t=soccer"
+    >Fernando Torres&#8217;s 2010/11 goal record</a
+  >
+  or
+  <a
+    href="https://www.sporcle.com/games/gwukelic/i_dont_think_george_washington_is_going_to_make_it_on_this_quiz?t=politics"
+    >US President birth states</a
+  >.
+</p>
 
-    <title>Generative Quizzing - Greg Tyler</title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/generative-quizzing"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/generative-quizzing"
-    />
-    <meta name="og:title" content="Generative Quizzing" />
-    <meta
-      name="og:description"
-      content="<p>I&#8217;m a big fan of Sporcle. It&#8217;s a quiz website which is entirely user-submitted, meaning there&#8217;s a really wide array of quizzes on a variety of subjects. Subjects like Fernando Torres&#8217;s 2010/11 goal record or US President birth states. Part of my love of Sporcle is its simplicity. It harkens back to the early internet: [&hellip;]</p>
-"
-    />
+<p>
+  Part of my love of Sporcle is its simplicity. It harkens back to the
+  early internet: where sites were run for love and not profit, where
+  users provided data because they <em>wanted</em> to, where creating an
+  account was an option rather than a requirement.
+</p>
 
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
+<p>
+  That Web 1.0 simplicity aludes to the fact that Sporcle is totally
+  independent. Unlike many of the big websites , it&#8217;s not a
+  subsidiary of Amazon or Google, it&#8217;s not owned by some umbrella
+  corporation. Parent company Sporcle Inc. has three offices,
+  <a href="https://www.sporcle.com/triviacon/">a conference</a> and
+  <a href="https://www.haymakerpublichouse.com/">a bar</a>.
+</p>
 
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Generative Quizzing</h1>
+<p>
+  I&#8217;m not sure what Sporcle&#8217;s profitability model looks like
+  (I assume it&#8217;s mostly ad-based) and maybe that&#8217;s dissuaded
+  potential buyers. But, like many recent acquisitions, I think its real
+  value is the data.
+</p>
 
-      <div class="c-page__meta">
-        <div>Published on 4th August 2019</div>
+<h2>Feeding the beast</h2>
 
-        <ul class="o-linklist o-linklist--centered">
-          <li><a class="c-tag" href="/blog/category/projects">Projects</a></li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          I&#8217;m a big fan of <a href="https://www.sporcle.com/">Sporcle</a>.
-          It&#8217;s a quiz website which is entirely user-submitted, meaning
-          there&#8217;s a really wide array of quizzes on a variety of subjects.
-          Subjects like
-          <a href="https://www.sporcle.com/games/gb271/goalsforcfc?t=soccer"
-            >Fernando Torres&#8217;s 2010/11 goal record</a
-          >
-          or
-          <a
-            href="https://www.sporcle.com/games/gwukelic/i_dont_think_george_washington_is_going_to_make_it_on_this_quiz?t=politics"
-            >US President birth states</a
-          >.
-        </p>
+<p>
+  As mentioned earlier, Sporcle&#8217;s quizzes are all written by
+  users. Some of these are spur of the moment or strangely specific,
+  others are generic, popular and well-maintained.
+</p>
 
-        <p>
-          Part of my love of Sporcle is its simplicity. It harkens back to the
-          early internet: where sites were run for love and not profit, where
-          users provided data because they <em>wanted</em> to, where creating an
-          account was an option rather than a requirement.
-        </p>
+<p>
+  Take, for example, the quizzes to name
+  <a href="https://www.sporcle.com/games/g/disneyanimatedmovies"
+    >every Disney movie</a
+  >
+  or
+  <a href="https://www.sporcle.com/games/g/presidents"
+    >every president</a
+  >. Both of these quizzes ultimately contain structured and maintained
+  data which is useful for many data-driven companies. Voice assistant
+  questions like &#8220;when was Aladdin released&#8221; and &#8220;who
+  was President in 1932&#8221; are answerable on tap.
+</p>
 
-        <p>
-          That Web 1.0 simplicity aludes to the fact that Sporcle is totally
-          independent. Unlike many of the big websites , it&#8217;s not a
-          subsidiary of Amazon or Google, it&#8217;s not owned by some umbrella
-          corporation. Parent company Sporcle Inc. has three offices,
-          <a href="https://www.sporcle.com/triviacon/">a conference</a> and
-          <a href="https://www.haymakerpublichouse.com/">a bar</a>.
-        </p>
+<p>
+  Users are readily submitting and maintaining this information for
+  others&#8217; enjoyment, and that value could be multiplied by a savvy
+  tech company (at a very real reputational risk).
+</p>
 
-        <p>
-          I&#8217;m not sure what Sporcle&#8217;s profitability model looks like
-          (I assume it&#8217;s mostly ad-based) and maybe that&#8217;s dissuaded
-          potential buyers. But, like many recent acquisitions, I think its real
-          value is the data.
-        </p>
+<h2>Beasting the feed</h2>
 
-        <h2>Feeding the beast</h2>
+<p>
+  Using user-submitted data for new purposes is cool, but I&#8217;m more
+  interested in the inverse. Voice assistants can already answer those
+  questions today, the data is already available, so can we reverse the
+  process to turn that <em>into</em> a quiz?
+</p>
 
-        <p>
-          As mentioned earlier, Sporcle&#8217;s quizzes are all written by
-          users. Some of these are spur of the moment or strangely specific,
-          others are generic, popular and well-maintained.
-        </p>
+<p>
+  At its simplest level, this could be taking
+  <a href="https://en.wikipedia.org/wiki/Portal:Contents/Categories"
+    >Wikipedia categories</a
+  >
+  and turning them into simple how-many-can-you-name quizzes. For that
+  specific purpose, I&#8217;m pleased to announce
+  <a href="https://spork-hell.glitch.me/"><strong>Spork Hell</strong></a
+  >, my first attempt at generative quizzing.
+</p>
 
-        <p>
-          Take, for example, the quizzes to name
-          <a href="https://www.sporcle.com/games/g/disneyanimatedmovies"
-            >every Disney movie</a
-          >
-          or
-          <a href="https://www.sporcle.com/games/g/presidents"
-            >every president</a
-          >. Both of these quizzes ultimately contain structured and maintained
-          data which is useful for many data-driven companies. Voice assistant
-          questions like &#8220;when was Aladdin released&#8221; and &#8220;who
-          was President in 1932&#8221; are answerable on tap.
-        </p>
+<p>
+  Spork Hell finds a Wikipedia category at random (<em>completely</em>
+  at random, which can produce interesting results) and asks you how
+  many member pages you can list.
+</p>
 
-        <p>
-          Users are readily submitting and maintaining this information for
-          others&#8217; enjoyment, and that value could be multiplied by a savvy
-          tech company (at a very real reputational risk).
-        </p>
+<figure class="wp-block-image">
+  <img
+    src="/images/imagen-625x326.png"
+    alt='Quiz asking players to name "County seats in California". There are 58 possible answers, but only three have been identified so far.'
+    class="wp-image-1507"
+    srcset="
+      /images/imagen-625x326.png 625w,
+      /images/imagen-300x156.png 300w,
+      /images/imagen.png         746w
+    "
+    sizes="(max-width: 625px) 100vw, 625px"
+  />
+</figure>
 
-        <h2>Beasting the feed</h2>
+<p>
+  Spork Hell is random, variously interesting and consistently hard. I
+  think it perfectly captures the amazing possibilities and serious
+  challenges of generative quizzing.
+</p>
 
-        <p>
-          Using user-submitted data for new purposes is cool, but I&#8217;m more
-          interested in the inverse. Voice assistants can already answer those
-          questions today, the data is already available, so can we reverse the
-          process to turn that <em>into</em> a quiz?
-        </p>
+<p>
+  <em
+    >I also made
+    <a href="https://spork-hell-lists.glitch.me/"
+      >a version of Spork Hell</a
+    >
+    which uses Wikipedia&#8217;s &#8220;List of&#8230;&#8221; pages
+    which is even more random and way more challenging to implement.</em
+  >
+</p>
 
-        <p>
-          At its simplest level, this could be taking
-          <a href="https://en.wikipedia.org/wiki/Portal:Contents/Categories"
-            >Wikipedia categories</a
-          >
-          and turning them into simple how-many-can-you-name quizzes. For that
-          specific purpose, I&#8217;m pleased to announce
-          <a href="https://spork-hell.glitch.me/"><strong>Spork Hell</strong></a
-          >, my first attempt at generative quizzing.
-        </p>
+<h2>Structured data</h2>
 
-        <p>
-          Spork Hell finds a Wikipedia category at random (<em>completely</em>
-          at random, which can produce interesting results) and asks you how
-          many member pages you can list.
-        </p>
+<p>
+  So far I&#8217;ve only looked at &#8220;flat&#8221; data: I take a
+  list of items and just replay them back to the user. I&#8217;d like to
+  take this further and generate quizzes from structured data, which
+  would allow much more complex quizzes and massively swell the number
+  of possibilities.
+</p>
 
-        <figure class="wp-block-image">
-          <img
-            src="/images/imagen-625x326.png"
-            alt='Quiz asking players to name "County seats in California". There are 58 possible answers, but only three have been identified so far.'
-            class="wp-image-1507"
-            srcset="
-              /images/imagen-625x326.png 625w,
-              /images/imagen-300x156.png 300w,
-              /images/imagen.png         746w
-            "
-            sizes="(max-width: 625px) 100vw, 625px"
-          />
-        </figure>
+<p>
+  As a basic example: imagine I have some basic information on
+  countries, cities and which country each city is in. Some quizzes I
+  could extract are (square brackets represent variables):
+</p>
 
-        <p>
-          Spork Hell is random, variously interesting and consistently hard. I
-          think it perfectly captures the amazing possibilities and serious
-          challenges of generative quizzing.
-        </p>
+<ul>
+  <li>Name the capital cities of the world</li>
+  <li>Name the capital cities within [100 miles] of [London]</li>
+  <li>List the largest cities in [Poland] in order</li>
+  <li>Name the capital cities with less than [60,000] population</li>
+  <li>Name the countries with at least one megacity</li>
+</ul>
 
-        <p>
-          <em
-            >I also made
-            <a href="https://spork-hell-lists.glitch.me/"
-              >a version of Spork Hell</a
-            >
-            which uses Wikipedia&#8217;s &#8220;List of&#8230;&#8221; pages
-            which is even more random and way more challenging to implement.</em
-          >
-        </p>
+<p>
+  Not only could I manually extract these quizzes, but I think I could
+  reasonably expect a computer program to do so for me just by looking
+  at the data available.
+</p>
 
-        <h2>Structured data</h2>
+<p>
+  New data would then lead to many more possibilities: adding language
+  information could make quizzes like &#8220;Name the most populous
+  [German] speaking countries&#8221;; economic information could give us
+  &#8220;Name the biggest exporters of [bananas]&#8221;.
+</p>
 
-        <p>
-          So far I&#8217;ve only looked at &#8220;flat&#8221; data: I take a
-          list of items and just replay them back to the user. I&#8217;d like to
-          take this further and generate quizzes from structured data, which
-          would allow much more complex quizzes and massively swell the number
-          of possibilities.
-        </p>
+<p>
+  And all of this can be further subdivided into more specific quizzes:
+</p>
 
-        <p>
-          As a basic example: imagine I have some basic information on
-          countries, cities and which country each city is in. Some quizzes I
-          could extract are (square brackets represent variables):
-        </p>
+<ul>
+  <li>Name the biggest [TV] exporting countries in [Western Europe]</li>
+  <li>
+    Name the [French] speaking capital cities within [1000 miles] of
+    [Paris]
+  </li>
+</ul>
 
-        <ul>
-          <li>Name the capital cities of the world</li>
-          <li>Name the capital cities within [100 miles] of [London]</li>
-          <li>List the largest cities in [Poland] in order</li>
-          <li>Name the capital cities with less than [60,000] population</li>
-          <li>Name the countries with at least one megacity</li>
-        </ul>
+<p>
+  Finally, I&#8217;d hope that a computer program would continue to
+  generate the weird stuff.
+</p>
 
-        <p>
-          Not only could I manually extract these quizzes, but I think I could
-          reasonably expect a computer program to do so for me just by looking
-          at the data available.
-        </p>
+<hr class="wp-block-separator" />
 
-        <p>
-          New data would then lead to many more possibilities: adding language
-          information could make quizzes like &#8220;Name the most populous
-          [German] speaking countries&#8221;; economic information could give us
-          &#8220;Name the biggest exporters of [bananas]&#8221;.
-        </p>
+<p>
+  Hopefully this is the first in a series of posts of playing with
+  generative quizzing, but for now please enjoy my early, extremely
+  challenging attempts:
+</p>
 
-        <p>
-          And all of this can be further subdivided into more specific quizzes:
-        </p>
-
-        <ul>
-          <li>Name the biggest [TV] exporting countries in [Western Europe]</li>
-          <li>
-            Name the [French] speaking capital cities within [1000 miles] of
-            [Paris]
-          </li>
-        </ul>
-
-        <p>
-          Finally, I&#8217;d hope that a computer program would continue to
-          generate the weird stuff.
-        </p>
-
-        <hr class="wp-block-separator" />
-
-        <p>
-          Hopefully this is the first in a series of posts of playing with
-          generative quizzing, but for now please enjoy my early, extremely
-          challenging attempts:
-        </p>
-
-        <ul>
-          <li><a href="https://spork-hell.glitch.me/">Spork Hell</a></li>
-          <li>
-            <a href="https://spork-hell-lists.glitch.me/"
-              >Spork Hell (lists edition)</a
-            >
-          </li>
-        </ul>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+<ul>
+  <li><a href="https://spork-hell.glitch.me/">Spork Hell</a></li>
+  <li>
+    <a href="https://spork-hell-lists.glitch.me/"
+      >Spork Hell (lists edition)</a
+    >
+  </li>
+</ul>

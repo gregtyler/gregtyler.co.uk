@@ -1,268 +1,169 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>A New You! (Tube) - Greg Tyler</title>
-    <link rel="canonical" href="https://gregtyler.co.uk/blog/a-new-youtube" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta name="og:url" content="https://gregtyler.co.uk/blog/a-new-youtube" />
-    <meta name="og:title" content="A New You! (Tube)" />
-    <meta
-      name="og:description"
-      content="<p>YouTube is the 3rd most visited site on the Internet. It&#8217;s available in 61 languages and, with 72 hours of content uploaded every minute, it caters for hundreds of millions of users. Inevitably, designing your site to please every one of those people is an impossible task.</p>
-"
-    />
-
-    <meta name="og:image" content="/images/youtube-large.png" />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">A New You! (Tube)</h1>
-
-      <div class="c-page__meta">
-        <div>Published on 4th April 2013</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li><a class="c-tag" href="/blog/category/personal">Personal</a></li>
-
-          <li><a class="c-tag" href="/blog/category/projects">Projects</a></li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          YouTube is the
-          <a href="http://www.alexa.com/topsites">3rd most visited site</a> on
-          the Internet. It&#8217;s available in 61 languages and, with
-          <a href="http://www.youtube.com/yt/press/statistics.html"
-            >72 hours of content uploaded every minute</a
-          >, it caters for hundreds of millions of users. Inevitably, designing
-          your site to please every one of those people is an impossible task.
-        </p>
-        <p>
-          YouTube certainly gains a lot of commentary regarding its layout and
-          design (perhaps second only to Facebook, who sometimes seem to have
-          one of the most unhappy user bases of all time), and I&#8217;m sure we
-          can all point out things that we&#8217;d like done differently. I made
-          my own list, and I started to fix it.
-        </p>
-        <h2 id="things-i-d-like-to-see-in-youtube-s-design">
-          Things I&#8217;d like to see in YouTube&#8217;s design
-        </h2>
-        <ul>
-          <li>Bigger videos: that&#8217;s why I&#8217;m there!</li>
-          <li>
-            Inline comments: I want to be able to browse comments whilst still
-            watching the video (this has some very specific use cases)
-          </li>
-          <li>
-            Less &#8220;gunf&#8221;: I rarely use &#8220;related videos&#8221;,
-            or the navigation to the side
-          </li>
-          <li>
-            Better usage of the screen: Full width on big displays, a responsive
-            solution on smaller screens
-          </li>
-        </ul>
-        <p>
-          I don&#8217;t work for YouTube so I couldn&#8217;t roll out
-          &#8220;proper&#8221; changes but, as a web developer, I decided to
-          make a Chrome extension that made this improvements for me. In basic
-          terms, it allows me to run little scripts every time I open a YouTube
-          video is loaded. It&#8217;s all done after the page had finished
-          loading so, in case it breaks, everything just fall back to the
-          standard YouTube display.
-        </p>
-        <p>
-          Incidentally, the extension broke the day after I wrote it when
-          YouTube changed some of their code. So I can guarantee the fallback
-          plan works!
-        </p>
-        <p>Let&#8217;s take a look at how YouTube looks now:</p>
-        <div
-          id="attachment_1219"
-          style="width: 1360px"
-          class="wp-caption alignnone"
-        >
-          <img
-            aria-describedby="caption-attachment-1219"
-            class="size-full wp-image-1219"
-            src="/images/youtube-large.png"
-            alt="Screenshot of a YouTube video in my new layout"
-            width="1350"
-            height="1197"
-            srcset="
-              /images/youtube-large.png         1350w,
-              /images/youtube-large-300x266.png  300w,
-              /images/youtube-large-768x681.png  768w,
-              /images/youtube-large-625x554.png  625w
-            "
-            sizes="(max-width: 1350px) 100vw, 1350px"
-          />
-          <p id="caption-attachment-1219" class="wp-caption-text">
-            ImprovEverywhere&#8217;s Backwards Times Square prank on my new
-            layout, complete with comments from people who don&#8217;t
-            understand magic
-          </p>
-        </div>
-        <p>
-          As you can see, I&#8217;ve fixed some of my big issues. The page now
-          centres around the video, which takes up most of the page. In fact,
-          the <a href="http://en.wikipedia.org/wiki/Above_the_fold">fold</a> of
-          the page is just below the video (on widescreens like mine), so it
-          takes up a solid two thirds of the visible page.
-        </p>
-        <p>
-          Comments are on the right and, since their container is the same size
-          as the video, I can scroll through them whilst watching. You&#8217;ll
-          notice too that some of the options surrounding the comments have
-          disappeared. I took out the &#8220;reply&#8221; button and the up/down
-          votes. Ultimately, YouTube&#8217;s comments have a lot of problems,
-          and I thought I could start to alleviate some of them by making
-          comments stand up on their own.
-        </p>
-        <h2 id="smaller-screens">Smaller screens</h2>
-        <p>
-          Perhaps more exciting is the responsive solution I have. I often watch
-          videos in a small window on my screen whilst having something else
-          open in another window (a word document, say). I wanted to make sure
-          that YouTube would still be just as usable when I shrank the screen
-          down, rather than overflowing from the window.
-        </p>
-        <div
-          id="attachment_1214"
-          style="width: 983px"
-          class="wp-caption alignnone"
-        >
-          <img
-            aria-describedby="caption-attachment-1214"
-            class="size-full wp-image-1214"
-            src="/images/youtube-small.png"
-            alt="A before and after comparison of YouTube, shrunken to a smaller window."
-            width="973"
-            height="555"
-            srcset="
-              /images/youtube-small.png         973w,
-              /images/youtube-small-300x171.png 300w,
-              /images/youtube-small-768x438.png 768w,
-              /images/youtube-small-625x357.png 625w
-            "
-            sizes="(max-width: 973px) 100vw, 973px"
-          />
-          <p id="caption-attachment-1214" class="wp-caption-text">
-            A before and after comparison of YouTube, shrunken to a smaller
-            window.
-          </p>
-        </div>
-        <p>
-          On smaller windows, my redesign makes sure that the video fills
-          exactly the width of the page. There&#8217;s no overflow, and
-          there&#8217;s no wasted space around the sides. The comments appear
-          below, again giving them pride of place. Below that, on all screen
-          sizes, the video information appears, completely unchanged.
-        </p>
-        <h2 id="results-and-what-s-left-to-do">
-          Results, and what&#8217;s left to do
-        </h2>
-        <p>
-          I&#8217;m really happy with my new YouTube design. Some things that
-          really bugged me have now been drastically improved. I know this
-          isn&#8217;t a global &#8220;fix&#8221; and that other people would
-          want other changes made, but it&#8217;s exciting to be able to move
-          things around to my liking.
-        </p>
-        <p>
-          When I get some time, I&#8217;d like to play a bit more with the
-          header and with the video information. They don&#8217;t really work
-          responsively, which can be a slight pain. There&#8217;s also drastic
-          changes I&#8217;d like to make to comments.
-        </p>
-        <p>
-          In a perfect world, I think comments should be &#8220;recommended for
-          you&#8221;, so you can highlight comments from your friends and people
-          you&#8217;ve voted up before. Downvoting comments should mean that all
-          comments that user makes in the future will be rated down as well.
-        </p>
-        <p>
-          However, this requires more than a slight design change and I&#8217;d
-          have to start saving up and down votes. Maybe when I&#8217;ve got
-          <em>a lot</em> more free time&#8230;
-        </p>
-        <p>What would you change about YouTube&#8217;s design?</p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+---
+layout: post.njk
+title: A New You! (Tube)
+published: 2013-04-04
+tags:
+  - Personal
+  - Projects
+summary: YouTube is the 3rd most visited site on the Internet. It's available in 61 languages and, with 72 hours of content uploaded every minute, it caters for hundreds of millions of users. Inevitably, designing your site to please every one of those people is an impossible task.
+poster: /images/youtube-large.png
+---
+<p>
+  YouTube is the
+  <a href="http://www.alexa.com/topsites">3rd most visited site</a> on
+  the Internet. It&#8217;s available in 61 languages and, with
+  <a href="http://www.youtube.com/yt/press/statistics.html"
+    >72 hours of content uploaded every minute</a
+  >, it caters for hundreds of millions of users. Inevitably, designing
+  your site to please every one of those people is an impossible task.
+</p>
+<p>
+  YouTube certainly gains a lot of commentary regarding its layout and
+  design (perhaps second only to Facebook, who sometimes seem to have
+  one of the most unhappy user bases of all time), and I&#8217;m sure we
+  can all point out things that we&#8217;d like done differently. I made
+  my own list, and I started to fix it.
+</p>
+<h2 id="things-i-d-like-to-see-in-youtube-s-design">
+  Things I&#8217;d like to see in YouTube&#8217;s design
+</h2>
+<ul>
+  <li>Bigger videos: that&#8217;s why I&#8217;m there!</li>
+  <li>
+    Inline comments: I want to be able to browse comments whilst still
+    watching the video (this has some very specific use cases)
+  </li>
+  <li>
+    Less &#8220;gunf&#8221;: I rarely use &#8220;related videos&#8221;,
+    or the navigation to the side
+  </li>
+  <li>
+    Better usage of the screen: Full width on big displays, a responsive
+    solution on smaller screens
+  </li>
+</ul>
+<p>
+  I don&#8217;t work for YouTube so I couldn&#8217;t roll out
+  &#8220;proper&#8221; changes but, as a web developer, I decided to
+  make a Chrome extension that made this improvements for me. In basic
+  terms, it allows me to run little scripts every time I open a YouTube
+  video is loaded. It&#8217;s all done after the page had finished
+  loading so, in case it breaks, everything just fall back to the
+  standard YouTube display.
+</p>
+<p>
+  Incidentally, the extension broke the day after I wrote it when
+  YouTube changed some of their code. So I can guarantee the fallback
+  plan works!
+</p>
+<p>Let&#8217;s take a look at how YouTube looks now:</p>
+<div
+  id="attachment_1219"
+  style="width: 1360px"
+  class="wp-caption alignnone"
+>
+  <img
+    aria-describedby="caption-attachment-1219"
+    class="size-full wp-image-1219"
+    src="/images/youtube-large.png"
+    alt="Screenshot of a YouTube video in my new layout"
+    width="1350"
+    height="1197"
+    srcset="
+      /images/youtube-large.png         1350w,
+      /images/youtube-large-300x266.png  300w,
+      /images/youtube-large-768x681.png  768w,
+      /images/youtube-large-625x554.png  625w
+    "
+    sizes="(max-width: 1350px) 100vw, 1350px"
+  />
+  <p id="caption-attachment-1219" class="wp-caption-text">
+    ImprovEverywhere&#8217;s Backwards Times Square prank on my new
+    layout, complete with comments from people who don&#8217;t
+    understand magic
+  </p>
+</div>
+<p>
+  As you can see, I&#8217;ve fixed some of my big issues. The page now
+  centres around the video, which takes up most of the page. In fact,
+  the <a href="http://en.wikipedia.org/wiki/Above_the_fold">fold</a> of
+  the page is just below the video (on widescreens like mine), so it
+  takes up a solid two thirds of the visible page.
+</p>
+<p>
+  Comments are on the right and, since their container is the same size
+  as the video, I can scroll through them whilst watching. You&#8217;ll
+  notice too that some of the options surrounding the comments have
+  disappeared. I took out the &#8220;reply&#8221; button and the up/down
+  votes. Ultimately, YouTube&#8217;s comments have a lot of problems,
+  and I thought I could start to alleviate some of them by making
+  comments stand up on their own.
+</p>
+<h2 id="smaller-screens">Smaller screens</h2>
+<p>
+  Perhaps more exciting is the responsive solution I have. I often watch
+  videos in a small window on my screen whilst having something else
+  open in another window (a word document, say). I wanted to make sure
+  that YouTube would still be just as usable when I shrank the screen
+  down, rather than overflowing from the window.
+</p>
+<div
+  id="attachment_1214"
+  style="width: 983px"
+  class="wp-caption alignnone"
+>
+  <img
+    aria-describedby="caption-attachment-1214"
+    class="size-full wp-image-1214"
+    src="/images/youtube-small.png"
+    alt="A before and after comparison of YouTube, shrunken to a smaller window."
+    width="973"
+    height="555"
+    srcset="
+      /images/youtube-small.png         973w,
+      /images/youtube-small-300x171.png 300w,
+      /images/youtube-small-768x438.png 768w,
+      /images/youtube-small-625x357.png 625w
+    "
+    sizes="(max-width: 973px) 100vw, 973px"
+  />
+  <p id="caption-attachment-1214" class="wp-caption-text">
+    A before and after comparison of YouTube, shrunken to a smaller
+    window.
+  </p>
+</div>
+<p>
+  On smaller windows, my redesign makes sure that the video fills
+  exactly the width of the page. There&#8217;s no overflow, and
+  there&#8217;s no wasted space around the sides. The comments appear
+  below, again giving them pride of place. Below that, on all screen
+  sizes, the video information appears, completely unchanged.
+</p>
+<h2 id="results-and-what-s-left-to-do">
+  Results, and what&#8217;s left to do
+</h2>
+<p>
+  I&#8217;m really happy with my new YouTube design. Some things that
+  really bugged me have now been drastically improved. I know this
+  isn&#8217;t a global &#8220;fix&#8221; and that other people would
+  want other changes made, but it&#8217;s exciting to be able to move
+  things around to my liking.
+</p>
+<p>
+  When I get some time, I&#8217;d like to play a bit more with the
+  header and with the video information. They don&#8217;t really work
+  responsively, which can be a slight pain. There&#8217;s also drastic
+  changes I&#8217;d like to make to comments.
+</p>
+<p>
+  In a perfect world, I think comments should be &#8220;recommended for
+  you&#8221;, so you can highlight comments from your friends and people
+  you&#8217;ve voted up before. Downvoting comments should mean that all
+  comments that user makes in the future will be rated down as well.
+</p>
+<p>
+  However, this requires more than a slight design change and I&#8217;d
+  have to start saving up and down votes. Maybe when I&#8217;ve got
+  <em>a lot</em> more free time&#8230;
+</p>
+<p>What would you change about YouTube&#8217;s design?</p>

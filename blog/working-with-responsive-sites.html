@@ -1,249 +1,143 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>Working with Responsive Sites - Greg Tyler</title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/working-with-responsive-sites"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/working-with-responsive-sites"
-    />
-    <meta name="og:title" content="Working with Responsive Sites" />
-    <meta
-      name="og:description"
-      content="<p>Responsive web design has had an amazing year in 2012, and will surely continue to push across the internet in 2013. This year we&#39;ve seen some huge sites get on board the Responsive train, including Mashable, The BBC and, heck, the most powerful man in the world, and I thought I&#39;d write a post on [&hellip;]</p>
-"
-    />
-
-    <meta name="og:image" content="/images/bbc-mobile-2010.png" />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Working with Responsive Sites</h1>
-
-      <div class="c-page__meta">
-        <div>Published on 19th December 2012</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li><a class="c-tag" href="/blog/category/projects">Projects</a></li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          Responsive web design has had an amazing year in 2012, and will surely
-          continue to push across the internet in 2013. This year we&#39;ve seen
-          some huge sites get on board the Responsive train, including
-          <a href="http://mashable.com/2012/12/04/new-mashable/">Mashable</a>,
-          <a href="http://www.bbc.co.uk/tv/">The BBC</a> and, heck,
-          <a href="http://www.barackobama.com/"
-            >the most powerful man in the world</a
-          >, and I thought I&#39;d write a post on my own personal comments of
-          developing in a responsive environment.
-        </p>
-        <div
-          id="attachment_1140"
-          style="width: 330px"
-          class="wp-caption alignright"
-        >
-          <img
-            aria-describedby="caption-attachment-1140"
-            class="size-full wp-image-1140"
-            src="/images/bbc-mobile-2010.png"
-            alt="BBC Mobile site 2010"
-            width="320"
-            height="1020"
-            srcset="
-              /images/bbc-mobile-2010.png        320w,
-              /images/bbc-mobile-2010-94x300.png  94w
-            "
-            sizes="(max-width: 320px) 100vw, 320px"
-          />
-          <p id="caption-attachment-1140" class="wp-caption-text">
-            BBC Mobile site 2010
-          </p>
-        </div>
-        <h2 id="what-is-responsive-web-design-">
-          What is Responsive web design?
-        </h2>
-        <p>
-          Our story with Responsive design starts on mobile phones. When our
-          mobiles started gaining internet access, there was a growing demand
-          for web developers to react and provide a version of their site that
-          suited the small, handheld interface. Initially, this was achieved by
-          creating a &quot;mobile&quot; version of the site. I particularly
-          remember the BBC being a strong supporter of mobile sites, with
-          specially-made versions of their homepage, news and sports sites.
-        </p>
-        <p>
-          Web apps got on the scene too, and the mobile versions of
-          <a href="https://m.facebook.com/">Facebook</a> and
-          <a href="https://mobile.twitter.com">Twitter</a> are perfectly
-          accessible on any device, and well worth a look.
-        </p>
-        <h2 id="it-couldn-t-last-">It couldn&#39;t last&#8230;</h2>
-        <p>
-          The mobile sites worked well for a long while, but soon a new problem
-          reared its head. As smart phones came into the market, screen sizes
-          got bigger and mobile sites seemed somewhat lacking. Then tablets
-          showed up with their &quot;just slightly smaller than a laptop&quot;
-          screen size, and they just didn&#39;t have a natural home. Mobile
-          sites looked ridiculous scaled up but any site designed to fit at
-          1000px (a fairly standard design size) would look squashed up on a
-          tablet&#39;s, say, 768px screen.
-        </p>
-        <p>
-          Enter responsive web design! The main concept of RWD is that sites
-          will work at any screen size (they &quot;respond&quot; to changes in
-          resolution). This means that, rather than having a mobile version, a
-          desktop version and a tablet version of your site, there is one golden
-          design that is shown to all devices.
-        </p>
-        <p>
-          If this concept twists your mind, take a look at
-          <a href="http://mediaqueri.es/">mediaqueri.es</a>, a directory of
-          great responsive designs. Alternatively, visit one of the sites in the
-          first paragraph and try resizing your web browser to see what happens.
-        </p>
-        <h2 id="designing-responsively">Designing responsively</h2>
-        <p>
-          A phrase often heard when talking about responsive design is
-          &quot;mobile first&quot;. Generally, this is the idea that rather than
-          building a website for a desktop screen and scaling down, you should
-          start with a mobile version and scale up. It&#39;s a nice idea, but I
-          dispute its helpfulness when trying to create a full site. My approach
-          is much more of &quot;content first, on all screen sizes&quot;; I
-          believe that your content should lead your design and, rather than
-          focusing on mobile, you should always be considering every possible
-          resolution.
-        </p>
-        <p>
-          I&#39;m sure this concept wouldn&#39;t fly for a lot of people, since
-          it makes design development very much a bit-by-bit process, as each
-          small element of the site is organised. I find it to work well though
-          and particularly like that, since each part of the site is responsive
-          in itself, I can cut and change elements a lot more casually.
-        </p>
-        <h2 id="responsive-quizzard">Responsive Quizzard</h2>
-        <p>
-          When I started <a href="/projects/introducing-quizzard">Quizzard</a>,
-          I was immediately aware that I wanted a responsive site. Here I&#39;ll
-          take you through the example of a forum thread on Quizzard, and how my
-          &quot;content first, on all screen sizes&quot; policy applied to it.
-        </p>
-        <p>
-          <img
-            class="size-full wp-image-1194"
-            src="/images/qu-forum-contrast.png"
-            alt="A forum thread on Quizzard seen on a desktop and on a mobile device."
-            width="1330"
-            height="664"
-            srcset="
-              /images/qu-forum-contrast.png         1330w,
-              /images/qu-forum-contrast-300x150.png  300w,
-              /images/qu-forum-contrast-768x383.png  768w,
-              /images/qu-forum-contrast-625x312.png  625w
-            "
-            sizes="(max-width: 1330px) 100vw, 1330px"
-          />
-        </p>
-        <p>
-          Above you can see a thread on Quizzard&#39;s forums (albeit a fake
-          one) shown on both a desktop and a mobile device. Hopefully it&#39;s
-          immediately obvious that the two screens show exactly the same
-          content, they just present it slightly differently. This demonstrates
-          the &quot;content first&quot; belief. My most important goal here was
-          that every screen would show the posts, and who wrote them. I&#39;ll
-          do another blog post in the future about how this fits in to my
-          thoughts on forum design in general.
-        </p>
-        <p>
-          However, note how both the screens show the thread in different ways.
-          On the desktop screen, I&#39;ve used the extra width to throw a card
-          to the side with the user&#39;s details on it. On the mobile screen,
-          this information appears above the post and takes up noticeably less
-          of the screen. This is the essence of designing responsively: Start
-          with the content, work around it, and work on every screen size at
-          once.
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+---
+layout: post.njk
+title: Working with Responsive Sites
+published: 2012-12-19
+tags:
+  - Web development
+---
+<p>
+  Responsive web design has had an amazing year in 2012, and will surely
+  continue to push across the internet in 2013. This year we&#39;ve seen
+  some huge sites get on board the Responsive train, including
+  <a href="http://mashable.com/2012/12/04/new-mashable/">Mashable</a>,
+  <a href="http://www.bbc.co.uk/tv/">The BBC</a> and, heck,
+  <a href="http://www.barackobama.com/"
+    >the most powerful man in the world</a
+  >, and I thought I&#39;d write a post on my own personal comments of
+  developing in a responsive environment.
+</p>
+<div
+  id="attachment_1140"
+  style="width: 330px"
+  class="wp-caption alignright"
+>
+  <img
+    aria-describedby="caption-attachment-1140"
+    class="size-full wp-image-1140"
+    src="/images/bbc-mobile-2010.png"
+    alt="BBC Mobile site 2010"
+    width="320"
+    height="1020"
+    srcset="
+      /images/bbc-mobile-2010.png        320w,
+      /images/bbc-mobile-2010-94x300.png  94w
+    "
+    sizes="(max-width: 320px) 100vw, 320px"
+  />
+  <p id="caption-attachment-1140" class="wp-caption-text">
+    BBC Mobile site 2010
+  </p>
+</div>
+<h2 id="what-is-responsive-web-design-">
+  What is Responsive web design?
+</h2>
+<p>
+  Our story with Responsive design starts on mobile phones. When our
+  mobiles started gaining internet access, there was a growing demand
+  for web developers to react and provide a version of their site that
+  suited the small, handheld interface. Initially, this was achieved by
+  creating a &quot;mobile&quot; version of the site. I particularly
+  remember the BBC being a strong supporter of mobile sites, with
+  specially-made versions of their homepage, news and sports sites.
+</p>
+<p>
+  Web apps got on the scene too, and the mobile versions of
+  <a href="https://m.facebook.com/">Facebook</a> and
+  <a href="https://mobile.twitter.com">Twitter</a> are perfectly
+  accessible on any device, and well worth a look.
+</p>
+<h2 id="it-couldn-t-last-">It couldn&#39;t last&#8230;</h2>
+<p>
+  The mobile sites worked well for a long while, but soon a new problem
+  reared its head. As smart phones came into the market, screen sizes
+  got bigger and mobile sites seemed somewhat lacking. Then tablets
+  showed up with their &quot;just slightly smaller than a laptop&quot;
+  screen size, and they just didn&#39;t have a natural home. Mobile
+  sites looked ridiculous scaled up but any site designed to fit at
+  1000px (a fairly standard design size) would look squashed up on a
+  tablet&#39;s, say, 768px screen.
+</p>
+<p>
+  Enter responsive web design! The main concept of RWD is that sites
+  will work at any screen size (they &quot;respond&quot; to changes in
+  resolution). This means that, rather than having a mobile version, a
+  desktop version and a tablet version of your site, there is one golden
+  design that is shown to all devices.
+</p>
+<p>
+  If this concept twists your mind, take a look at
+  <a href="http://mediaqueri.es/">mediaqueri.es</a>, a directory of
+  great responsive designs. Alternatively, visit one of the sites in the
+  first paragraph and try resizing your web browser to see what happens.
+</p>
+<h2 id="designing-responsively">Designing responsively</h2>
+<p>
+  A phrase often heard when talking about responsive design is
+  &quot;mobile first&quot;. Generally, this is the idea that rather than
+  building a website for a desktop screen and scaling down, you should
+  start with a mobile version and scale up. It&#39;s a nice idea, but I
+  dispute its helpfulness when trying to create a full site. My approach
+  is much more of &quot;content first, on all screen sizes&quot;; I
+  believe that your content should lead your design and, rather than
+  focusing on mobile, you should always be considering every possible
+  resolution.
+</p>
+<p>
+  I&#39;m sure this concept wouldn&#39;t fly for a lot of people, since
+  it makes design development very much a bit-by-bit process, as each
+  small element of the site is organised. I find it to work well though
+  and particularly like that, since each part of the site is responsive
+  in itself, I can cut and change elements a lot more casually.
+</p>
+<h2 id="responsive-quizzard">Responsive Quizzard</h2>
+<p>
+  When I started <a href="/projects/introducing-quizzard">Quizzard</a>,
+  I was immediately aware that I wanted a responsive site. Here I&#39;ll
+  take you through the example of a forum thread on Quizzard, and how my
+  &quot;content first, on all screen sizes&quot; policy applied to it.
+</p>
+<p>
+  <img
+    class="size-full wp-image-1194"
+    src="/images/qu-forum-contrast.png"
+    alt="A forum thread on Quizzard seen on a desktop and on a mobile device."
+    width="1330"
+    height="664"
+    srcset="
+      /images/qu-forum-contrast.png         1330w,
+      /images/qu-forum-contrast-300x150.png  300w,
+      /images/qu-forum-contrast-768x383.png  768w,
+      /images/qu-forum-contrast-625x312.png  625w
+    "
+    sizes="(max-width: 1330px) 100vw, 1330px"
+  />
+</p>
+<p>
+  Above you can see a thread on Quizzard&#39;s forums (albeit a fake
+  one) shown on both a desktop and a mobile device. Hopefully it&#39;s
+  immediately obvious that the two screens show exactly the same
+  content, they just present it slightly differently. This demonstrates
+  the &quot;content first&quot; belief. My most important goal here was
+  that every screen would show the posts, and who wrote them. I&#39;ll
+  do another blog post in the future about how this fits in to my
+  thoughts on forum design in general.
+</p>
+<p>
+  However, note how both the screens show the thread in different ways.
+  On the desktop screen, I&#39;ve used the extra width to throw a card
+  to the side with the user&#39;s details on it. On the mobile screen,
+  this information appears above the post and takes up noticeably less
+  of the screen. This is the essence of designing responsively: Start
+  with the content, work around it, and work on every screen size at
+  once.
+</p>

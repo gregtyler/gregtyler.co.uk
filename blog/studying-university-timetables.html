@@ -1,70 +1,20 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#c82e14">
-    <link rel="manifest" href="/assets/manifest.webmanifest">
-    <link rel="shortcut icon" href="/assets/favicon.png">
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link rel="alternate" type="application/rss+xml" title="Greg Tyler RSS Feed" href="/feed.rss" />
-    <meta name="description" content="Websites, quizzes, problem solving. I try to make stuff better.">
-
-<title>Studying University timetables - Greg Tyler</title>
-<link rel="canonical" href="https://gregtyler.co.uk/blog/studying-university-timetables" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@gregtyler" />
-<meta name="twitter:creator" content="@gregtyler" />
-<meta name="og:url" content="https://gregtyler.co.uk/blog/studying-university-timetables" />
-<meta name="og:title" content="Studying University timetables" />
-<meta name="og:description" content="<p>I recently worked on a project at work to bring course timetables more easily to students through a new course timetable browser website. This got me interested in a few different things to do with University timetables, including how events are distributed through the week. The result of that interest is a new website where you can explore how busy the University&#8217;s timetable is under certain conditions.</p>
-" />
-
-  <meta name="og:image" content="/images/tt-default.png" />
-
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link">Weeknotes</a>
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a href="https://twitter.com/gregtyler" rel="me noreferrer" class="o-linklist__link">Twitter</a>
-        </li>
-      </ul>
-    </header>
-
-<main class="c-page t-flex--fill">
-  <h1 class="c-page__title">Studying University timetables</h1>
-
-  <div class="c-page__meta">
-    <div>Published on 3rd August 2014</div>
-
-      <ul class="o-linklist o-linklist--centered">
-
-          <li><a class="c-tag" href="/blog/category/personal">Personal</a></li>
-
-      </ul>
-
-  </div>
-  <div class="c-page__content"><p>I recently worked on <a href="https://blog.swdev.ed.ac.uk/2014/07/22/a-new-course-timetable-browser/">a project at work</a> to bring course timetables more easily to students through a new <a href="https://browser.ted.is.ed.ac.uk/">course timetable browser</a> website. This got me interested in a few different things to do with University timetables, including how events are distributed through the week. The result of that interest is a new website where you can explore how busy the University&#39;s timetable is under certain conditions.   </p>
+---
+layout: post.njk
+title: Studying University timetables
+published: 2014-08-03
+tags:
+  - Personal
+summary: I recently worked on a project at work to bring course timetables more easily to students through a new course timetable browser website. This got me interested in a few different things to do with University timetables, including how events are distributed through the week. The result of that interest is a new website where you can explore how busy the University's timetable is under certain conditions.
+poster: /images/tt-default.png
+---
+<p>I recently worked on <a href="https://blog.swdev.ed.ac.uk/2014/07/22/a-new-course-timetable-browser/">a project at work</a> to bring course timetables more easily to students through a new <a href="https://browser.ted.is.ed.ac.uk/">course timetable browser</a> website. This got me interested in a few different things to do with University timetables, including how events are distributed through the week. The result of that interest is a new website where you can explore how busy the University&#39;s timetable is under certain conditions.   </p>
 <p><strong>Data disclaimer:</strong> The data used in this site is provided by a snapshot at a particular time. It wasn&#39;t 100% reliable at the time I pulled it and it certainly isn&#39;t reliable now. All the statistics here should be seen as indicators, not accurate values.   </p>
 <p>If you want to get your hands dirty, you can click the button below to have a play for yourself. But keep reading for a few interesting results I found.   </p>
 <p><a href="http://play.gregtyler.co.uk/timetable/">Explore the timetables yourself</a>   </p>
 <h2 id="the-global-grid">The global grid</h2>
-<p>![The global grid](/tt-default.png &quot;:right The &quot;global grid&quot;&quot;)</p>
+<figure class="c-figure">
+  <img alt="The &quot;global grid&quot;" src="/images/tt-default.png" />
+</figure>
 <p>The default grid (with no filters applied) already shows some interesting patterns. Firstly we can see that there&#39;s a clear lunch-break in the middle of the day from 1 &#39;til 2. This must have stuck in my mind because still now I normally take my lunch-break in that hour. There&#39;s also a noticeable lack of courses on Wednesday afternoons. This seems to be <a href="http://www.thestudentroom.co.uk/showthread.php?t=1720752">common at other universities too</a> and I&#39;ve been under the impression it&#39;s for people engaged in sports. Also, a midweek break is probably good for morale.   </p>
 <p>My favourite little caveat about the global grid is the drop in events on Friday afternoons, which I&#39;m sure students will be very happy to acknowledge.   </p>
 <h2 id="optional-classes">Optional classes</h2>
@@ -89,22 +39,3 @@
 <p>Perhaps the least surprising thing I noticed was that tutorials happen &quot;later&quot;; be that later in the day or later in the week, they tend to be towards the right and bottom edges of the grid (except that impressive outlier on Wednesday mornings). Again, this is totally believable because someone scheduling a class might like to keep it within the week, teaching content at the start and having a tutorial at the end. Of course, this wouldn&#39;t work if <em>every</em> class had that setup, hence the rest of the grid still being fairly full throughout the week.</p>
 <p><a href="http://play.gregtyler.co.uk/timetable/">Explore the timetables yourself</a>   </p>
 <p>Did you find any interesting patterns? Let me know in the comments below!</p>
-</div>
-</main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link">
-          Privacy
-        </a>
-        <span role="separator">-</span>
-        <a href="https://gitlab.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitLab</a>
-        <span role="separator">-</span>
-        <a href="https://github.com/gregtyler" rel="me noreferrer" class="c-footer__link">GitHub</a>
-      </div>
-    </footer>
-
-    <script data-goatcounter="https://gregtyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  </body>
-</html>

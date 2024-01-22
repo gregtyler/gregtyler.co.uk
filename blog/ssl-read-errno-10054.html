@@ -1,149 +1,36 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>
-      A possible solution to &#8220;SSL read: error &#8230; errno 10054&#8221; -
-      Greg Tyler
-    </title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/ssl-read-errno-10054"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/ssl-read-errno-10054"
-    />
-    <meta
-      name="og:title"
-      content="A possible solution to &#8220;SSL read: error &#8230; errno 10054&#8221;"
-    />
-    <meta
-      name="og:description"
-      content="<p>A quick note on an SSL error I had using cURL with PHP. Hopefully you won&#8217;t have the same one now!</p>
-"
-    />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">
-        A possible solution to &#8220;SSL read: error &#8230; errno 10054&#8221;
-      </h1>
-
-      <div class="c-page__meta">
-        <div>Published on 30th October 2013</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li>
-            <a class="c-tag" href="/blog/category/webdev">Web development</a>
-          </li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          This is just a quick post to note an error I came across today that I
-          couldn&#39;t find any decent help with it. I was using cURL in PHP to
-          connect via HTTPS to a web service, and came across the following
-          error:
-        </p>
-        <pre><code>SSL <span class="hljs-symbol">read:</span> <span class="hljs-symbol">error:</span><span class="hljs-number">0</span>0000000:<span class="hljs-class"><span class="hljs-keyword">lib</span>(0):<span class="hljs-title">func</span>(0):<span class="hljs-title">reason</span>(0), <span class="hljs-title">errno</span> 10054</span></code></pre>
-        <p>
-          It looks like it might be an error with OpenSSL, or with the server I
-          was hitting, but it turned out to just be a rogue space.
-        </p>
-        <p>
-          I was generating a URL with a GET parameter
-          (gregtyler.co.uk?getparam=somevalue), but it had generated with a
-          space in the value. Now a web browser would turn that into a &quot;
-          &quot; or plus symbol but cURL, for whatever reason, didn&#39;t.
-        </p>
-        <p>
-          So if you&#39;ve come across this problem (and I&#39;m putting this
-          here with the hope that it&#39;ll be crawled for future people stuck),
-          check to see if there&#39;s any whitespace in your URL and urlencode
-          it.
-        </p>
-        <p>
-          All in all, a silly mistake on my behalf that caused far more trouble
-          than it should have. Hopefully you won&#39;t be stuck the same way
-          now!
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+---
+layout: post.njk
+title: "A possible solution to “SSL read: error … errno 10054”"
+published: 2013-10-30
+tags:
+  - Web development
+summary: A quick note on an SSL error I had using cURL with PHP. Hopefully you won&#8217;t have the same one now!
+---
+<p>
+  This is just a quick post to note an error I came across today that I
+  couldn&#39;t find any decent help with it. I was using cURL in PHP to
+  connect via HTTPS to a web service, and came across the following
+  error:
+</p>
+<pre><code>SSL <span class="hljs-symbol">read:</span> <span class="hljs-symbol">error:</span><span class="hljs-number">0</span>0000000:<span class="hljs-class"><span class="hljs-keyword">lib</span>(0):<span class="hljs-title">func</span>(0):<span class="hljs-title">reason</span>(0), <span class="hljs-title">errno</span> 10054</span></code></pre>
+<p>
+  It looks like it might be an error with OpenSSL, or with the server I
+  was hitting, but it turned out to just be a rogue space.
+</p>
+<p>
+  I was generating a URL with a GET parameter
+  (gregtyler.co.uk?getparam=somevalue), but it had generated with a
+  space in the value. Now a web browser would turn that into a &quot;
+  &quot; or plus symbol but cURL, for whatever reason, didn&#39;t.
+</p>
+<p>
+  So if you&#39;ve come across this problem (and I&#39;m putting this
+  here with the hope that it&#39;ll be crawled for future people stuck),
+  check to see if there&#39;s any whitespace in your URL and urlencode
+  it.
+</p>
+<p>
+  All in all, a silly mistake on my behalf that caused far more trouble
+  than it should have. Hopefully you won&#39;t be stuck the same way
+  now!
+</p>

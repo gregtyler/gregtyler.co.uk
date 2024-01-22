@@ -21,6 +21,12 @@ layout: base.njk
     </ul>
   </div>
   <div class="c-page__content">
-    {{ content | safe }}
+    <p>
+      {{ summary | safe }}
+    </p>
+
+    <p>
+      <a href="{{ link.url }}">Read on {{ link.host }}</a>
+    </p>
   </div>
 </main>

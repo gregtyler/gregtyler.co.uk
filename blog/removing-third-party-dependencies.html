@@ -1,380 +1,275 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
-
-    <title>Removing third-party dependencies - Greg Tyler</title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/removing-third-party-dependencies"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/removing-third-party-dependencies"
-    />
-    <meta name="og:title" content="Removing third-party dependencies" />
-    <meta
-      name="og:description"
-      content="<p>An explanation of how—and why—I removed third-party dependencies on fonts and analytics from this website</p>
-"
-    />
-
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
-
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Removing third-party dependencies</h1>
-
-      <div class="c-page__meta">
-        <div>Published on 12th February 2018</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li>
-            <a class="c-tag" href="/blog/category/webdev">Web development</a>
-          </li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          I recently decided to remove all third-party dependencies from most of
-          my websites. That is, all scripts, CSS and fonts that are loaded from
-          a server other than *.gregtyler.co.uk
-        </p>
-        <p>
-          My primary concern is user privacy. Whenever you visit a site with a
-          third-party dependency, that third-party is aware of your visit. So
-          even if you don&#8217;t click &#8220;like&#8221; on a page that
-          features the Facebook button its mere presence—and the network request
-          to load it—inform Facebook that you&#8217;re there.
-        </p>
-        <p>
-          This site and others I run, like
-          <a href="https://talklikeapoirotday.co.uk/">Talk Like a Poirot Day</a
-          >, might not feature the sort of content you&#8217;d be too worried
-          about third-parties knowing about your visit to; but the cumulative
-          knowledge of visitors&#8217; viewing habits is the stuff of dystopian
-          science fiction.
-        </p>
-        <h2 id="analytics">Analytics</h2>
-        <p>
-          Facebook is an easy target here, but the real threat on my sites is
-          Google through its
-          <a href="https://www.google.com/analytics/">analytics tools</a>.
-        </p>
-        <p>
-          Analytics is the process of tracking users&#8217; visits to a website
-          and then assessing them en masse to determine meaningful patterns
-          which can help inform website development. For example, I&#8217;m
-          aware that my articles on
-          <a href="http://localhost:4141/webdev/ssl-read-errno-10054"
-            >an SSL error</a
-          >
-          and on
-          <a href="http://localhost:4141/webdev/vuejs-browserify-grunt"
-            >using Vue with Browersify and Grunt</a
-          >
-          are much more popular than other content I&#8217;ve produced, so I
-          might focus more on those fields in the future to improve my impact.
-        </p>
-        <p>
-          Google Analytics is the industry standard for analytics. It&#8217;s a
-          powerful, optimised product which makes it easy to analyse very small
-          and very large sites. It&#8217;s easy to setup, easy to use, and
-          completely free.
-        </p>
-        <p>
-          However, every visit tracked by Google Analytics is sent to and stored
-          on Google&#8217;s servers. And, with an
-          <a href="https://www.similartech.com/categories/analytics"
-            >estimated market share of nearly two thirds</a
-          >, Google can realistically track people&#8217;s movement across most
-          of the web.
-        </p>
-        <p>
-          <strong>Important disclaimer:</strong> Google somewhat anonymises
-          visitors, and you&#8217;re treated as a different person on each
-          website you visit. However, if they wanted to, Google could still
-          easily fingerprint you between sessions and track you as a single
-          entity.
-        </p>
-        <p>
-          <strong>Important disclaimer 2:</strong> Even if Google
-          <em>were</em> doing this (which they may or may not be), there&#8217;s
-          no reason to believe they&#8217;re doing anything nefarious with the
-          information.
-        </p>
-        <p>
-          Disclaimers aside though, the mere possibility is a troubling prospect
-          to me.
-        </p>
-        <h2 id="attack-vector">Attack vector</h2>
-        <p>
-          As well as notifying hosts of user activity, third-party dependencies
-          produce a significant attack vector because they can change. Whilst a
-          table-sorting script might do the job perfectly when you include it, a
-          bad actor could in the future change that code to steal your
-          users&#8217; data, redirect them to a phishing site, or mine BitCoin
-          using their computer.
-        </p>
-        <p>
-          In fact that last event happened
-          <a
-            href="https://www.theregister.co.uk/2018/02/11/browsealoud_compromised_coinhive/"
-            >just yesterday</a
-          >
-          on thousands of government, healthcare and educational sites when a
-          third-party script to aid accessibility was compromised (<a
-            href="https://www.troyhunt.com/the-javascript-supply-chain-paradox-sri-csp-and-trust-in-third-party-libraries/"
-            >Troy Hunt</a
-          >
-          and
-          <a
-            href="https://scotthelme.co.uk/protect-site-from-cryptojacking-csp-sri/"
-            >Scott Helme</a
-          >
-          give this an excellent in-depth technical write-up).
-        </p>
-        <p>
-          Again, I should caveat that the chance of this happening to
-          third-party juggernauts like Google or Facebook is extremely low. And
-          that it&#8217;s quite easily avoided with
-          <a
-            href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
-            >sub-resource integrity</a
-          >
-          or
-          <a
-            href="https://scotthelme.co.uk/content-security-policy-an-introduction/"
-            >content security policy</a
-          >. But it&#8217;s worth being aware the threats.
-        </p>
-        <h2 id="matomo">Matomo</h2>
-        <p>
-          Enter <a href="https://matomo.org/">Matomo</a> (formerly Piwik).
-          Matomo is an independent, open-source, self-hosted analytics platform.
-          It works in the same way as Google Analytics but is not quite as
-          polished and charges for many of the features that Google
-          doesn&#8217;t. Most importantly though, you can host your own
-          instance.
-        </p>
-        <p>
-          And so it is that my Matomo installation is on
-          <a href="https://analytics.gregtyler.co.uk/"
-            >analytics.gregtyler.co.uk</a
-          >
-          so every time you visit this or one of my other sites, a notification
-          is sent there and anonymously stored, and I can analyse trends to
-          guide future content.
-        </p>
-        <p>
-          When I say anonymously, I mean this: Matomo tracks the pages you
-          visit, and the city you&#8217;re in, but otherwise it tracks and I
-          know nothing more about your identity. Your IP address is trimmed in
-          half before being saved (like with credit card numbers on receipts),
-          so I couldn&#8217;t try and trace you backwards even if I wanted to
-          (whereas Google, Facebook etc. could).
-        </p>
-        <p>
-          Matomo also supports
-          <a href="https://www.eff.org/issues/do-not-track">Do Not Track</a>, a
-          setting you can turn on in your browser to opt out of these sort of
-          automated tracking processes. If you don&#8217;t want to be counted
-          amongst these kind of statistics, I <em>highly</em> recommend turning
-          it on (<a href="http://donottrack.us/"
-            >you can find instructions here</a
-          >), though know that websites can freely ignore it.
-        </p>
-        <p>
-          I&#8217;d be ignorant to not note the trade-off here. Whilst your
-          browsing habits are now free of Google, your localised ones have
-          fallen to me. And their security, once kept by a tech giant with teams
-          dedicated to it, is now in my hands.
-        </p>
-        <p>
-          That said, nothing has ever been stopping me, or any other random
-          website, from tracking you privately anyway. Dropping Google Analytics
-          at least gives you respite from one source. And with the isolated
-          nature of your data (i.e. only tracking my own site) and the anonymity
-          provided by Matomo, I see this as a much better solution for privacy
-          rights.
-        </p>
-        <h3 id="installing-matomo">Installing Matomo</h3>
-        <p>
-          For those interested more in the technical side of using Matomo, let
-          me briefly note that it&#8217;s pretty easy as long as you&#8217;re
-          running a LAMP server. The documentation on the website provides an
-          <a href="https://matomo.org/docs/installation/">easy install guide</a
-          >, followed by a step-by-step wizard to connect things up.
-        </p>
-        <p>
-          At the end you get a script similar to the one Google Analytics
-          provides which is an easy drop in replacement, as you can see from
-          <a
-            href="https://github.com/gregtyler/Palomar/commit/056c6fb9cda969eb60008ab4a2da93f46d8e7238"
-            >the commit</a
-          >
-          that switched this website around.
-        </p>
-        <p>
-          However, setting up geolocation for Matomo is more difficult.
-          It&#8217;s quite a manual process, particularly if using PHP7 because
-          you then need to compile the PECL extension yourself. I had a few
-          stumbling blocks here, and I wouldn&#8217;t feel qualified providing
-          much advice to anyone else struggling. But I would note that you need
-          geoip-beta, a piece of information I found squirreled away on a
-          mailing list.
-        </p>
-        <p>
-          If you can live without geolocation, Matomo will do you proud from the
-          off. If you can&#8217;t, I recommend making sure you&#8217;re
-          comfortable with the command line, devops and your server. It&#8217;s
-          not a casual install, and getting it wrong has potential to
-          signficantly break your server.
-        </p>
-        <h2 id="fonts">Fonts</h2>
-        <p>
-          The other major third-party dependency I purged was fonts. This
-          website previously used
-          <a href="http://www.opensans.com/">Open Sans</a> and
-          <a href="https://www.fontsquirrel.com/fonts/Titillium"
-            >Titillium Web</a
-          >, both loaded from
-          <a href="https://fonts.google.com/about">Google Fonts</a>. Again, I
-          had concerns with every visitor letting Google know of their presence
-          here by loading the font.
-        </p>
-        <p>
-          Like Google Analytics, Google Fonts is an excellent service.
-          It&#8217;s fast, easy-to-use and free. Font loading is a difficult
-          topic in web development and Google&#8217;s service really makes it a
-          breeze. With the complexity ahead, I balked slightly at having to
-          figuring out a replacement for myself.
-        </p>
-        <p>
-          However, there&#8217;s a
-          <a href="https://medium.design/system-shock-6b1dc6d6596f">growing</a>
-          <a href="http://markdotto.com/2018/02/07/github-system-fonts/"
-            >trend</a
-          >
-          recently of using
-          <a href="https://css-tricks.com/snippets/css/system-font-stack/"
-            >system fonts</a
-          >. That is, the default fonts that come with your computer or phone.
-          This approach makes website look more native, improves performance (by
-          removing the font-loading overhead), and protects against browser bugs
-          (again, by simply removing the opportunity).
-        </p>
-        <p>
-          Mostly the system font approach is used by sites which want to seem
-          like &#8220;apps&#8221;. They want to lose the shackles of looking
-          like a web interface and feel natural and at home on a user&#8217;s
-          computer or, more likely, phone.
-        </p>
-        <p>
-          Admittedly, gregtyler.co.uk does not want to appear like an app. You
-          can&#8217;t even comment. Or search. There isn&#8217;t an input box on
-          the site. But for that performance boost, and to stop me worrying
-          about fonts, I took the leap and I think it looks pretty good.
-        </p>
-        <p>
-          As I continue to remove third-party dependencies from other sites,
-          this choice won&#8217;t last. I love the pleasure that custom fonts
-          add to <a href="https://cv.gregtyler.co.uk/">my CV</a>, and
-          <a href="https://talklikeapoirotday.co.uk/">Talk Like a Poirot Day</a>
-          simply wouldn&#8217;t look the same in Segoe UI or Helvetica. Watch
-          this space for details on how I choose to deal with those.
-        </p>
-        <h2 id="conclusion">Conclusion</h2>
-        <p>
-          Turning off third-party dependencies feels a bit like &#8220;going
-          dark&#8221;. This website is now an island, free of connections to the
-          outside internet. Whether visitors notice it or not, <em>I</em> feel
-          more comfortable knowing that their browsing habits aren&#8217;t being
-          shared elsewhere.
-        </p>
-        <p>
-          Switching to Matomo has been really easy, and so far the information
-          coming out is exactly what I need. And whilst switching to system
-          fonts was a bit of a cop out, I&#8217;m really happy with how that has
-          turned out.
-        </p>
-        <p>
-          Now I&#8217;ve just got to go back to every other site I&#8217;ve
-          developed or hosted and continue the switch.
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+---
+layout: post.njk
+title: Removing third-party dependencies
+published: 2018-02-12
+tags:
+  - Web development
+summary: An explanation of how—and why—I removed third-party dependencies on fonts and analytics from this website
+---
+<p>
+  I recently decided to remove all third-party dependencies from most of
+  my websites. That is, all scripts, CSS and fonts that are loaded from
+  a server other than *.gregtyler.co.uk
+</p>
+<p>
+  My primary concern is user privacy. Whenever you visit a site with a
+  third-party dependency, that third-party is aware of your visit. So
+  even if you don&#8217;t click &#8220;like&#8221; on a page that
+  features the Facebook button its mere presence—and the network request
+  to load it—inform Facebook that you&#8217;re there.
+</p>
+<p>
+  This site and others I run, like
+  <a href="https://talklikeapoirotday.co.uk/">Talk Like a Poirot Day</a
+  >, might not feature the sort of content you&#8217;d be too worried
+  about third-parties knowing about your visit to; but the cumulative
+  knowledge of visitors&#8217; viewing habits is the stuff of dystopian
+  science fiction.
+</p>
+<h2 id="analytics">Analytics</h2>
+<p>
+  Facebook is an easy target here, but the real threat on my sites is
+  Google through its
+  <a href="https://www.google.com/analytics/">analytics tools</a>.
+</p>
+<p>
+  Analytics is the process of tracking users&#8217; visits to a website
+  and then assessing them en masse to determine meaningful patterns
+  which can help inform website development. For example, I&#8217;m
+  aware that my articles on
+  <a href="http://localhost:4141/webdev/ssl-read-errno-10054"
+    >an SSL error</a
+  >
+  and on
+  <a href="http://localhost:4141/webdev/vuejs-browserify-grunt"
+    >using Vue with Browersify and Grunt</a
+  >
+  are much more popular than other content I&#8217;ve produced, so I
+  might focus more on those fields in the future to improve my impact.
+</p>
+<p>
+  Google Analytics is the industry standard for analytics. It&#8217;s a
+  powerful, optimised product which makes it easy to analyse very small
+  and very large sites. It&#8217;s easy to setup, easy to use, and
+  completely free.
+</p>
+<p>
+  However, every visit tracked by Google Analytics is sent to and stored
+  on Google&#8217;s servers. And, with an
+  <a href="https://www.similartech.com/categories/analytics"
+    >estimated market share of nearly two thirds</a
+  >, Google can realistically track people&#8217;s movement across most
+  of the web.
+</p>
+<p>
+  <strong>Important disclaimer:</strong> Google somewhat anonymises
+  visitors, and you&#8217;re treated as a different person on each
+  website you visit. However, if they wanted to, Google could still
+  easily fingerprint you between sessions and track you as a single
+  entity.
+</p>
+<p>
+  <strong>Important disclaimer 2:</strong> Even if Google
+  <em>were</em> doing this (which they may or may not be), there&#8217;s
+  no reason to believe they&#8217;re doing anything nefarious with the
+  information.
+</p>
+<p>
+  Disclaimers aside though, the mere possibility is a troubling prospect
+  to me.
+</p>
+<h2 id="attack-vector">Attack vector</h2>
+<p>
+  As well as notifying hosts of user activity, third-party dependencies
+  produce a significant attack vector because they can change. Whilst a
+  table-sorting script might do the job perfectly when you include it, a
+  bad actor could in the future change that code to steal your
+  users&#8217; data, redirect them to a phishing site, or mine BitCoin
+  using their computer.
+</p>
+<p>
+  In fact that last event happened
+  <a
+    href="https://www.theregister.co.uk/2018/02/11/browsealoud_compromised_coinhive/"
+    >just yesterday</a
+  >
+  on thousands of government, healthcare and educational sites when a
+  third-party script to aid accessibility was compromised (<a
+    href="https://www.troyhunt.com/the-javascript-supply-chain-paradox-sri-csp-and-trust-in-third-party-libraries/"
+    >Troy Hunt</a
+  >
+  and
+  <a
+    href="https://scotthelme.co.uk/protect-site-from-cryptojacking-csp-sri/"
+    >Scott Helme</a
+  >
+  give this an excellent in-depth technical write-up).
+</p>
+<p>
+  Again, I should caveat that the chance of this happening to
+  third-party juggernauts like Google or Facebook is extremely low. And
+  that it&#8217;s quite easily avoided with
+  <a
+    href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
+    >sub-resource integrity</a
+  >
+  or
+  <a
+    href="https://scotthelme.co.uk/content-security-policy-an-introduction/"
+    >content security policy</a
+  >. But it&#8217;s worth being aware the threats.
+</p>
+<h2 id="matomo">Matomo</h2>
+<p>
+  Enter <a href="https://matomo.org/">Matomo</a> (formerly Piwik).
+  Matomo is an independent, open-source, self-hosted analytics platform.
+  It works in the same way as Google Analytics but is not quite as
+  polished and charges for many of the features that Google
+  doesn&#8217;t. Most importantly though, you can host your own
+  instance.
+</p>
+<p>
+  And so it is that my Matomo installation is on
+  <a href="https://analytics.gregtyler.co.uk/"
+    >analytics.gregtyler.co.uk</a
+  >
+  so every time you visit this or one of my other sites, a notification
+  is sent there and anonymously stored, and I can analyse trends to
+  guide future content.
+</p>
+<p>
+  When I say anonymously, I mean this: Matomo tracks the pages you
+  visit, and the city you&#8217;re in, but otherwise it tracks and I
+  know nothing more about your identity. Your IP address is trimmed in
+  half before being saved (like with credit card numbers on receipts),
+  so I couldn&#8217;t try and trace you backwards even if I wanted to
+  (whereas Google, Facebook etc. could).
+</p>
+<p>
+  Matomo also supports
+  <a href="https://www.eff.org/issues/do-not-track">Do Not Track</a>, a
+  setting you can turn on in your browser to opt out of these sort of
+  automated tracking processes. If you don&#8217;t want to be counted
+  amongst these kind of statistics, I <em>highly</em> recommend turning
+  it on (<a href="http://donottrack.us/"
+    >you can find instructions here</a
+  >), though know that websites can freely ignore it.
+</p>
+<p>
+  I&#8217;d be ignorant to not note the trade-off here. Whilst your
+  browsing habits are now free of Google, your localised ones have
+  fallen to me. And their security, once kept by a tech giant with teams
+  dedicated to it, is now in my hands.
+</p>
+<p>
+  That said, nothing has ever been stopping me, or any other random
+  website, from tracking you privately anyway. Dropping Google Analytics
+  at least gives you respite from one source. And with the isolated
+  nature of your data (i.e. only tracking my own site) and the anonymity
+  provided by Matomo, I see this as a much better solution for privacy
+  rights.
+</p>
+<h3 id="installing-matomo">Installing Matomo</h3>
+<p>
+  For those interested more in the technical side of using Matomo, let
+  me briefly note that it&#8217;s pretty easy as long as you&#8217;re
+  running a LAMP server. The documentation on the website provides an
+  <a href="https://matomo.org/docs/installation/">easy install guide</a
+  >, followed by a step-by-step wizard to connect things up.
+</p>
+<p>
+  At the end you get a script similar to the one Google Analytics
+  provides which is an easy drop in replacement, as you can see from
+  <a
+    href="https://github.com/gregtyler/Palomar/commit/056c6fb9cda969eb60008ab4a2da93f46d8e7238"
+    >the commit</a
+  >
+  that switched this website around.
+</p>
+<p>
+  However, setting up geolocation for Matomo is more difficult.
+  It&#8217;s quite a manual process, particularly if using PHP7 because
+  you then need to compile the PECL extension yourself. I had a few
+  stumbling blocks here, and I wouldn&#8217;t feel qualified providing
+  much advice to anyone else struggling. But I would note that you need
+  geoip-beta, a piece of information I found squirreled away on a
+  mailing list.
+</p>
+<p>
+  If you can live without geolocation, Matomo will do you proud from the
+  off. If you can&#8217;t, I recommend making sure you&#8217;re
+  comfortable with the command line, devops and your server. It&#8217;s
+  not a casual install, and getting it wrong has potential to
+  signficantly break your server.
+</p>
+<h2 id="fonts">Fonts</h2>
+<p>
+  The other major third-party dependency I purged was fonts. This
+  website previously used
+  <a href="http://www.opensans.com/">Open Sans</a> and
+  <a href="https://www.fontsquirrel.com/fonts/Titillium"
+    >Titillium Web</a
+  >, both loaded from
+  <a href="https://fonts.google.com/about">Google Fonts</a>. Again, I
+  had concerns with every visitor letting Google know of their presence
+  here by loading the font.
+</p>
+<p>
+  Like Google Analytics, Google Fonts is an excellent service.
+  It&#8217;s fast, easy-to-use and free. Font loading is a difficult
+  topic in web development and Google&#8217;s service really makes it a
+  breeze. With the complexity ahead, I balked slightly at having to
+  figuring out a replacement for myself.
+</p>
+<p>
+  However, there&#8217;s a
+  <a href="https://medium.design/system-shock-6b1dc6d6596f">growing</a>
+  <a href="http://markdotto.com/2018/02/07/github-system-fonts/"
+    >trend</a
+  >
+  recently of using
+  <a href="https://css-tricks.com/snippets/css/system-font-stack/"
+    >system fonts</a
+  >. That is, the default fonts that come with your computer or phone.
+  This approach makes website look more native, improves performance (by
+  removing the font-loading overhead), and protects against browser bugs
+  (again, by simply removing the opportunity).
+</p>
+<p>
+  Mostly the system font approach is used by sites which want to seem
+  like &#8220;apps&#8221;. They want to lose the shackles of looking
+  like a web interface and feel natural and at home on a user&#8217;s
+  computer or, more likely, phone.
+</p>
+<p>
+  Admittedly, gregtyler.co.uk does not want to appear like an app. You
+  can&#8217;t even comment. Or search. There isn&#8217;t an input box on
+  the site. But for that performance boost, and to stop me worrying
+  about fonts, I took the leap and I think it looks pretty good.
+</p>
+<p>
+  As I continue to remove third-party dependencies from other sites,
+  this choice won&#8217;t last. I love the pleasure that custom fonts
+  add to <a href="https://cv.gregtyler.co.uk/">my CV</a>, and
+  <a href="https://talklikeapoirotday.co.uk/">Talk Like a Poirot Day</a>
+  simply wouldn&#8217;t look the same in Segoe UI or Helvetica. Watch
+  this space for details on how I choose to deal with those.
+</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>
+  Turning off third-party dependencies feels a bit like &#8220;going
+  dark&#8221;. This website is now an island, free of connections to the
+  outside internet. Whether visitors notice it or not, <em>I</em> feel
+  more comfortable knowing that their browsing habits aren&#8217;t being
+  shared elsewhere.
+</p>
+<p>
+  Switching to Matomo has been really easy, and so far the information
+  coming out is exactly what I need. And whilst switching to system
+  fonts was a bit of a cop out, I&#8217;m really happy with how that has
+  turned out.
+</p>
+<p>
+  Now I&#8217;ve just got to go back to every other site I&#8217;ve
+  developed or hosted and continue the switch.
+</p>

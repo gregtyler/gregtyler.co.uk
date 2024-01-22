@@ -1,159 +1,55 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#c82e14" />
-    <link rel="manifest" href="/assets/manifest.webmanifest" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Greg Tyler RSS Feed"
-      href="/feed.rss"
-    />
-    <meta
-      name="description"
-      content="Websites, quizzes, problem solving. I try to make stuff better."
-    />
+---
+layout: post.njk
+title: Choose your own Snakes and Ladders
+published: 2019-07-16
+tags:
+  - Projects
+---
+<p>
+  I was in an exercise at work recently which involved visualising our
+  last two weeks as a game of snakes and ladders: we drew a game board
+  and labelled the ladders with things that had helped us progress, the
+  snakes were things that hindered. (Sound like a good idea?
+  <a href="https://jobs.jobvite.com/justicedigitalandtechnology"
+    >We&#8217;re hiring!</a
+  >)
+</p>
 
-    <title>Choose your own Snakes and Ladders - Greg Tyler</title>
-    <link
-      rel="canonical"
-      href="https://gregtyler.co.uk/blog/choose-your-own-snakes-and-ladders"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@gregtyler" />
-    <meta name="twitter:creator" content="@gregtyler" />
-    <meta
-      name="og:url"
-      content="https://gregtyler.co.uk/blog/choose-your-own-snakes-and-ladders"
-    />
-    <meta name="og:title" content="Choose your own Snakes and Ladders" />
-    <meta
-      name="og:description"
-      content="<p>I was in an exercise at work recently which involved visualising our last two weeks as a game of snakes and ladders: we drew a game board and labelled the ladders with things that had helped us progress, the snakes were things that hindered. (Sound like a good idea? We&#8217;re hiring!) During this exercise I [&hellip;]</p>
-"
-    />
+<p>
+  During this exercise I had a minor, irrelevant realization that the
+  game of Snakes and Ladders was simply a
+  <a href="https://en.wikipedia.org/wiki/Finite-state_machine"
+    >finite-state machine</a
+  >
+  with randomly-selected transitions. If you&#8217;re on square 17, you
+  will always go to square 18, 19, 20, 21, 22 or 23 if you roll a 1, 2,
+  3, 4, 5 or 6 respectively. If you land on a square with a snake or
+  ladder, you instantly transition to its other end.
+</p>
 
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
+<p>
+  I&#8217;d also been thinking recently about how Choose Your Own
+  Adventure books (which are apparently properly called &#8220;<a
+    href="https://en.wikipedia.org/wiki/Gamebook"
+    >gamebooks</a
+  >&#8220;) are <em>also</em> finite-state machines. From any one page
+  in the gamebook, your transition options are finite and clearly
+  defined.
+</p>
 
-    <main class="c-page t-flex--fill">
-      <h1 class="c-page__title">Choose your own Snakes and Ladders</h1>
+<p>
+  Neither of these are particularly insightful observations,
+  they&#8217;re just different ways of thinking about representation and
+  codification. When you work with software, you think about this a lot
+  (I&#8217;ve also been thinking about how to codify recipes recently).
+</p>
 
-      <div class="c-page__meta">
-        <div>Published on 16th July 2019</div>
-
-        <ul class="o-linklist o-linklist--centered">
-          <li><a class="c-tag" href="/blog/category/projects">Projects</a></li>
-        </ul>
-      </div>
-      <div class="c-page__content">
-        <p>
-          I was in an exercise at work recently which involved visualising our
-          last two weeks as a game of snakes and ladders: we drew a game board
-          and labelled the ladders with things that had helped us progress, the
-          snakes were things that hindered. (Sound like a good idea?
-          <a href="https://jobs.jobvite.com/justicedigitalandtechnology"
-            >We&#8217;re hiring!</a
-          >)
-        </p>
-
-        <p>
-          During this exercise I had a minor, irrelevant realization that the
-          game of Snakes and Ladders was simply a
-          <a href="https://en.wikipedia.org/wiki/Finite-state_machine"
-            >finite-state machine</a
-          >
-          with randomly-selected transitions. If you&#8217;re on square 17, you
-          will always go to square 18, 19, 20, 21, 22 or 23 if you roll a 1, 2,
-          3, 4, 5 or 6 respectively. If you land on a square with a snake or
-          ladder, you instantly transition to its other end.
-        </p>
-
-        <p>
-          I&#8217;d also been thinking recently about how Choose Your Own
-          Adventure books (which are apparently properly called &#8220;<a
-            href="https://en.wikipedia.org/wiki/Gamebook"
-            >gamebooks</a
-          >&#8220;) are <em>also</em> finite-state machines. From any one page
-          in the gamebook, your transition options are finite and clearly
-          defined.
-        </p>
-
-        <p>
-          Neither of these are particularly insightful observations,
-          they&#8217;re just different ways of thinking about representation and
-          codification. When you work with software, you think about this a lot
-          (I&#8217;ve also been thinking about how to codify recipes recently).
-        </p>
-
-        <p>
-          The upshot of this is that I created a Choose Your Own Adventure style
-          <a href="https://lovely-serpent.glitch.me/"
-            ><strong>Snakes and Ladders game</strong></a
-          >. It&#8217;s predictable, repetitive and relies completely on chance
-          (as the original). I also think it&#8217;s strangely charming and
-          I&#8217;d like to publish a physical copy sometime—I just need some
-          cover art.
-        </p>
-      </div>
-    </main>
-
-    <footer class="c-footer">
-      🏛🌯🌳🎧
-      <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
-        <span role="separator">-</span>
-        <a
-          href="https://gitlab.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitLab</a
-        >
-        <span role="separator">-</span>
-        <a
-          href="https://github.com/gregtyler"
-          rel="me noreferrer"
-          class="c-footer__link"
-          >GitHub</a
-        >
-      </div>
-    </footer>
-
-    <script
-      data-goatcounter="https://gregtyler.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    ></script>
-  </body>
-</html>
+<p>
+  The upshot of this is that I created a Choose Your Own Adventure style
+  <a href="https://lovely-serpent.glitch.me/"
+    ><strong>Snakes and Ladders game</strong></a
+  >. It&#8217;s predictable, repetitive and relies completely on chance
+  (as the original). I also think it&#8217;s strangely charming and
+  I&#8217;d like to publish a physical copy sometime—I just need some
+  cover art.
+</p>
