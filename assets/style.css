@@ -292,13 +292,18 @@ pre {
   margin-left: calc(var(--spacing) * -1);
   margin-right: -1rem;
   margin-right: calc(var(--spacing) * -1);
-  padding-top: 1rem;
-  padding-top: var(--spacing);
-  padding-bottom: 1rem;
-  padding-bottom: var(--spacing);
+  padding-top: .5rem;
+  padding-top: calc(var(--spacing) * 0.5);
+  padding-bottom: .5rem;
+  padding-bottom: calc(var(--spacing) * 0.5);
   text-align: center;
   background-color: #f5f5f5;
   background-color: var(--color-accent);
+}
+
+.c-page__migration-notice {
+  text-align: center;
+  border-bottom: 3px solid var(--color-accent);
 }
 
 .c-page__content {

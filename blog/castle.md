@@ -1,5 +1,6 @@
 ---
 layout: post.njk
+isMigrated: true
 title: Castle – Secret Santa
 date: 2016-12-04
 tags:

@@ -6,9 +6,9 @@ layout: base.njk
   <h1 class="c-page__title">{{ title }}</h1>
 
   <div class="c-page__meta">
-    <div>
+    <p>
       Published on <time datetime="{{ date | dateISO }}">{{ date | date }}</time>
-    </div>
+    </p>
 
     <ul class="o-linklist o-linklist--centered">
       {% for tag in tags %}
@@ -20,6 +20,16 @@ layout: base.njk
       {% endfor %}
     </ul>
   </div>
+
+  <aside class="c-page__migration-notice">
+    {% if isMigrated %}
+      <p>
+        <strong>This post has been migrated</strong>
+        and may contain invalid formatting, dead links or have missing content.
+    </p>
+    {% endif %}
+  </aside>
+
   <div class="c-page__content">
     {{ content | safe }}
   </div>
