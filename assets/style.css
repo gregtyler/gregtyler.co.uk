@@ -56,7 +56,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif;
   font-family: var(--font-default);
-  font-size: 18px;
   background-color: #c82e14;
   background-color: var(--color-brand);
   background-image: radial-gradient(
@@ -92,7 +91,7 @@ body {
   background-repeat: no-repeat;
   color: #555;
   color: var(--color-text);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 ::-moz-selection {
@@ -238,9 +237,9 @@ pre {
   text-align: center;
 }
 
-.c-footer__link {
+.c-footer__link, .c-footer__link:visited {
   color: inherit;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .c-navbar {
@@ -292,9 +291,9 @@ pre {
   margin-left: calc(var(--spacing) * -1);
   margin-right: -1rem;
   margin-right: calc(var(--spacing) * -1);
-  padding-top: .5rem;
+  padding-top: 0.5rem;
   padding-top: calc(var(--spacing) * 0.5);
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   padding-bottom: calc(var(--spacing) * 0.5);
   text-align: center;
   background-color: #f5f5f5;
@@ -335,24 +334,29 @@ pre {
   }
 }
 
-.c-splash {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  min-height: 50vmin;
+.c-home {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
   color: #fff;
   color: var(--color-brand-contrast);
-  font-size: 8vmin;
+  font-size: 1.5rem;
   font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: -0.05em;
+}
+
+.c-home__highlight {
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: -0.03em;
+}
+
+.c-home strong {
+  font-weight: 900;
 }
 
 .c-sunken {
   background-color: var(--color-accent);
-  box-shadow: inset 0 5px 10px -5px rgba(0 0 0/60%),
-    inset 0 -5px 10px -5px rgba(0 0 0/60%);
+  box-shadow: inset 0 0 20px -5px rgba(0 0 0/60%);
   padding: 1rem;
   padding: var(--spacing);
 }
@@ -374,6 +378,21 @@ pre {
   color: var(--color-brand-contrast);
   font-size: 0.85rem;
   text-decoration: none;
+}
+
+.c-tag:visited {
+  color: #fff;
+  color: var(--color-brand-contrast);
+}
+
+.c-tag:hover {
+  background-color: var(--color-brand);
+  text-decoration: underline;
+}
+
+.t-flex__container {
+  display: flex;
+  flex-direction: column;
 }
 
 .t-flex--fill {
@@ -452,6 +471,14 @@ pre {
 }
 
 @media (min-width: 1000px) {
+  html {
+    font-size: 20px;
+  }
+
+  .c-home__lead {
+    font-size: 2.5rem;
+  }
+
   .alignleft,
   .alignright,
   .c-figure--left,
