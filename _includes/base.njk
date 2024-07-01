@@ -40,32 +40,27 @@
   </head>
   <body>
     {{absolutePageUrl}}
-    <header class="c-navbar">
-      <h1 class="c-navbar__title">
-        <a href="/" class="c-navbar__title-link">Greg Tyler</a>
-      </h1>
-      <ul class="o-linklist o-linklist--horizontal">
-        <li>
-          <a href="/blog" class="o-linklist__link">Blog</a>
-        </li>
-        <li>
-          <a href="/blog/category/weeknotes" class="o-linklist__link"
-            >Weeknotes</a
-          >
-        </li>
-        <li>
-          <a href="/portfolio" class="o-linklist__link">Portfolio</a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/gregtyler"
-            rel="me noreferrer"
-            class="o-linklist__link"
-            >Twitter</a
-          >
-        </li>
-      </ul>
-    </header>
+
+    {%- if not noHeader -%}
+      <header class="c-navbar">
+        <h1 class="c-navbar__title">
+          <a href="/" class="c-navbar__title-link">Greg Tyler</a>
+        </h1>
+        <ul class="o-linklist o-linklist--horizontal">
+          <li>
+            <a href="/blog" class="o-linklist__link">Blog</a>
+          </li>
+          <li>
+            <a href="/blog/category/weeknotes" class="o-linklist__link"
+              >Weeknotes</a
+            >
+          </li>
+          <li>
+            <a href="/portfolio" class="o-linklist__link">Portfolio</a>
+          </li>
+        </ul>
+      </header>
+    {%- endif -%}
 
     {{ content | safe }}
 

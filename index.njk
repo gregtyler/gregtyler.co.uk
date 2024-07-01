@@ -2,26 +2,15 @@
 layout: base.njk
 eleventyExcludeFromCollections: true
 ---
-<div class="c-splash">
-  Code with a conscience
-</div>
 
-<div class="c-sunken">
-  <h2 class="c-sunken__title">Recent blog posts</h2>
-  <div class="o-carousel">
-    {% set latest = collections.all.reverse() %}
-    {% for post in latest.slice(0, 5) %}
-      <a href="{{ post.url }}" class="c-card c-card--link">
-        <h2 class="c-card__title">{{ post.data.title }}</h2>
-        <div class="c-card__meta">{{ post.date | date }}</div>
+<main class="c-page t-flex--fill t-flex__container">
+  <div class="c-home t-flex--fill">
+    <p class="c-home__highlight">Software developer focussed on <strong>user-centred design</strong>, <strong>strong teams</strong> and <strong>simple solutions</strong>.</p>
 
-        <div class="t-flex--fill"></div>
-        <div class="c-card__actions">
-          <span class="c-card__action c-card__action--primary">
-            Read post
-          </span>
-        </div>
-      </a>
-    {% endfor %}
+    <p><strong>User-centered design</strong> ensures my work can be used by everybody, and meets their real-world needs.</p>
+
+    <p>The <strong>strong teams</strong> I build collaborate effectively to bring the best out of each other.</p>
+
+    <p>I prefer <strong>simple solutions</strong> rather than over-engineered ones, reducing the complexity, cost and environmental impact of my work.</p>
   </div>
-</div>
+</main>
