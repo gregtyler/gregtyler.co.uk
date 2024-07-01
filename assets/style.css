@@ -259,6 +259,10 @@ pre {
   text-decoration: none;
 }
 
+.c-navbar__title-link:hover {
+  text-decoration: underline;
+}
+
 .c-navbar__title-link:visited {
   color: inherit;
 }
@@ -348,6 +352,14 @@ pre {
   font-size: 2rem;
   text-align: center;
   letter-spacing: -0.03em;
+}
+
+.c-home__highlight + p {
+  margin-top: calc(var(--spacing) * 2);
+}
+
+p + .c-home__highlight {
+  margin-top: calc(var(--spacing) * 2);
 }
 
 .c-home strong {
@@ -473,10 +485,6 @@ pre {
 @media (min-width: 1000px) {
   html {
     font-size: 20px;
-  }
-
-  .c-home__lead {
-    font-size: 2.5rem;
   }
 
   .alignleft,
