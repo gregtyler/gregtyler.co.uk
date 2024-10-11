@@ -1,6 +1,5 @@
 ---
 layout: post.njk
-isMigrated: true
 title: Deciding to build a Game Boy emulator in Rust
 date: 2024-10-11
 tags:
