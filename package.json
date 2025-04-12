@@ -1,6 +1,7 @@
 {
   "name": "gregtyler.co.uk",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "build": "npx @11ty/eleventy",
     "start": "npx @11ty/eleventy --serve"
