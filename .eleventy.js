@@ -1,11 +1,11 @@
-const site = require("./_data/site");
-const { DateTime } = require("luxon");
-const markdownit = require("markdown-it");
-const pluginRss = require("@11ty/eleventy-plugin-rss");
+import site from "./_data/site.js";
+import { DateTime } from "luxon";
+import markdownit from "markdown-it";
+import pluginRss from "@11ty/eleventy-plugin-rss";
 
 const md = markdownit();
 
-module.exports = function (config) {
+export default function (config) {
   config.addPassthroughCopy("assets");
   config.addPassthroughCopy("images");
 
@@ -42,9 +42,7 @@ module.exports = function (config) {
 
     return `<figure class="${classes}">
 ${trimmed.startsWith("!") ? md.renderInline(trimmed) : trimmed}
-${
-  caption ? ` ${caption}</figcaption>` : ""
-}
+${caption ? ` ${caption}</figcaption>` : ""}
 </figure>`;
   });
-};
+}

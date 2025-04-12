@@ -8,4 +8,4 @@ const site = {
   baseUrl,
 };
 
-module.exports = site;
+export default site;
