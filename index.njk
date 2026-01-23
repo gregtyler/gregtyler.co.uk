@@ -1,7 +1,16 @@
 ---
 layout: base.njk
 eleventyExcludeFromCollections: true
+noHeader: true
 ---
+
+{%- block header -%}
+  <header class="c-navbar c-navbar--centered">
+    <h1 class="c-navbar__title">
+      <a href="/" class="c-navbar__title-link">Greg Tyler</a>
+    </h1>
+  </header>
+{%- endblock -%}
 
 <main class="c-page t-flex--fill t-flex__container">
   <div class="c-home t-flex--fill">
