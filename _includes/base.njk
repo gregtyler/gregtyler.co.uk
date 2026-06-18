@@ -12,11 +12,11 @@
       type="application/rss+xml"
       title="Greg Tyler RSS Feed"
       href="/feed.xml"
-/>
+    />
     <meta
       name="description"
       content="Websites, quizzes, problem solving. I try to make stuff better."
-/>
+    />
 
     {% if title -%}
       <title>{{ title }} - Greg Tyler</title>
@@ -46,7 +46,7 @@
         <h1 class="c-navbar__title">
           <a href="/" class="c-navbar__title-link">Greg Tyler</a>
         </h1>
-        <ul class="o-linklist o-linklist--horizontal">
+        <ul class="o-linklist o-linklist--horizontal c-navbar__links">
           <li>
             <a href="/blog" class="o-linklist__link">Blog</a>
           </li>
@@ -60,9 +60,9 @@
     {{ content | safe }}
 
     <footer class="c-footer">
-      🏛🌯🌳🎧
+      🏛 🌯 🌳 🎧
       <div>
-        <a href="/privacy" class="c-footer__link"> Privacy </a>
+        <a href="/privacy" class="c-footer__link">Privacy</a>
         <span role="separator">-</span>
         <a
           href="https://gitlab.com/gregtyler"

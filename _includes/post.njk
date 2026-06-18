@@ -6,29 +6,31 @@ layout: base.njk
   <h1 class="c-page__title">{{ title }}</h1>
 
   <div class="c-page__meta">
-    <p>
+    <div>
       Published on <time datetime="{{ date | dateISO }}">{{ date | date }}</time>
-    </p>
+    </div>
 
-    <ul class="o-linklist o-linklist--centered">
-      {% for tag in tags %}
-        <li>
-          <a class="c-tag" href="/blog/category/{{ tag | toTagSlug }}">
-            {{ tag }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
+    {% if tags and tags | length > 0 %}
+      <ul class="o-linklist o-linklist--centered">
+        {% for tag in tags %}
+          <li>
+            <a class="c-tag" href="/blog/category/{{ tag | toTagSlug }}">
+              {{ tag }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </div>
 
-  <aside class="c-page__migration-notice">
-    {% if isMigrated %}
-      <p>
-        <strong>This post has been migrated</strong>
-        and may contain invalid formatting, dead links or have missing content.
-    </p>
-    {% endif %}
-  </aside>
+  {% if isMigrated %}
+    <aside class="c-page__migration-notice">
+        <p>
+          <strong>This post has been migrated</strong>
+          and may contain invalid formatting, dead links or have missing content.
+      </p>
+    </aside>
+  {% endif %}
 
   <div class="c-page__content">
     {{ content | safe }}
