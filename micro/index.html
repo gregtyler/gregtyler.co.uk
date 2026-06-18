@@ -1,0 +1,46 @@
+---
+layout: base.njk
+override:tags: []
+pagination:
+  data: collections.micro
+  size: 10
+  reverse: true
+permalink: "micro/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber | plus: 1 }}/{% endif %}/index.html"
+---
+
+<main class="c-page t-flex--fill">
+  <h1 class="c-page__title">Microblog</h1>
+  <strong
+    >{% if pagination.pageNumber > 0 %}Page {{ pagination.pageNumber | plus: 1
+    }}{% endif %}</strong
+  >
+
+  <div class="c-page__content">
+    <ol class="o-linklist o-linklist--vertical">
+      {% for post in pagination.items %}
+      <li>
+        <h2>
+          <a href="{{ post.url }}">
+            {{ post.data.date | datetime }}
+          </a>
+        </h2>
+        <p>{{ post.content }}</p>
+
+        <hr />
+      </li>
+      {% endfor %}
+    </ol>
+
+    <ul class="o-linklist o-linklist--horizontal">
+      {% if pagination.href.previous %}
+      <li>
+        <a href="{{ pagination.href.previous }}">&laquo; Previous</a>
+      </li>
+      {% endif %} {% if pagination.href.next %}
+      <li>
+        <a href="{{ pagination.href.next }}">Next &raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</main>
