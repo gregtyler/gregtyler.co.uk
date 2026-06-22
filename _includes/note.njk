@@ -1,0 +1,15 @@
+---
+layout: base.njk
+---
+
+<main class="c-page t-flex--fill h-entry">
+  <p>
+    <a href="/micro">Microblog</a> /
+    {{ date | date }} /
+    <time class="dt-published" datetime="{{ date | dateISO }}">{{ date | time }}</time>
+  </p>
+
+  <div class="c-page__content p-content">
+    {{ content | safe }}
+  </div>
+</main>

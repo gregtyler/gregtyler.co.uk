@@ -17,6 +17,24 @@ export default function (config) {
     });
   });
 
+  config.addFilter("datetime", (dateObj) => {
+    return DateTime.fromJSDate(dateObj).toLocaleString(
+      {
+        ...DateTime.DATETIME_FULL,
+        timeZoneName: undefined,
+      },
+      {
+        locale: "en-GB",
+      },
+    );
+  });
+
+  config.addFilter("time", (dateObj) => {
+    return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.TIME_SIMPLE, {
+      locale: "en-GB",
+    });
+  });
+
   config.addFilter("dateISO", (dateObj) => {
     return DateTime.fromJSDate(dateObj).toISODate();
   });
