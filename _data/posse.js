@@ -79,11 +79,11 @@ for (const file of files) {
     continue;
   }
 
-  if (!data.social_posse.skip_bluesky) {
+  if (!(data.social_posse?.skip_bluesky ?? false)) {
     await publishBluesky(content.trim(), postDate);
   }
 
-  if (!data.social_posse.skip_mastodon) {
+  if (!(data.social_posse?.skip_mastodon ?? false)) {
     await publishMastodon(content.trim());
   }
 }
