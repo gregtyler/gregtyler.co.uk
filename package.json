@@ -4,17 +4,21 @@
   "type": "module",
   "scripts": {
     "build": "npx @11ty/eleventy",
-    "start": "npx @11ty/eleventy --serve"
+    "start": "npx @11ty/eleventy --serve",
+    "posse": "node ./_data/posse.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "@11ty/eleventy-plugin-rss": "^3.0.0"
+    "@11ty/eleventy-plugin-rss": "^3.0.0",
+    "@11ty/gray-matter": "^2.1.0",
+    "@atproto/api": "^0.20.16",
+    "@types/node": "^26.0.0",
+    "luxon": "^3.7.2",
+    "masto": "^7.11.1",
+    "remove-markdown": "^0.6.4"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "luxon": "^3.4.4"
-  }
+  "description": ""
 }
