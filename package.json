@@ -16,7 +16,7 @@
     "@types/node": "^26.0.0",
     "luxon": "^3.7.2",
     "masto": "^7.11.1",
-    "remove-markdown": "^0.6.4"
+    "remove-markdown": "^0.7.0"
   },
   "keywords": [],
   "author": "",
